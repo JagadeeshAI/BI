@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 from tqdm import tqdm
 from copy import deepcopy
-from utils import get_model
+from codes.utils import get_model
 from data import get_dynamic_loader
 
 # --------------------- Hyperparameters ---------------------

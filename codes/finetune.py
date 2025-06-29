@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import numpy as np
 from sklearn.metrics import accuracy_score
-from utils import get_model
+from codes.utils import get_model
 from data import get_dynamic_loader
 
 # ----------------- Training & Evaluation Functions -----------------

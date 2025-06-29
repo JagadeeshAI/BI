@@ -3,7 +3,7 @@ import json
 import torch
 from tqdm import tqdm
 from collections import defaultdict
-from utils import get_model
+from codes.utils import get_model
 from data import get_dynamic_loader
 
 def evaluate_model(model, dataloader, device, num_classes):

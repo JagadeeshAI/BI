@@ -5,7 +5,7 @@ from tqdm import tqdm
 import json
 from collections import defaultdict
 from data import get_dynamic_loader
-from utils import get_model
+from codes.utils import get_model
 
 def evaluate(model, dataloader, device, num_classes):
     model.eval()
