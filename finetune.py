@@ -1,99 +1,110 @@
 import torch
-from torch.utils.data import Dataset
-from transformers import TrainingArguments, Trainer
-import numpy as np
+from torch import nn, optim
+from torch.utils.data import DataLoader
 from tqdm import tqdm
+import numpy as np
+from sklearn.metrics import accuracy_score
 from utils import get_model
 from data import get_dynamic_loader
-from sklearn.metrics import accuracy_score
 
-# --------- Custom Dataset Wrapper for Hugging Face ---------
-class LoaderDataset(Dataset):
-    def __init__(self, dataloader):
-        self.dataset = []
-        for batch in tqdm(dataloader, desc="Wrapping DataLoader"):
-            images, labels = batch
-            for img, lbl in zip(images, labels):
-                self.dataset.append((img, lbl))
-    def __getitem__(self, idx):
-        img, label = self.dataset[idx]
-        return {"pixel_values": img, "labels": label}
-    def __len__(self):
-        return len(self.dataset)
+# ----------------- Training & Evaluation Functions -----------------
 
-# --------- Model Wrapper (if needed) ---------
-# If your model returns logits, Trainer will work; else, wrap it:
-class MyModelWrapper(torch.nn.Module):
-    def __init__(self, model):
-        super().__init__()
-        self.model = model
-    def forward(self, pixel_values, labels=None):
-        logits = self.model(pixel_values)
-        loss = None
-        if labels is not None:
-            loss_fn = torch.nn.CrossEntropyLoss(label_smoothing=0.1)
-            loss = loss_fn(logits, labels)
-        return {"logits": logits, "loss": loss}
+def train_one_epoch(model, dataloader, optimizer, criterion, device):
+    model.train()
+    total_loss = 0
+    all_preds = []
+    all_labels = []
 
-# --------- Main Training Code ---------
+    for images, labels in tqdm(dataloader, desc="Training", leave=False):
+        images = images.to(device)
+        labels = labels.to(device)
+
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+
+        total_loss += loss.item()
+
+        preds = outputs.argmax(dim=1).detach().cpu().numpy()
+        all_preds.extend(preds)
+        all_labels.extend(labels.cpu().numpy())
+
+    avg_loss = total_loss / len(dataloader)
+    acc = accuracy_score(all_labels, all_preds)
+    return avg_loss, acc
+
+def evaluate(model, dataloader, criterion, device):
+    model.eval()
+    total_loss = 0
+    all_preds = []
+    all_labels = []
+
+    with torch.no_grad():
+        for images, labels in tqdm(dataloader, desc="Evaluating", leave=False):
+            images = images.to(device)
+            labels = labels.to(device)
+
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+
+            total_loss += loss.item()
+
+            preds = outputs.argmax(dim=1).cpu().numpy()
+            all_preds.extend(preds)
+            all_labels.extend(labels.cpu().numpy())
+
+    avg_loss = total_loss / len(dataloader)
+    acc = accuracy_score(all_labels, all_preds)
+    return avg_loss, acc
+
+# ----------------- Main Function -----------------
+
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    num_classes = 200
-    model = get_model(num_classes=num_classes)
-    model = MyModelWrapper(model).to(device)
 
-    # Use your data loaders as before:
-    train_loader = get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=64)
-    val_loader = get_dynamic_loader(class_range=(0, 99), mode="val", batch_size=64)
+    num_classes = 50
+    model = get_model(num_classes=num_classes, use_lora=False, lora_rank=2, pretrained=True)
+    model.to(device)
 
-    # Wrap DataLoaders into Datasets for Trainer
-    train_dataset = LoaderDataset(train_loader)
-    val_dataset = LoaderDataset(val_loader)
+    # Data
+    train_loader = get_dynamic_loader(class_range=(0, 49), mode="train", batch_size=64)
+    val_loader = get_dynamic_loader(class_range=(0, 49), mode="val", batch_size=64)
 
-    # Metrics for Trainer
-    def compute_metrics(eval_pred):
-        logits, labels = eval_pred
-        preds = np.argmax(logits, axis=1)
-        return {"accuracy": accuracy_score(labels, preds)}
+    # Training config
+    num_epochs = 100
+    lr = 3e-4
+    weight_decay = 0.1  # increased for stronger regularization
+    label_smoothing = 0.1
 
-    OUTPUT_DIR = "./hf_trainer_output"
-    NUM_EPOCHS = 100
-    LR = 3e-4
-    BATCH_SIZE = 64
-    LABEL_SMOOTHING = 0.1
-    WEIGHT_DECAY = 0.05
+    criterion = nn.CrossEntropyLoss(label_smoothing=label_smoothing)
+    optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs)
 
-    training_args = TrainingArguments(
-        output_dir=OUTPUT_DIR,
-        eval_strategy="epoch",
-        save_strategy="epoch",
-        learning_rate=LR,
-        per_device_train_batch_size=BATCH_SIZE,
-        per_device_eval_batch_size=BATCH_SIZE,
-        num_train_epochs=NUM_EPOCHS,
-        weight_decay=WEIGHT_DECAY,
-        label_smoothing_factor=LABEL_SMOOTHING,
-        load_best_model_at_end=True,
-        metric_for_best_model="accuracy",
-        logging_dir=f"{OUTPUT_DIR}/logs",
-        save_total_limit=2,
-        logging_steps=10,
-        remove_unused_columns=False,
-        fp16=torch.cuda.is_available(),
-        report_to="none"
-    )
+    best_val_acc = 0.0
 
+    for epoch in range(1, num_epochs + 1):
+        print(f"\nEpoch {epoch}/{num_epochs}")
 
-    trainer = Trainer(
-        model=model,
-        args=training_args,
-        train_dataset=train_dataset,
-        eval_dataset=val_dataset,
-        compute_metrics=compute_metrics,
-    )
+        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer, criterion, device)
+        val_loss, val_acc = evaluate(model, val_loader, criterion, device)
 
-    trainer.train()
-    trainer.save_model(f"{OUTPUT_DIR}/final")
+        print(f"Train Loss: {train_loss:.4f} | Train Acc: {train_acc * 100:.2f}%")
+        print(f"Val   Loss: {val_loss:.4f} | Val   Acc: {val_acc * 100:.2f}%")
+
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            torch.save(model.state_dict(), "./best_model.pth")
+            print(f"✅ New best accuracy: {val_acc * 100:.2f}% — model saved!")
+        else:
+            print(f"No improvement. Best so far: {best_val_acc * 100:.2f}%")
+
+        scheduler.step()  # update learning rate
+
+    # Final model save
+    torch.save(model.state_dict(), "./test.pth")
+    print("✅ Final model saved.")
 
 if __name__ == "__main__":
     main()

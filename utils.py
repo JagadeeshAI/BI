@@ -1,4 +1,4 @@
-from vit import VisionTransformer
+from backbone.vit import VisionTransformer
 import timm
 import torch
 def load_timm_pretrained_weights(custom_model, model_name='deit_tiny_patch16_224'):
@@ -29,23 +29,25 @@ def load_model_weights(model, checkpoint_path, strict=False):
 
 def get_model(num_classes=100, use_lora=False, lora_rank=2, pretrained=True):
     model = VisionTransformer(
-        img_size=224,
-        patch_size=16,
-        num_classes=num_classes,
-        embed_dim=192,
-        depth=12,
-        num_heads=3,
-        mlp_ratio=4.0,
-        qkv_bias=True,
-        drop_rate=0.0,
-        attn_drop_rate=0.0,
-        drop_path_rate=0.0,
-        use_lora=use_lora,
-        lora_rank=lora_rank
-    )
+    img_size=224,
+    patch_size=16,
+    num_classes=num_classes,
+    embed_dim=192,
+    depth=12,
+    num_heads=3,
+    mlp_ratio=4.0,
+    qkv_bias=True,
+    drop_rate=0.2,         # 🔹 Dropout inside MLP + classifier head
+    attn_drop_rate=0.2,    # 🔹 Dropout on attention weights
+    drop_path_rate=0.2,    # 🔹 Stochastic depth per block
+    use_lora=use_lora,
+    lora_rank=lora_rank
+)
+
 
     if pretrained:
         load_timm_pretrained_weights(model, model_name='deit_tiny_patch16_224')
+        print("✅ Loaded pretrained weights from timm")
 
     # print_trainable_params(model)
     # print_parameter_stats(model)
