@@ -10,3 +10,17 @@
 📅 Increment Epoch 3/10
 📊 Train Loss: 2.2532 | Val Acc (Retain+New): 53.42%
 📅 Increment Epoch 4/10
+📊 Train Loss: 1.7927 | Val Acc (Retain+New): 56.21%
+📅 Increment Epoch 5/10
+📊 Train Loss: 1.4623 | Val Acc (Retain+New): 52.48%
+📅 Increment Epoch 6/10
+📊 Train Loss: 1.2794 | Val Acc (Retain+New): 53.73%
+📅 Increment Epoch 7/10
+📊 Train Loss: 1.2006 | Val Acc (Retain+New): 55.12%
+📅 Increment Epoch 8/10
+📊 Train Loss: 1.1103 | Val Acc (Retain+New): 54.50%
+📅 Increment Epoch 9/10
+📊 Train Loss: 1.0232 | Val Acc (Retain+New): 54.35%
+📅 Increment Epoch 10/10
+📊 Train Loss: 1.0054 | Val Acc (Retain+New): 54.35%
+❌ Forgetting classes 0–9
