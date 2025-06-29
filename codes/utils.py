@@ -37,9 +37,9 @@ def get_model(num_classes=100, use_lora=False, lora_rank=2, pretrained=True):
     num_heads=3,
     mlp_ratio=4.0,
     qkv_bias=True,
-    drop_rate=0.2,         # 🔹 Dropout inside MLP + classifier head
-    attn_drop_rate=0.2,    # 🔹 Dropout on attention weights
-    drop_path_rate=0.2,    # 🔹 Stochastic depth per block
+    drop_rate=0,         # 🔹 Dropout inside MLP + classifier head
+    attn_drop_rate=0,    # 🔹 Dropout on attention weights
+    drop_path_rate=0,    # 🔹 Stochastic depth per block
     use_lora=use_lora,
     lora_rank=lora_rank
 )
@@ -49,15 +49,7 @@ def get_model(num_classes=100, use_lora=False, lora_rank=2, pretrained=True):
         load_timm_pretrained_weights(model, model_name='deit_tiny_patch16_224')
         print("✅ Loaded pretrained weights from timm")
 
-    # print_trainable_params(model)
-    # print_parameter_stats(model)
     return model
-
-# def print_trainable_params(model):
-#     print("\n✅ Trainable Parameters (LoRA + Head):")
-#     for name, param in model.named_parameters():
-#         if param.requires_grad:
-#             print(f"  {name}")
 
 def print_parameter_stats(model):
     total_params = sum(p.numel() for p in model.parameters())

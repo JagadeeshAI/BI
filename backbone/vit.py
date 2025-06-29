@@ -99,12 +99,9 @@ class Block(nn.Module):
 
 
 class VisionTransformer(nn.Module):
-    import inspect
-
-class VisionTransformer(nn.Module):
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=1000,
                  embed_dim=192, depth=12, num_heads=3, mlp_ratio=4.0, qkv_bias=True,
-                 drop_rate=0.1, attn_drop_rate=0.1, drop_path_rate=0.1,
+                 drop_rate=0, attn_drop_rate=0, drop_path_rate=0,
                  use_lora=False, lora_rank=2):
 
         super().__init__()
