@@ -74,11 +74,11 @@ def evaluate_oracle_checkpoints():
             continue
 
         # Model always outputs 100 classes
-        model = get_model(num_classes=100, use_lora=False, pretrained=False)
+        model = get_model(num_classes=100, use_lora=True, pretrained=False)
         model.to(device)
 
         state_dict = torch.load(checkpoint_path, map_location=device,weights_only=True)
-        model.load_state_dict(state_dict)
+        model.load_state_dict(state_dict,strict=False)
 
         # Load val data for this class range
         val_loader = get_dynamic_loader(class_range=(class_start, class_end), mode="val", batch_size=64)

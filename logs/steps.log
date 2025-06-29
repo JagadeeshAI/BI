@@ -1,0 +1,12 @@
+
+🚀 STEP 1/5
+🛠️ Explicitly received params: {'num_classes': 100, 'use_lora': True}
+🔒 Freezing all model parameters except LoRA and classifier head...
+🔼 Adding classes 50–59
+📅 Increment Epoch 1/10
+📊 Train Loss: 3.1401 | Val Acc (Retain+New): 53.26%
+📅 Increment Epoch 2/10
+📊 Train Loss: 2.6938 | Val Acc (Retain+New): 53.57%
+📅 Increment Epoch 3/10
+📊 Train Loss: 2.2532 | Val Acc (Retain+New): 53.42%
+📅 Increment Epoch 4/10
