@@ -17,8 +17,7 @@ def train_one_epoch(model, dataloader, optimizer, criterion, device):
     all_labels = []
 
     for images, labels in tqdm(dataloader, desc="Training", leave=False):
-        images = images.to(device)
-        labels = labels.to(device)
+        images, labels = images.to(device), labels.to(device)
 
         optimizer.zero_grad()
         outputs = model(images)
@@ -27,7 +26,6 @@ def train_one_epoch(model, dataloader, optimizer, criterion, device):
         optimizer.step()
 
         total_loss += loss.item()
-
         preds = outputs.argmax(dim=1).detach().cpu().numpy()
         all_preds.extend(preds)
         all_labels.extend(labels.cpu().numpy())
@@ -45,14 +43,11 @@ def evaluate(model, dataloader, criterion, device):
 
     with torch.no_grad():
         for images, labels in tqdm(dataloader, desc="Evaluating", leave=False):
-            images = images.to(device)
-            labels = labels.to(device)
-
+            images, labels = images.to(device), labels.to(device)
             outputs = model(images)
             loss = criterion(outputs, labels)
 
             total_loss += loss.item()
-
             preds = outputs.argmax(dim=1).cpu().numpy()
             all_preds.extend(preds)
             all_labels.extend(labels.cpu().numpy())
@@ -71,27 +66,37 @@ def train_oracle_model(class_start, class_end):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     num_classes = 100  # Fixed
 
-    model = get_model(num_classes=num_classes, use_lora=False, pretrained=True)
+    # Use LoRA and freeze backbone to reduce overfitting
+    model = get_model(
+        num_classes=num_classes,
+        use_lora=True,
+        pretrained=True,
+        lora_rank=4,
+        drop_rate=0.1,
+        attn_drop_rate=0.1,
+        drop_path_rate=0.1,
+    )
     model.to(device)
+    model.freeze_all_but_lora()
 
-    # Data
+    # Data loaders with strong augmentations already in data.py
     train_loader = get_dynamic_loader(class_range=class_range, mode="train", batch_size=64)
     val_loader = get_dynamic_loader(class_range=class_range, mode="val", batch_size=64)
 
-    # Training config
-    num_epochs = 10
-    lr = 3e-4
-    weight_decay = 0.1
+    # Training config (reduce epochs and add weight decay)
+    num_epochs = 100
+    lr = 1e-3        # Higher LR for LoRA parameters
+    weight_decay = 0.05
     label_smoothing = 0.1
 
     criterion = nn.CrossEntropyLoss(label_smoothing=label_smoothing)
-    optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
+    optimizer = optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr, weight_decay=weight_decay)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs)
 
     best_val_acc = 0.0
 
     for epoch in range(1, num_epochs + 1):
-        print(f"\n📅 Epoch {epoch}/{num_epochs} — Class Range: {class_start}-{class_end}")
+        print(f"\n📅 Epoch {epoch}/{num_epochs} — Classes {class_start}-{class_end}")
 
         train_loss, train_acc = train_one_epoch(model, train_loader, optimizer, criterion, device)
         val_loss, val_acc = evaluate(model, val_loader, criterion, device)
@@ -99,6 +104,7 @@ def train_oracle_model(class_start, class_end):
         print(f"📊 Train Loss: {train_loss:.4f} | Train Acc: {train_acc * 100:.2f}%")
         print(f"📊 Val   Loss: {val_loss:.4f} | Val   Acc: {val_acc * 100:.2f}%")
 
+        # Save best
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             save_path = f"./checkpoints/oracle_{class_start}_{class_end}.pth"
@@ -112,11 +118,8 @@ def train_oracle_model(class_start, class_end):
     print("🏁 Training finished.")
 
 
-# ----------------- Main -----------------
-
 def main():
     os.makedirs("./checkpoints", exist_ok=True)
-
     class_ranges = [(0, 49), (10, 59), (20, 69), (30, 79), (40, 89), (50, 99)]
 
     for start, end in class_ranges:

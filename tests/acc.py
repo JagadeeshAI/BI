@@ -1,75 +1,56 @@
+# File: tests/acc.py
+
+import os
 import torch
-import torch.nn as nn
-import json
+from codes.data import get_dynamic_loader
+from codes.utils import get_model, load_model_weights
+from sklearn.metrics import accuracy_score
 from tqdm import tqdm
-from collections import defaultdict
-
-from codes.utils import get_model, load_model_weights  # ⬅️ new helper from updated utils.py
-from data import get_dynamic_loader
-
-
-def evaluate(model, dataloader, device, num_classes):
-    model.eval()
-    class_correct = defaultdict(int)
-    class_total = defaultdict(int)
-    total_correct = 0
-    total_samples = 0
-
-    with torch.no_grad():
-        for images, labels in tqdm(dataloader, desc="🔍 Evaluating"):
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)
-            preds = outputs.argmax(dim=1)
-
-            total_correct += (preds == labels).sum().item()
-            total_samples += labels.size(0)
-
-            for label, pred in zip(labels, preds):
-                class_total[label.item()] += 1
-                if label == pred:
-                    class_correct[label.item()] += 1
-
-    # Compute per-class accuracy
-    class_acc = {}
-    for cls in range(num_classes):
-        total = class_total[cls]
-        correct = class_correct[cls]
-        acc = 100.0 * correct / total if total > 0 else 0.0
-        class_acc[cls] = round(acc, 2)
-
-    overall_acc = 100.0 * total_correct / total_samples if total_samples > 0 else 0.0
-    return overall_acc, class_acc
-
 
 def main():
+    # ─── CONFIGURE YOUR BLOCK ────────────────────────────────────────────────────
+    # Change this to one of your trained ranges:
+    #   (0,49), (10,59), (20,69), (30,79), (40,89), or (50,99)
+    class_start, class_end = 10, 59
+    # ────────────────────────────────────────────────────────────────────────────
+
+    # 1) device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    num_classes = 60  # ✅ We are evaluating 0–59 classes
-    model = get_model(num_classes=num_classes, use_lora=True, lora_rank=2, pretrained=False).to(device)
+    # 2) build the same VisionTransformer you used in Oraclefinetune.py
+    #    (no LoRA, 100‐way head)
+    model = get_model(num_classes=100, use_lora=False, pretrained=False)
+    model.to(device)
 
-    # ✅ Safely load partial weights (ignoring mismatches like head/lora)
-    load_model_weights(model, "0_59.pth", strict=False)
+    # 3) load the corresponding oracle checkpoint
+    ckpt_name = f"oracle_{class_start}_{class_end}.pth"
+    ckpt_path = os.path.join(os.getcwd(), "checkpoints", ckpt_name)
+    if not os.path.isfile(ckpt_path):
+        raise FileNotFoundError(f"Could not find checkpoint:\n  {ckpt_path}")
+    print(f"Loading weights from {ckpt_path}")
+    load_model_weights(model, ckpt_path, strict=False)
 
-    # ✅ Use full 0–59 range
-    val_loader = get_dynamic_loader(class_range=(0, 59), mode="val", batch_size=64)
+    # 4) prepare a val loader for just that slice of classes
+    val_loader = get_dynamic_loader(
+        class_range=(class_start, class_end),
+        mode="val",
+        batch_size=64
+    )
 
-    overall_acc, class_acc = evaluate(model, val_loader, device, num_classes=100)
+    # 5) run evaluation
+    model.eval()
+    all_preds, all_labels = [], []
+    with torch.no_grad():
+        for imgs, labels in tqdm(val_loader, desc="Evaluating"):
+            imgs, labels = imgs.to(device), labels.to(device)
+            outputs = model(imgs)                     # -> [B,100]
+            preds = outputs.argmax(dim=1)             # global class IDs 0–99
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
 
-    results = {
-        "overall_accuracy": round(overall_acc, 2),
-        "class_wise_accuracy": class_acc
-    }
-
-    with open("results.json", "w") as f:
-        json.dump(results, f, indent=2)
-
-    print("\n✅ Evaluation completed!")
-    print(f"🔢 Overall Accuracy: {overall_acc:.2f}%")
-    print("📊 Class-wise Accuracy:")
-    for k in sorted(class_acc):
-        print(f"  Class {k:02d}: {class_acc[k]:.2f}%")
-
+    acc = accuracy_score(all_labels, all_preds)
+    print(f"Oracle accuracy on classes {class_start}–{class_end}: {acc*100:.2f}%")
 
 if __name__ == "__main__":
     main()

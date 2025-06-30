@@ -1,65 +1,75 @@
-from backbone.vit import VisionTransformer
-import timm
 import torch
-def load_timm_pretrained_weights(custom_model, model_name='deit_tiny_patch16_224'):
-    """Loads pretrained weights from timm into your custom model."""
-    timm_model = timm.create_model(model_name, pretrained=True)
-    pretrained_state_dict = timm_model.state_dict()
-
-    # Remove the classifier head weights if num_classes differ
-    pretrained_state_dict = {
-        k: v for k, v in pretrained_state_dict.items()
-        if not k.startswith("head.")
-    }
-
-    missing, unexpected = custom_model.load_state_dict(pretrained_state_dict, strict=False)
-
-    print(f"Loaded pretrained weights from timm: {model_name}")
- 
-
-def load_model_weights(model, checkpoint_path, strict=False):
-    state_dict = torch.load(checkpoint_path, map_location='cpu')
-    model_state = model.state_dict()
-    compatible_state = {k: v for k, v in state_dict.items()
-                        if k in model_state and model_state[k].shape == v.shape}
-    missing_keys = [k for k in model_state if k not in compatible_state]
-    print(f"⚠️ Skipping incompatible or missing keys: {missing_keys[:5]}... (+{len(missing_keys) - 5} more)" if len(missing_keys) > 5 else f"⚠️ Skipping keys: {missing_keys}")
-    model.load_state_dict(compatible_state, strict=strict)
+import timm
+from backbone.vit import VisionTransformer
 
 
-def get_model(num_classes=100, use_lora=False, lora_rank=2, pretrained=True):
+def get_model(
+    num_classes: int = 1000,
+    use_lora: bool = False,
+    pretrained: bool = False,
+    lora_rank: int = 0,
+    img_size: int = 224,
+    patch_size: int = 16,
+    in_chans: int = 3,
+    embed_dim: int = 192,
+    depth: int = 12,
+    num_heads: int = 3,
+    mlp_ratio: float = 4.0,
+    qkv_bias: bool = True,
+    drop_rate: float = 0.0,
+    attn_drop_rate: float = 0.0,
+    drop_path_rate: float = 0.0
+) -> VisionTransformer:
+    """
+    Factory for VisionTransformer models.
+    Supports optional LoRA adapters and custom dropout/stochastic-depth rates.
+
+    Args:
+        num_classes: number of classes for the classification head.
+        use_lora: whether to insert LoRA adapters into MLPs.
+        pretrained: if True, load pretrained weights from timm (except final head).
+        lora_rank: rank for LoRA adapters (ignored if use_lora=False).
+        img_size, patch_size, in_chans, embed_dim, depth, num_heads, mlp_ratio, qkv_bias:
+            core ViT architecture hyperparameters.
+        drop_rate: dropout probability after projections.
+        attn_drop_rate: dropout probability inside attention.
+        drop_path_rate: stochastic depth rate across blocks.
+    """
     model = VisionTransformer(
-    img_size=224,
-    patch_size=16,
-    num_classes=num_classes,
-    embed_dim=192,
-    depth=12,
-    num_heads=3,
-    mlp_ratio=4.0,
-    qkv_bias=True,
-    drop_rate=0,         # 🔹 Dropout inside MLP + classifier head
-    attn_drop_rate=0,    # 🔹 Dropout on attention weights
-    drop_path_rate=0,    # 🔹 Stochastic depth per block
-    use_lora=use_lora,
-    lora_rank=lora_rank
-)
-
+        img_size=img_size,
+        patch_size=patch_size,
+        in_chans=in_chans,
+        num_classes=num_classes,
+        embed_dim=embed_dim,
+        depth=depth,
+        num_heads=num_heads,
+        mlp_ratio=mlp_ratio,
+        qkv_bias=qkv_bias,
+        drop_rate=drop_rate,
+        attn_drop_rate=attn_drop_rate,
+        drop_path_rate=drop_path_rate,
+        use_lora=use_lora,
+        lora_rank=lora_rank
+    )
 
     if pretrained:
-        load_timm_pretrained_weights(model, model_name='deit_tiny_patch16_224')
-        print("✅ Loaded pretrained weights from timm")
+        # load base weights and skip the classification head
+        base_model = timm.create_model('deit_tiny_patch16_224', pretrained=True)
+        state_dict = base_model.state_dict()
+        # remove head params to avoid size mismatch
+        state_dict.pop('head.weight', None)
+        state_dict.pop('head.bias', None)
+        model.load_state_dict(state_dict, strict=False)
+        print("✅ Loaded pretrained weights from timm (skipped head): deit_tiny_patch16_224")
 
     return model
 
-def print_parameter_stats(model):
-    total_params = sum(p.numel() for p in model.parameters())
-    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-    total_m = total_params / 1e6
-    trainable_m = trainable_params / 1e6
-    percent = 100 * trainable_params / total_params
-
-    print(f"\n📊 Parameter Summary:")
-    print(f"  🔢 Total Parameters     : {total_m:.2f}M")
-    print(f"  ✅ Trainable Parameters : {trainable_m:.2f}M")
-    print(f"  📉 % Trainable          : {percent:.2f}%")
+def load_model_weights(model: torch.nn.Module, checkpoint_path: str, strict: bool = True) -> None:
+    """
+    Load a checkpoint into model.
+    """
+    state_dict = torch.load(checkpoint_path, map_location='cpu')
+    missing, unexpected = model.load_state_dict(state_dict, strict=strict)
+    if missing or unexpected:
+        print(f"⚠️ Skipping incompatible or missing keys: {missing + unexpected}")
