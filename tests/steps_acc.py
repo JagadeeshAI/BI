@@ -72,7 +72,7 @@ def evaluate_step_checkpoints():
 
         print(f"🔹 Evaluating Step {step} | Classes {start_class}–{end_class}")
 
-        model = get_model(num_classes=100, use_lora=True, pretrained=False)
+        model = get_model(num_classes=100, use_lora=False, pretrained=False)
         model.to(device)
 
         state_dict = torch.load(checkpoint_path, map_location=device,weights_only=True)

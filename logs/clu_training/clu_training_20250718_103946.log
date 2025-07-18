@@ -1,0 +1,26 @@
+2025-07-18 10:39:46,375 - CLU_Training - INFO - 🚀 Starting Multi-Step Continual Learning Unlearning (CLU)
+2025-07-18 10:39:46,375 - CLU_Training - INFO - Device: cuda
+2025-07-18 10:39:46,376 - CLU_Training - INFO - Epochs per step: 50
+2025-07-18 10:39:46,376 - CLU_Training - INFO - 
+====================================================================================================
+2025-07-18 10:39:46,376 - CLU_Training - INFO - STEP 1/5: CONTINUAL LEARNING UNLEARNING
+2025-07-18 10:39:46,376 - CLU_Training - INFO - ====================================================================================================
+2025-07-18 10:39:46,376 - CLU_Training - INFO - Input checkpoint: checkpoints/oracle/0_49.pth
+2025-07-18 10:39:46,376 - CLU_Training - INFO - Output checkpoint: checkpoints/steps/10_59.pth
+2025-07-18 10:39:46,376 - CLU_Training - INFO - Retain classes: 10-49
+2025-07-18 10:39:46,376 - CLU_Training - INFO - Forget classes: 0-9
+2025-07-18 10:39:46,376 - CLU_Training - INFO - New classes: 50-59
+2025-07-18 10:39:46,536 - CLU_Training - INFO - 📊 Model Parameter Statistics:
+2025-07-18 10:39:46,640 - CLU_Training - INFO - ✅ Loaded checkpoint: checkpoints/oracle/0_49.pth
+2025-07-18 10:39:46,800 - CLU_Training - INFO - 📚 Data loaders created:
+2025-07-18 10:39:46,800 - CLU_Training - INFO -   Retain loader: 266 batches
+2025-07-18 10:39:46,800 - CLU_Training - INFO -   Forget loader: 67 batches
+2025-07-18 10:39:46,800 - CLU_Training - INFO -   New loader: 67 batches
+2025-07-18 10:39:46,801 - CLU_Training - INFO - 
+================================================================================
+2025-07-18 10:39:46,801 - CLU_Training - INFO - STARTING STEP 1 TRAINING
+2025-07-18 10:39:46,801 - CLU_Training - INFO - Retaining classes: 10-49
+2025-07-18 10:39:46,801 - CLU_Training - INFO - Forgetting classes: 0-9
+2025-07-18 10:39:46,801 - CLU_Training - INFO - Learning new classes: 50-59
+2025-07-18 10:39:46,801 - CLU_Training - INFO - ================================================================================
+2025-07-18 10:39:46,801 - CLU_Training - INFO - 🔄 Phase 1: Forgetting - β_forget: 0.05, β_new: 0.2
