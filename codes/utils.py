@@ -18,7 +18,8 @@ def load_timm_pretrained_weights(custom_model, model_name='deit_tiny_patch16_224
  
 
 def load_model_weights(model, checkpoint_path, strict=False):
-    state_dict = torch.load(checkpoint_path, map_location='cpu')
+    print(f"🔄 Loading model weights from {checkpoint_path}...")
+    state_dict = torch.load(checkpoint_path, map_location='cpu', weights_only=False)
     model_state = model.state_dict()
     compatible_state = {k: v for k, v in state_dict.items()
                         if k in model_state and model_state[k].shape == v.shape}
@@ -27,7 +28,7 @@ def load_model_weights(model, checkpoint_path, strict=False):
     model.load_state_dict(compatible_state, strict=strict)
 
 
-def get_model(num_classes=100, use_lora=False, lora_rank=2, pretrained=True):
+def get_model(num_classes=100, use_lora=False, lora_rank=8, pretrained=True , drop_path_rate=0, drop_rate=0, attn_drop_rate=0):
     model = VisionTransformer(
     img_size=224,
     patch_size=16,
@@ -37,9 +38,9 @@ def get_model(num_classes=100, use_lora=False, lora_rank=2, pretrained=True):
     num_heads=3,
     mlp_ratio=4.0,
     qkv_bias=True,
-    drop_rate=0,         # 🔹 Dropout inside MLP + classifier head
-    attn_drop_rate=0,    # 🔹 Dropout on attention weights
-    drop_path_rate=0,    # 🔹 Stochastic depth per block
+    drop_rate=drop_rate,        
+    attn_drop_rate=attn_drop_rate,   
+    drop_path_rate=drop_path_rate,  
     use_lora=use_lora,
     lora_rank=lora_rank
 )

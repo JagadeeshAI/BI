@@ -1,14 +1,13 @@
 import os
 import torch
-from torchvision import datasets, transforms  # ✅ Fixed import
+from torchvision import datasets, transforms  
 from torch.utils.data import DataLoader, Subset
 
 # Hardcoded root directories
-ROOT_TRAIN = "/media/jag/volD/BID_DATA/imagenet-r-split/train"
-ROOT_VAL = "/media/jag/volD/BID_DATA/imagenet-r-split/val"
+ROOT_TRAIN = "/media/jag/volD/cifer100/cifer/train"
+ROOT_VAL = "/media/jag/volD/cifer100/cifer/val"
 
 def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_size=224, num_workers=4):
-    assert mode in ["train", "val"], "mode must be 'train' or 'val'"
     data_dir = ROOT_TRAIN if mode == "train" else ROOT_VAL
 
     if mode == "train":
@@ -21,7 +20,7 @@ def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_s
         ])
     else:
         transform = transforms.Compose([
-            transforms.Resize(int(image_size * 1.14)),  # e.g., 256 for 224 input
+            transforms.Resize(int(image_size * 1.14)), 
             transforms.CenterCrop(image_size),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
@@ -38,12 +37,13 @@ def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_s
     loader = DataLoader(
         subset_dataset,
         batch_size=batch_size,
-        shuffle=(mode == "train"),  # ✅ Only shuffle during training
+        shuffle=(mode == "train"),  
         num_workers=num_workers,
         multiprocessing_context="fork"
     )
 
     return loader
+
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

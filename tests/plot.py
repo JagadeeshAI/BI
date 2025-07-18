@@ -5,51 +5,60 @@ import matplotlib.pyplot as plt
 # Configuration
 results_dir = "results/steps"
 oracle_dir = "results/oracle"
-output_plot = "sliding_window_accuracy.png"
+output_plot = "EX1.png"
 
 bars = []
 
-# Steps 1–5
+# Pretrained baseline (step 0)
+pretrained_path = os.path.join(oracle_dir, "0_49.json")
+if os.path.exists(pretrained_path):
+    with open(pretrained_path, "r") as f:
+        data = json.load(f)
+        pretrained_acc = data.get("overall_acc", None)
+
+        bars.append({
+            'step': 0,
+            'start': 0,
+            'end': 49,
+            'acc': pretrained_acc,
+            'oracle': None,
+            'solid': True,
+            'color': 'tab:blue'
+        })
+else:
+    print(f"⚠️ Missing: {pretrained_path}")
+
+# Sliding window steps 1–5
 for step in range(1, 6):
-    step_start = 10 * step
-    step_end = 49 + 10 * step
+    start_class = step * 10
+    end_class = start_class + 49
 
-    # Load our accuracy
     ours_path = os.path.join(results_dir, f"step{step}.json")
-    if not os.path.exists(ours_path):
-        print(f"⚠️ Missing: {ours_path}")
-        acc = None
-    else:
+    acc = None
+    if os.path.exists(ours_path):
         with open(ours_path, "r") as f:
-            acc = json.load(f).get("overall_acc", None)
+            ours_data = json.load(f)
+            acc = ours_data.get("overall_acc", None)
+    else:
+        print(f"⚠️ Missing: {ours_path}")
 
-    # Load oracle accuracy
-    oracle_path = os.path.join(oracle_dir, f"{step_start}_{step_end}.json")
+    # Get oracle accuracy using corrected range
+    oracle_path = os.path.join(oracle_dir, f"{start_class}_{end_class}.json")
     oracle_acc = None
     if os.path.exists(oracle_path):
         with open(oracle_path, "r") as f:
-            oracle_acc = json.load(f).get("overall_acc", None)
+            oracle_data = json.load(f)
+            oracle_acc = oracle_data.get("overall_acc", None)
 
     bars.append({
         'step': step,
-        'start': step_start,
-        'end': step_end,
+        'start': start_class,
+        'end': end_class,
         'acc': acc,
         'oracle': oracle_acc,
         'solid': acc is not None,
         'color': 'tab:orange' if acc is not None else 'gray'
     })
-
-# Step 0 manually
-bars.insert(0, {
-    'step': 0,
-    'start': 0,
-    'end': 49,
-    'acc': 59.76,
-    'oracle': 65.95,
-    'solid': True,
-    'color': 'tab:orange'
-})
 
 # Plotting
 fig, ax = plt.subplots(figsize=(12, 5))
@@ -64,15 +73,21 @@ for bar in bars:
         y=y,
         width=width,
         left=bar['start'],
-        height=0.8,
+        height=0.7,
         color=bar['color'],
         edgecolor='black',
         alpha=alpha
     )
 
-    # Combined accuracy text (ours/oracle)
-    if bar['acc'] is not None and bar['oracle'] is not None:
+    # Accuracy text
+    if bar['step'] == 0 and bar['acc'] is not None:
+        acc_text = f"{bar['acc']:.2f} %"
+    elif bar['acc'] is not None and bar['oracle'] is not None:
         acc_text = f"{bar['acc']:.2f} / {bar['oracle']:.2f} %"
+    else:
+        acc_text = None
+
+    if acc_text:
         ax.text(
             center, y,
             acc_text,
@@ -82,15 +97,24 @@ for bar in bars:
 
 # Axes and layout
 ax.set_yticks([b['step'] for b in bars])
-ax.set_yticklabels([f"Step {b['step']}" for b in bars])
+ax.set_yticklabels([
+    "Pretrained" if b['step'] == 0 else f"Step {b['step']}"
+    for b in bars
+])
 ax.set_xlabel("Class Index")
 ax.set_ylabel("Sliding Window Step")
-ax.set_xlim(-5, 110)
-ax.set_ylim(-1, len(bars))
+
+# X-ticks: 0, 10, ..., 100
+x_ticks = list(range(0, 110, 10))
+ax.set_xticks(x_ticks)
+ax.set_xticklabels([str(x - 1) if x != 0 else "0" for x in x_ticks])
+ax.set_xlim(-5, 105)
+ax.set_ylim(-1, len(bars) + 1)
 ax.set_title("Sliding Window: Class Retention Accuracy (Ours / Oracle)")
 ax.grid(axis='x', linestyle=':', alpha=0.7)
 
-plt.tight_layout()
+
+plt.tight_layout(rect=[0, 0, 1, 1])
 plt.savefig(output_plot, dpi=300)
 plt.close()
 

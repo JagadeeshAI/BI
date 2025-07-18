@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import numpy as np
 from sklearn.metrics import accuracy_score
-from codes.utils import get_model
+from codes.utils import get_model , load_model_weights
 from codes.data import get_dynamic_loader
 
 # ----------------- Training & Evaluation Functions -----------------
@@ -69,17 +69,18 @@ def train_oracle_model(class_start, class_end):
     print(f"\n🚀 Training Oracle Model on Classes: {class_start}–{class_end}")
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    num_classes = 100  # Fixed
+    num_classes = 100 
 
     model = get_model(num_classes=num_classes, use_lora=False, pretrained=True)
     model.to(device)
 
+
     # Data
     train_loader = get_dynamic_loader(class_range=class_range, mode="train", batch_size=64)
-    val_loader = get_dynamic_loader(class_range=class_range, mode="val", batch_size=64)
+    val_loader = get_dynamic_loader(class_range=class_range, mode="val", batch_size=32)
 
     # Training config
-    num_epochs = 10
+    num_epochs = 40
     lr = 3e-4
     weight_decay = 0.1
     label_smoothing = 0.1
@@ -101,7 +102,7 @@ def train_oracle_model(class_start, class_end):
 
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            save_path = f"./checkpoints/oracle_{class_start}_{class_end}.pth"
+            save_path = f"./checkpoints/oracle/{class_start}_{class_end}.pth"
             torch.save(model.state_dict(), save_path)
             print(f"✅ Best Val Acc: {val_acc * 100:.2f}% — Model saved to {save_path}")
         else:

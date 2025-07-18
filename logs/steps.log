@@ -1,135 +1,70 @@
-
-🚀 STEP 1/5
-🛠️ Explicitly received params: {'num_classes': 100, 'use_lora': True}
+🛠️ Explicitly received params: {'num_classes': 100, 'use_lora': True, 'lora_rank': 8}
 🔒 Freezing all model parameters except LoRA and classifier head...
-🔼 Adding classes 50–59
-📅 Increment Epoch 1/10
-📊 Train Loss: 3.1401 | Val Acc (Retain+New): 53.26%
-📅 Increment Epoch 2/10
-📊 Train Loss: 2.6938 | Val Acc (Retain+New): 53.57%
-📅 Increment Epoch 3/10
-📊 Train Loss: 2.2532 | Val Acc (Retain+New): 53.42%
-📅 Increment Epoch 4/10
-📊 Train Loss: 1.7927 | Val Acc (Retain+New): 56.21%
-📅 Increment Epoch 5/10
-📊 Train Loss: 1.4623 | Val Acc (Retain+New): 52.48%
-📅 Increment Epoch 6/10
-📊 Train Loss: 1.2794 | Val Acc (Retain+New): 53.73%
-📅 Increment Epoch 7/10
-📊 Train Loss: 1.2006 | Val Acc (Retain+New): 55.12%
-📅 Increment Epoch 8/10
-📊 Train Loss: 1.1103 | Val Acc (Retain+New): 54.50%
-📅 Increment Epoch 9/10
-📊 Train Loss: 1.0232 | Val Acc (Retain+New): 54.35%
-📅 Increment Epoch 10/10
-📊 Train Loss: 1.0054 | Val Acc (Retain+New): 54.35%
+
+📊 Parameter Summary:
+  🔢 Total Parameters     : 5.73M
+  ✅ Trainable Parameters : 0.20M
+  📉 % Trainable          : 3.55%
+🔄 Retaining classes 10–49
 ❌ Forgetting classes 0–9
-✅ Step 1 done | Saved to checkpoints/steps/step1.pth | Val Accuracy: 61.34%
+➕ Adding new classes 50–59
+Epoch 1: Retain (10-49): 82.83% | Forget (0-9): 0.00% | New (50-59): 61.47% | Combined (10-59): 78.56%
+Epoch 2: Retain (10-49): 81.90% | Forget (0-9): 0.00% | New (50-59): 69.47% | Combined (10-59): 79.41%
+Epoch 3: Retain (10-49): 83.20% | Forget (0-9): 0.00% | New (50-59): 71.20% | Combined (10-59): 80.80%
+Epoch 4: Retain (10-49): 83.67% | Forget (0-9): 0.00% | New (50-59): 72.67% | Combined (10-59): 81.47%
+Epoch 5: Retain (10-49): 83.23% | Forget (0-9): 0.00% | New (50-59): 75.47% | Combined (10-59): 81.68%
+Epoch 6: Retain (10-49): 82.83% | Forget (0-9): 0.00% | New (50-59): 77.87% | Combined (10-59): 81.84%
+Epoch 7: Retain (10-49): 83.90% | Forget (0-9): 0.00% | New (50-59): 75.60% | Combined (10-59): 82.24%
+Epoch 8: Retain (10-49): 82.87% | Forget (0-9): 0.00% | New (50-59): 79.60% | Combined (10-59): 82.21%
+Epoch 9: Retain (10-49): 83.40% | Forget (0-9): 0.00% | New (50-59): 77.47% | Combined (10-59): 82.21%
+Epoch 10: Retain (10-49): 83.67% | Forget (0-9): 0.00% | New (50-59): 78.93% | Combined (10-59): 82.72%
+Epoch 11: Retain (10-49): 83.83% | Forget (0-9): 0.00% | New (50-59): 77.33% | Combined (10-59): 82.53%
+🔄 Switching to LEARNING phase - focusing on new classes
+Epoch 12: Retain (10-49): 79.73% | Forget (0-9): 0.00% | New (50-59): 88.67% | Combined (10-59): 81.52%
+Epoch 13: Retain (10-49): 80.30% | Forget (0-9): 0.00% | New (50-59): 86.93% | Combined (10-59): 81.63%
+Epoch 14: Retain (10-49): 80.63% | Forget (0-9): 0.00% | New (50-59): 87.47% | Combined (10-59): 82.00%
+Epoch 15: Retain (10-49): 80.47% | Forget (0-9): 0.00% | New (50-59): 87.87% | Combined (10-59): 81.95%
+Epoch 16: Retain (10-49): 80.50% | Forget (0-9): 0.00% | New (50-59): 88.67% | Combined (10-59): 82.13%
+Epoch 17: Retain (10-49): 80.17% | Forget (0-9): 0.00% | New (50-59): 88.80% | Combined (10-59): 81.89%
+Epoch 18: Retain (10-49): 80.63% | Forget (0-9): 0.00% | New (50-59): 89.47% | Combined (10-59): 82.40%
+Epoch 19: Retain (10-49): 81.17% | Forget (0-9): 0.00% | New (50-59): 88.80% | Combined (10-59): 82.69%
+Epoch 20: Retain (10-49): 81.17% | Forget (0-9): 0.00% | New (50-59): 88.67% | Combined (10-59): 82.67%
+Epoch 21: Retain (10-49): 81.07% | Forget (0-9): 0.00% | New (50-59): 88.67% | Combined (10-59): 82.59%
+Epoch 22: Retain (10-49): 82.30% | Forget (0-9): 0.00% | New (50-59): 88.00% | Combined (10-59): 83.44%
+Epoch 23: Retain (10-49): 81.17% | Forget (0-9): 0.00% | New (50-59): 89.33% | Combined (10-59): 82.80%
+Epoch 24: Retain (10-49): 80.93% | Forget (0-9): 0.00% | New (50-59): 89.33% | Combined (10-59): 82.61%
+Epoch 25: Retain (10-49): 82.07% | Forget (0-9): 0.00% | New (50-59): 88.40% | Combined (10-59): 83.33%
+Epoch 26: Retain (10-49): 81.20% | Forget (0-9): 0.00% | New (50-59): 88.67% | Combined (10-59): 82.69%
+Epoch 27: Retain (10-49): 82.30% | Forget (0-9): 0.00% | New (50-59): 88.00% | Combined (10-59): 83.44%
+Epoch 28: Retain (10-49): 81.77% | Forget (0-9): 0.00% | New (50-59): 88.67% | Combined (10-59): 83.15%
+Epoch 29: Retain (10-49): 81.27% | Forget (0-9): 0.00% | New (50-59): 89.73% | Combined (10-59): 82.96%
+Epoch 30: Retain (10-49): 81.00% | Forget (0-9): 0.00% | New (50-59): 89.73% | Combined (10-59): 82.75%
+Epoch 31: Retain (10-49): 82.60% | Forget (0-9): 0.00% | New (50-59): 88.13% | Combined (10-59): 83.71%
+🔄 Switching to RECOVERY phase - balancing retention and new classes
+Epoch 32: Retain (10-49): 82.67% | Forget (0-9): 0.00% | New (50-59): 87.20% | Combined (10-59): 83.57%
+Epoch 33: Retain (10-49): 82.87% | Forget (0-9): 0.00% | New (50-59): 86.53% | Combined (10-59): 83.60%
+Epoch 34: Retain (10-49): 82.90% | Forget (0-9): 0.00% | New (50-59): 87.87% | Combined (10-59): 83.89%
+Epoch 35: Retain (10-49): 83.03% | Forget (0-9): 0.00% | New (50-59): 87.20% | Combined (10-59): 83.87%
+Epoch 36: Retain (10-49): 82.63% | Forget (0-9): 0.00% | New (50-59): 87.60% | Combined (10-59): 83.63%
+Epoch 37: Retain (10-49): 83.57% | Forget (0-9): 0.00% | New (50-59): 85.73% | Combined (10-59): 84.00%
+Epoch 38: Retain (10-49): 82.47% | Forget (0-9): 0.00% | New (50-59): 88.40% | Combined (10-59): 83.65%
+Epoch 39: Retain (10-49): 83.73% | Forget (0-9): 0.00% | New (50-59): 86.00% | Combined (10-59): 84.19%
+Epoch 40: Retain (10-49): 82.63% | Forget (0-9): 0.00% | New (50-59): 87.60% | Combined (10-59): 83.63%
+Epoch 41: Retain (10-49): 83.47% | Forget (0-9): 0.00% | New (50-59): 84.93% | Combined (10-59): 83.76%
+Epoch 42: Retain (10-49): 82.93% | Forget (0-9): 0.00% | New (50-59): 87.20% | Combined (10-59): 83.79%
+Epoch 43: Retain (10-49): 81.93% | Forget (0-9): 0.00% | New (50-59): 87.47% | Combined (10-59): 83.04%
+Epoch 44: Retain (10-49): 82.53% | Forget (0-9): 0.00% | New (50-59): 87.60% | Combined (10-59): 83.55%
+Epoch 45: Retain (10-49): 83.17% | Forget (0-9): 0.00% | New (50-59): 87.20% | Combined (10-59): 83.97%
+Epoch 46: Retain (10-49): 83.10% | Forget (0-9): 0.00% | New (50-59): 86.13% | Combined (10-59): 83.71%
+Epoch 47: Retain (10-49): 83.40% | Forget (0-9): 0.00% | New (50-59): 86.27% | Combined (10-59): 83.97%
+Epoch 48: Retain (10-49): 82.03% | Forget (0-9): 0.00% | New (50-59): 88.00% | Combined (10-59): 83.23%
+Epoch 49: Retain (10-49): 82.63% | Forget (0-9): 0.00% | New (50-59): 87.07% | Combined (10-59): 83.52%
+Epoch 50: Retain (10-49): 83.17% | Forget (0-9): 0.00% | New (50-59): 86.13% | Combined (10-59): 83.76%
 
-🚀 STEP 2/5
-🛠️ Explicitly received params: {'num_classes': 100, 'use_lora': True}
-🔒 Freezing all model parameters except LoRA and classifier head...
-🔼 Adding classes 60–69
-📅 Increment Epoch 1/10
-📊 Train Loss: 4.6605 | Val Acc (Retain+New): 46.73%
-📅 Increment Epoch 2/10
-📊 Train Loss: 3.4770 | Val Acc (Retain+New): 46.26%
-📅 Increment Epoch 3/10
-📊 Train Loss: 2.3500 | Val Acc (Retain+New): 46.73%
-📅 Increment Epoch 4/10
-📊 Train Loss: 1.5688 | Val Acc (Retain+New): 46.73%
-📅 Increment Epoch 5/10
-📊 Train Loss: 1.3475 | Val Acc (Retain+New): 50.31%
-📅 Increment Epoch 6/10
-📊 Train Loss: 1.2387 | Val Acc (Retain+New): 50.00%
-📅 Increment Epoch 7/10
-📊 Train Loss: 1.1471 | Val Acc (Retain+New): 50.93%
-📅 Increment Epoch 8/10
-📊 Train Loss: 1.0928 | Val Acc (Retain+New): 52.18%
-📅 Increment Epoch 9/10
-📊 Train Loss: 1.0358 | Val Acc (Retain+New): 52.65%
-📅 Increment Epoch 10/10
-📊 Train Loss: 1.0155 | Val Acc (Retain+New): 51.25%
-❌ Forgetting classes 10–19
-✅ Step 2 done | Saved to checkpoints/steps/step2.pth | Val Accuracy: 55.14%
+📊 Final Evaluation:
+✅ Retained classes (10-49): 83.17%
+❌ Forgotten classes (0-9): 0.00%
+➕ New classes (50-59): 86.13%
+🎯 Combined performance (10-59): 83.76%
 
-🚀 STEP 3/5
-🛠️ Explicitly received params: {'num_classes': 100, 'use_lora': True}
-🔒 Freezing all model parameters except LoRA and classifier head...
-🔼 Adding classes 70–79
-📅 Increment Epoch 1/10
-📊 Train Loss: 5.4551 | Val Acc (Retain+New): 41.11%
-📅 Increment Epoch 2/10
-📊 Train Loss: 3.7634 | Val Acc (Retain+New): 41.11%
-📅 Increment Epoch 3/10
-📊 Train Loss: 2.3355 | Val Acc (Retain+New): 44.58%
-📅 Increment Epoch 4/10
-📊 Train Loss: 1.6444 | Val Acc (Retain+New): 43.37%
-📅 Increment Epoch 5/10
-📊 Train Loss: 1.4104 | Val Acc (Retain+New): 45.78%
-📅 Increment Epoch 6/10
-📊 Train Loss: 1.3310 | Val Acc (Retain+New): 45.93%
-📅 Increment Epoch 7/10
-📊 Train Loss: 1.2672 | Val Acc (Retain+New): 46.39%
-📅 Increment Epoch 8/10
-📊 Train Loss: 1.2492 | Val Acc (Retain+New): 47.29%
-📅 Increment Epoch 9/10
-📊 Train Loss: 1.1586 | Val Acc (Retain+New): 47.44%
-📅 Increment Epoch 10/10
-📊 Train Loss: 1.1563 | Val Acc (Retain+New): 48.04%
-❌ Forgetting classes 20–29
-✅ Step 3 done | Saved to checkpoints/steps/step3.pth | Val Accuracy: 55.57%
-
-🚀 STEP 4/5
-🛠️ Explicitly received params: {'num_classes': 100, 'use_lora': True}
-🔒 Freezing all model parameters except LoRA and classifier head...
-🔼 Adding classes 80–89
-📅 Increment Epoch 1/10
-📊 Train Loss: 5.5714 | Val Acc (Retain+New): 44.01%
-📅 Increment Epoch 2/10
-📊 Train Loss: 3.7152 | Val Acc (Retain+New): 43.42%
-📅 Increment Epoch 3/10
-📊 Train Loss: 2.3190 | Val Acc (Retain+New): 43.13%
-📅 Increment Epoch 4/10
-📊 Train Loss: 1.7996 | Val Acc (Retain+New): 44.74%
-📅 Increment Epoch 5/10
-📊 Train Loss: 1.6198 | Val Acc (Retain+New): 47.81%
-📅 Increment Epoch 6/10
-📊 Train Loss: 1.5356 | Val Acc (Retain+New): 48.68%
-📅 Increment Epoch 7/10
-📊 Train Loss: 1.4819 | Val Acc (Retain+New): 49.27%
-📅 Increment Epoch 8/10
-📊 Train Loss: 1.3322 | Val Acc (Retain+New): 49.71%
-📅 Increment Epoch 9/10
-📊 Train Loss: 1.3195 | Val Acc (Retain+New): 49.71%
-📅 Increment Epoch 10/10
-📊 Train Loss: 1.2507 | Val Acc (Retain+New): 50.15%
-❌ Forgetting classes 30–39
-✅ Step 4 done | Saved to checkpoints/steps/step4.pth | Val Accuracy: 56.73%
-
-🚀 STEP 5/5
-🛠️ Explicitly received params: {'num_classes': 100, 'use_lora': True}
-🔒 Freezing all model parameters except LoRA and classifier head...
-🔼 Adding classes 90–99
-📅 Increment Epoch 1/10
-📊 Train Loss: 5.0000 | Val Acc (Retain+New): 41.29%
-📅 Increment Epoch 2/10
-📊 Train Loss: 3.0974 | Val Acc (Retain+New): 40.14%
-📅 Increment Epoch 3/10
-📊 Train Loss: 2.0435 | Val Acc (Retain+New): 46.76%
-📅 Increment Epoch 4/10
-📊 Train Loss: 1.8072 | Val Acc (Retain+New): 47.91%
-📅 Increment Epoch 5/10
-📊 Train Loss: 1.7014 | Val Acc (Retain+New): 50.50%
-📅 Increment Epoch 6/10
-📊 Train Loss: 1.6305 | Val Acc (Retain+New): 49.93%
-📅 Increment Epoch 7/10
-📊 Train Loss: 1.5135 | Val Acc (Retain+New): 52.09%
-📅 Increment Epoch 8/10
-📊 Train Loss: 1.4929 | Val Acc (Retain+New): 53.09%
-📅 Increment Epoch 9/10
-📊 Train Loss: 1.4334 | Val Acc (Retain+New): 53.09%
-📅 Increment Epoch 10/10
-📊 Train Loss: 1.3840 | Val Acc (Retain+New): 53.38%
-❌ Forgetting classes 40–49
-✅ Step 5 done | Saved to checkpoints/steps/step5.pth | Val Accuracy: 58.42%
+✅ Done | Saved to checkpoints/steps/10_59.pth
