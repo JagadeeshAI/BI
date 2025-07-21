@@ -29,6 +29,8 @@ def load_model_weights(model, checkpoint_path, strict=False):
 
 
 def get_model(num_classes=100, use_lora=False, lora_rank=8, pretrained=True , drop_path_rate=0, drop_rate=0, attn_drop_rate=0):
+    if not use_lora:
+        lora_rank = 0
     model = VisionTransformer(
     img_size=224,
     patch_size=16,

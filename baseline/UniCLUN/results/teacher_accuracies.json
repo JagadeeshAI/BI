@@ -1,0 +1,98 @@
+{
+  "student_10_59": {
+    "good_teacher_acc": 86.05,
+    "bad_teacher_acc": 88.21,
+    "good_ranges": [
+      [
+        10,
+        59
+      ]
+    ],
+    "bad_ranges": [
+      [
+        0,
+        9
+      ],
+      [
+        60,
+        99
+      ]
+    ]
+  },
+  "student_20_69": {
+    "good_teacher_acc": 85.47,
+    "bad_teacher_acc": 88.85,
+    "good_ranges": [
+      [
+        20,
+        69
+      ]
+    ],
+    "bad_ranges": [
+      [
+        0,
+        19
+      ],
+      [
+        70,
+        99
+      ]
+    ]
+  },
+  "student_30_79": {
+    "good_teacher_acc": 86.21,
+    "bad_teacher_acc": 86.75,
+    "good_ranges": [
+      [
+        30,
+        79
+      ]
+    ],
+    "bad_ranges": [
+      [
+        0,
+        29
+      ],
+      [
+        80,
+        99
+      ]
+    ]
+  },
+  "student_40_89": {
+    "good_teacher_acc": 86.93,
+    "bad_teacher_acc": 85.68,
+    "good_ranges": [
+      [
+        40,
+        89
+      ]
+    ],
+    "bad_ranges": [
+      [
+        0,
+        39
+      ],
+      [
+        90,
+        99
+      ]
+    ]
+  },
+  "student_50_99": {
+    "good_teacher_acc": 88.13,
+    "bad_teacher_acc": 85.57,
+    "good_ranges": [
+      [
+        50,
+        99
+      ]
+    ],
+    "bad_ranges": [
+      [
+        0,
+        49
+      ]
+    ]
+  }
+}

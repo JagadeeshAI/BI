@@ -1,0 +1,2073 @@
+
+🚀 Training GOOD Teacher: student_10_59_good_teacher
+📚 Training on class ranges: [(10, 59)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 2.7233 | Train Acc: 39.72%
+📊 Val   Loss: 1.8081 | Val   Acc: 64.35%
+✅ Best Val Acc: 64.35% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 2/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.7000 | Train Acc: 68.46%
+📊 Val   Loss: 1.5654 | Val   Acc: 73.31%
+✅ Best Val Acc: 73.31% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 3/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.5221 | Train Acc: 74.07%
+📊 Val   Loss: 1.4512 | Val   Acc: 76.88%
+✅ Best Val Acc: 76.88% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 4/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.3728 | Train Acc: 79.43%
+📊 Val   Loss: 1.4428 | Val   Acc: 76.48%
+No improvement. Best so far: 76.88%
+
+📅 Epoch 5/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.3469 | Train Acc: 80.12%
+📊 Val   Loss: 1.3511 | Val   Acc: 79.81%
+✅ Best Val Acc: 79.81% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 6/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.2342 | Train Acc: 83.97%
+📊 Val   Loss: 1.3992 | Val   Acc: 79.33%
+No improvement. Best so far: 79.81%
+
+📅 Epoch 7/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.2376 | Train Acc: 83.81%
+📊 Val   Loss: 1.4019 | Val   Acc: 78.59%
+No improvement. Best so far: 79.81%
+
+📅 Epoch 8/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.1371 | Train Acc: 87.60%
+📊 Val   Loss: 1.3593 | Val   Acc: 80.48%
+✅ Best Val Acc: 80.48% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 9/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.1316 | Train Acc: 87.62%
+📊 Val   Loss: 1.3289 | Val   Acc: 81.55%
+✅ Best Val Acc: 81.55% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 10/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.0850 | Train Acc: 89.33%
+📊 Val   Loss: 1.3323 | Val   Acc: 80.93%
+No improvement. Best so far: 81.55%
+
+📅 Epoch 11/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.0614 | Train Acc: 90.09%
+📊 Val   Loss: 1.3240 | Val   Acc: 82.00%
+✅ Best Val Acc: 82.00% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 12/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.0381 | Train Acc: 90.86%
+📊 Val   Loss: 1.3274 | Val   Acc: 81.92%
+No improvement. Best so far: 82.00%
+
+📅 Epoch 13/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 1.0054 | Train Acc: 92.02%
+📊 Val   Loss: 1.3059 | Val   Acc: 82.75%
+✅ Best Val Acc: 82.75% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 14/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.9851 | Train Acc: 92.86%
+📊 Val   Loss: 1.3075 | Val   Acc: 82.56%
+No improvement. Best so far: 82.75%
+
+📅 Epoch 15/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.9815 | Train Acc: 92.93%
+📊 Val   Loss: 1.3203 | Val   Acc: 82.48%
+No improvement. Best so far: 82.75%
+
+📅 Epoch 16/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.9514 | Train Acc: 93.97%
+📊 Val   Loss: 1.3040 | Val   Acc: 82.43%
+No improvement. Best so far: 82.75%
+
+📅 Epoch 17/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.9288 | Train Acc: 94.78%
+📊 Val   Loss: 1.3736 | Val   Acc: 80.59%
+No improvement. Best so far: 82.75%
+
+📅 Epoch 18/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.9204 | Train Acc: 95.33%
+📊 Val   Loss: 1.3294 | Val   Acc: 82.21%
+No improvement. Best so far: 82.75%
+
+📅 Epoch 19/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.9057 | Train Acc: 95.68%
+📊 Val   Loss: 1.3278 | Val   Acc: 82.48%
+No improvement. Best so far: 82.75%
+
+📅 Epoch 20/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8919 | Train Acc: 96.13%
+📊 Val   Loss: 1.3625 | Val   Acc: 81.84%
+No improvement. Best so far: 82.75%
+
+📅 Epoch 21/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8889 | Train Acc: 96.42%
+📊 Val   Loss: 1.3113 | Val   Acc: 82.77%
+✅ Best Val Acc: 82.77% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 22/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8643 | Train Acc: 97.31%
+📊 Val   Loss: 1.3097 | Val   Acc: 83.73%
+✅ Best Val Acc: 83.73% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 23/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8578 | Train Acc: 97.49%
+📊 Val   Loss: 1.3072 | Val   Acc: 83.55%
+No improvement. Best so far: 83.73%
+
+📅 Epoch 24/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8544 | Train Acc: 97.48%
+📊 Val   Loss: 1.2999 | Val   Acc: 83.89%
+✅ Best Val Acc: 83.89% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 25/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8409 | Train Acc: 97.98%
+📊 Val   Loss: 1.3174 | Val   Acc: 83.33%
+No improvement. Best so far: 83.89%
+
+📅 Epoch 26/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8457 | Train Acc: 97.98%
+📊 Val   Loss: 1.2954 | Val   Acc: 84.53%
+✅ Best Val Acc: 84.53% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 27/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8280 | Train Acc: 98.47%
+📊 Val   Loss: 1.2967 | Val   Acc: 84.67%
+✅ Best Val Acc: 84.67% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 28/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8189 | Train Acc: 98.75%
+📊 Val   Loss: 1.3070 | Val   Acc: 84.37%
+No improvement. Best so far: 84.67%
+
+📅 Epoch 29/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8145 | Train Acc: 98.94%
+📊 Val   Loss: 1.3081 | Val   Acc: 84.19%
+No improvement. Best so far: 84.67%
+
+📅 Epoch 30/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8086 | Train Acc: 99.13%
+📊 Val   Loss: 1.3193 | Val   Acc: 84.45%
+No improvement. Best so far: 84.67%
+
+📅 Epoch 31/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8055 | Train Acc: 99.24%
+📊 Val   Loss: 1.3019 | Val   Acc: 84.83%
+✅ Best Val Acc: 84.83% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 32/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.8004 | Train Acc: 99.39%
+📊 Val   Loss: 1.2842 | Val   Acc: 85.23%
+✅ Best Val Acc: 85.23% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 33/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7987 | Train Acc: 99.46%
+📊 Val   Loss: 1.2852 | Val   Acc: 85.63%
+✅ Best Val Acc: 85.63% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 34/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7966 | Train Acc: 99.55%
+📊 Val   Loss: 1.2758 | Val   Acc: 85.65%
+✅ Best Val Acc: 85.65% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 35/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7971 | Train Acc: 99.49%
+📊 Val   Loss: 1.2752 | Val   Acc: 85.79%
+✅ Best Val Acc: 85.79% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 36/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7924 | Train Acc: 99.68%
+📊 Val   Loss: 1.2733 | Val   Acc: 86.03%
+✅ Best Val Acc: 86.03% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+
+📅 Epoch 37/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7930 | Train Acc: 99.66%
+📊 Val   Loss: 1.2715 | Val   Acc: 86.03%
+No improvement. Best so far: 86.03%
+
+📅 Epoch 38/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7927 | Train Acc: 99.63%
+📊 Val   Loss: 1.2702 | Val   Acc: 85.97%
+No improvement. Best so far: 86.03%
+
+📅 Epoch 39/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7909 | Train Acc: 99.68%
+📊 Val   Loss: 1.2674 | Val   Acc: 86.00%
+No improvement. Best so far: 86.03%
+
+📅 Epoch 40/40 — GOOD Teacher: student_10_59_good_teacher
+📊 Train Loss: 0.7918 | Train Acc: 99.69%
+📊 Val   Loss: 1.2670 | Val   Acc: 86.05%
+✅ Best Val Acc: 86.05% — Model saved to ./baseline/teachers/student_10_59_good_teacher.pth
+🏁 Training finished.
+
+🚀 Training BAD Teacher: student_10_59_bad_teacher
+📚 Training on class ranges: [(0, 9), (60, 99)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 2.2459 | Train Acc: 53.97%
+📊 Val   Loss: 1.6158 | Val   Acc: 71.60%
+✅ Best Val Acc: 71.60% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 2/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.5748 | Train Acc: 73.18%
+📊 Val   Loss: 1.5263 | Val   Acc: 75.25%
+✅ Best Val Acc: 75.25% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 3/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.4088 | Train Acc: 78.42%
+📊 Val   Loss: 1.3922 | Val   Acc: 79.09%
+✅ Best Val Acc: 79.09% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 4/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.2961 | Train Acc: 82.28%
+📊 Val   Loss: 1.3336 | Val   Acc: 80.96%
+✅ Best Val Acc: 80.96% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 5/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.2327 | Train Acc: 84.45%
+📊 Val   Loss: 1.3133 | Val   Acc: 81.63%
+✅ Best Val Acc: 81.63% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 6/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.1972 | Train Acc: 85.60%
+📊 Val   Loss: 1.3622 | Val   Acc: 80.19%
+No improvement. Best so far: 81.63%
+
+📅 Epoch 7/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.1793 | Train Acc: 86.26%
+📊 Val   Loss: 1.3348 | Val   Acc: 81.44%
+No improvement. Best so far: 81.63%
+
+📅 Epoch 8/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.1398 | Train Acc: 87.82%
+📊 Val   Loss: 1.2654 | Val   Acc: 84.03%
+✅ Best Val Acc: 84.03% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 9/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.0740 | Train Acc: 89.96%
+📊 Val   Loss: 1.3694 | Val   Acc: 80.83%
+No improvement. Best so far: 84.03%
+
+📅 Epoch 10/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.0984 | Train Acc: 89.10%
+📊 Val   Loss: 1.3393 | Val   Acc: 81.60%
+No improvement. Best so far: 84.03%
+
+📅 Epoch 11/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.0783 | Train Acc: 89.76%
+📊 Val   Loss: 1.3165 | Val   Acc: 82.67%
+No improvement. Best so far: 84.03%
+
+📅 Epoch 12/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.9962 | Train Acc: 92.71%
+📊 Val   Loss: 1.3131 | Val   Acc: 82.64%
+No improvement. Best so far: 84.03%
+
+📅 Epoch 13/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.9820 | Train Acc: 93.13%
+📊 Val   Loss: 1.3287 | Val   Acc: 82.24%
+No improvement. Best so far: 84.03%
+
+📅 Epoch 14/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 1.0079 | Train Acc: 92.23%
+📊 Val   Loss: 1.2894 | Val   Acc: 83.31%
+No improvement. Best so far: 84.03%
+
+📅 Epoch 15/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.9497 | Train Acc: 94.07%
+📊 Val   Loss: 1.2621 | Val   Acc: 84.16%
+✅ Best Val Acc: 84.16% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 16/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.9296 | Train Acc: 94.90%
+📊 Val   Loss: 1.3336 | Val   Acc: 82.11%
+No improvement. Best so far: 84.16%
+
+📅 Epoch 17/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.9161 | Train Acc: 95.37%
+📊 Val   Loss: 1.3713 | Val   Acc: 81.01%
+No improvement. Best so far: 84.16%
+
+📅 Epoch 18/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.9645 | Train Acc: 93.68%
+📊 Val   Loss: 1.2976 | Val   Acc: 83.28%
+No improvement. Best so far: 84.16%
+
+📅 Epoch 19/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8764 | Train Acc: 96.81%
+📊 Val   Loss: 1.3068 | Val   Acc: 83.92%
+No improvement. Best so far: 84.16%
+
+📅 Epoch 20/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8893 | Train Acc: 96.20%
+📊 Val   Loss: 1.2822 | Val   Acc: 84.21%
+✅ Best Val Acc: 84.21% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 21/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8843 | Train Acc: 96.52%
+📊 Val   Loss: 1.2782 | Val   Acc: 84.96%
+✅ Best Val Acc: 84.96% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 22/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8537 | Train Acc: 97.55%
+📊 Val   Loss: 1.2712 | Val   Acc: 85.15%
+✅ Best Val Acc: 85.15% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 23/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8448 | Train Acc: 97.87%
+📊 Val   Loss: 1.2686 | Val   Acc: 85.41%
+✅ Best Val Acc: 85.41% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 24/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8383 | Train Acc: 98.10%
+📊 Val   Loss: 1.2520 | Val   Acc: 86.00%
+✅ Best Val Acc: 86.00% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 25/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8338 | Train Acc: 98.27%
+📊 Val   Loss: 1.2726 | Val   Acc: 85.39%
+No improvement. Best so far: 86.00%
+
+📅 Epoch 26/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8268 | Train Acc: 98.56%
+📊 Val   Loss: 1.2607 | Val   Acc: 85.97%
+No improvement. Best so far: 86.00%
+
+📅 Epoch 27/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8359 | Train Acc: 98.11%
+📊 Val   Loss: 1.2373 | Val   Acc: 86.51%
+✅ Best Val Acc: 86.51% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 28/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8136 | Train Acc: 98.94%
+📊 Val   Loss: 1.2217 | Val   Acc: 86.37%
+No improvement. Best so far: 86.51%
+
+📅 Epoch 29/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8091 | Train Acc: 99.12%
+📊 Val   Loss: 1.2363 | Val   Acc: 86.83%
+✅ Best Val Acc: 86.83% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 30/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8063 | Train Acc: 99.23%
+📊 Val   Loss: 1.2281 | Val   Acc: 86.51%
+No improvement. Best so far: 86.83%
+
+📅 Epoch 31/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.8047 | Train Acc: 99.22%
+📊 Val   Loss: 1.2347 | Val   Acc: 86.61%
+No improvement. Best so far: 86.83%
+
+📅 Epoch 32/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7986 | Train Acc: 99.48%
+📊 Val   Loss: 1.2158 | Val   Acc: 87.36%
+✅ Best Val Acc: 87.36% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 33/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7951 | Train Acc: 99.53%
+📊 Val   Loss: 1.2221 | Val   Acc: 87.25%
+No improvement. Best so far: 87.36%
+
+📅 Epoch 34/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7929 | Train Acc: 99.60%
+📊 Val   Loss: 1.2224 | Val   Acc: 87.25%
+No improvement. Best so far: 87.36%
+
+📅 Epoch 35/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7929 | Train Acc: 99.62%
+📊 Val   Loss: 1.2172 | Val   Acc: 87.47%
+✅ Best Val Acc: 87.47% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 36/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7924 | Train Acc: 99.61%
+📊 Val   Loss: 1.1939 | Val   Acc: 87.92%
+✅ Best Val Acc: 87.92% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 37/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7918 | Train Acc: 99.62%
+📊 Val   Loss: 1.1943 | Val   Acc: 87.97%
+✅ Best Val Acc: 87.97% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 38/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7900 | Train Acc: 99.68%
+📊 Val   Loss: 1.1908 | Val   Acc: 88.11%
+✅ Best Val Acc: 88.11% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 39/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7893 | Train Acc: 99.75%
+📊 Val   Loss: 1.1902 | Val   Acc: 88.16%
+✅ Best Val Acc: 88.16% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+
+📅 Epoch 40/40 — BAD Teacher: student_10_59_bad_teacher
+📊 Train Loss: 0.7893 | Train Acc: 99.74%
+📊 Val   Loss: 1.1898 | Val   Acc: 88.21%
+✅ Best Val Acc: 88.21% — Model saved to ./baseline/teachers/student_10_59_bad_teacher.pth
+🏁 Training finished.
+
+🚀 Training GOOD Teacher: student_20_69_good_teacher
+📚 Training on class ranges: [(20, 69)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 2.4788 | Train Acc: 46.14%
+📊 Val   Loss: 1.6528 | Val   Acc: 69.81%
+✅ Best Val Acc: 69.81% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 2/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.6396 | Train Acc: 70.64%
+📊 Val   Loss: 1.5005 | Val   Acc: 75.55%
+✅ Best Val Acc: 75.55% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 3/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.4877 | Train Acc: 75.69%
+📊 Val   Loss: 1.4715 | Val   Acc: 76.32%
+✅ Best Val Acc: 76.32% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 4/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.3729 | Train Acc: 79.43%
+📊 Val   Loss: 1.5644 | Val   Acc: 72.72%
+No improvement. Best so far: 76.32%
+
+📅 Epoch 5/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.3606 | Train Acc: 80.09%
+📊 Val   Loss: 1.4218 | Val   Acc: 78.00%
+✅ Best Val Acc: 78.00% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 6/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.2937 | Train Acc: 82.33%
+📊 Val   Loss: 1.3693 | Val   Acc: 79.25%
+✅ Best Val Acc: 79.25% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 7/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.1911 | Train Acc: 85.43%
+📊 Val   Loss: 1.3865 | Val   Acc: 79.25%
+No improvement. Best so far: 79.25%
+
+📅 Epoch 8/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.1848 | Train Acc: 85.93%
+📊 Val   Loss: 1.3510 | Val   Acc: 81.04%
+✅ Best Val Acc: 81.04% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 9/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.1163 | Train Acc: 88.20%
+📊 Val   Loss: 1.3665 | Val   Acc: 79.95%
+No improvement. Best so far: 81.04%
+
+📅 Epoch 10/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.0796 | Train Acc: 89.63%
+📊 Val   Loss: 1.3776 | Val   Acc: 80.27%
+No improvement. Best so far: 81.04%
+
+📅 Epoch 11/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.1014 | Train Acc: 88.83%
+📊 Val   Loss: 1.3859 | Val   Acc: 79.92%
+No improvement. Best so far: 81.04%
+
+📅 Epoch 12/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.0721 | Train Acc: 90.06%
+📊 Val   Loss: 1.3641 | Val   Acc: 80.69%
+No improvement. Best so far: 81.04%
+
+📅 Epoch 13/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 1.0335 | Train Acc: 91.21%
+📊 Val   Loss: 1.3323 | Val   Acc: 81.73%
+✅ Best Val Acc: 81.73% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 14/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.9847 | Train Acc: 92.91%
+📊 Val   Loss: 1.3667 | Val   Acc: 81.47%
+No improvement. Best so far: 81.73%
+
+📅 Epoch 15/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.9771 | Train Acc: 93.09%
+📊 Val   Loss: 1.3502 | Val   Acc: 81.55%
+No improvement. Best so far: 81.73%
+
+📅 Epoch 16/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.9556 | Train Acc: 93.91%
+📊 Val   Loss: 1.3418 | Val   Acc: 82.45%
+✅ Best Val Acc: 82.45% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 17/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.9419 | Train Acc: 94.39%
+📊 Val   Loss: 1.3354 | Val   Acc: 82.19%
+No improvement. Best so far: 82.45%
+
+📅 Epoch 18/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.9147 | Train Acc: 95.49%
+📊 Val   Loss: 1.3695 | Val   Acc: 81.39%
+No improvement. Best so far: 82.45%
+
+📅 Epoch 19/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.9253 | Train Acc: 94.94%
+📊 Val   Loss: 1.3412 | Val   Acc: 82.29%
+No improvement. Best so far: 82.45%
+
+📅 Epoch 20/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8986 | Train Acc: 96.12%
+📊 Val   Loss: 1.3332 | Val   Acc: 82.91%
+✅ Best Val Acc: 82.91% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 21/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8788 | Train Acc: 96.77%
+📊 Val   Loss: 1.3272 | Val   Acc: 83.44%
+✅ Best Val Acc: 83.44% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 22/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8760 | Train Acc: 96.69%
+📊 Val   Loss: 1.3390 | Val   Acc: 83.01%
+No improvement. Best so far: 83.44%
+
+📅 Epoch 23/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8638 | Train Acc: 97.12%
+📊 Val   Loss: 1.3710 | Val   Acc: 81.76%
+No improvement. Best so far: 83.44%
+
+📅 Epoch 24/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8547 | Train Acc: 97.47%
+📊 Val   Loss: 1.3586 | Val   Acc: 82.32%
+No improvement. Best so far: 83.44%
+
+📅 Epoch 25/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8420 | Train Acc: 97.89%
+📊 Val   Loss: 1.3433 | Val   Acc: 82.96%
+No improvement. Best so far: 83.44%
+
+📅 Epoch 26/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8352 | Train Acc: 98.24%
+📊 Val   Loss: 1.3440 | Val   Acc: 83.60%
+✅ Best Val Acc: 83.60% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 27/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8294 | Train Acc: 98.40%
+📊 Val   Loss: 1.3182 | Val   Acc: 84.21%
+✅ Best Val Acc: 84.21% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 28/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8196 | Train Acc: 98.70%
+📊 Val   Loss: 1.3102 | Val   Acc: 84.24%
+✅ Best Val Acc: 84.24% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 29/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8187 | Train Acc: 98.76%
+📊 Val   Loss: 1.3090 | Val   Acc: 84.72%
+✅ Best Val Acc: 84.72% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 30/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8135 | Train Acc: 98.96%
+📊 Val   Loss: 1.2971 | Val   Acc: 84.85%
+✅ Best Val Acc: 84.85% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 31/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8064 | Train Acc: 99.20%
+📊 Val   Loss: 1.3099 | Val   Acc: 84.43%
+No improvement. Best so far: 84.85%
+
+📅 Epoch 32/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8037 | Train Acc: 99.30%
+📊 Val   Loss: 1.2977 | Val   Acc: 84.85%
+No improvement. Best so far: 84.85%
+
+📅 Epoch 33/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.8011 | Train Acc: 99.39%
+📊 Val   Loss: 1.3034 | Val   Acc: 84.96%
+✅ Best Val Acc: 84.96% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 34/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.7988 | Train Acc: 99.40%
+📊 Val   Loss: 1.3066 | Val   Acc: 84.69%
+No improvement. Best so far: 84.96%
+
+📅 Epoch 35/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.7949 | Train Acc: 99.58%
+📊 Val   Loss: 1.3070 | Val   Acc: 84.91%
+No improvement. Best so far: 84.96%
+
+📅 Epoch 36/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.7931 | Train Acc: 99.63%
+📊 Val   Loss: 1.2938 | Val   Acc: 85.20%
+✅ Best Val Acc: 85.20% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 37/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.7935 | Train Acc: 99.60%
+📊 Val   Loss: 1.2927 | Val   Acc: 85.47%
+✅ Best Val Acc: 85.47% — Model saved to ./baseline/teachers/student_20_69_good_teacher.pth
+
+📅 Epoch 38/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.7925 | Train Acc: 99.60%
+📊 Val   Loss: 1.2903 | Val   Acc: 85.25%
+No improvement. Best so far: 85.47%
+
+📅 Epoch 39/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.7925 | Train Acc: 99.68%
+📊 Val   Loss: 1.2887 | Val   Acc: 85.28%
+No improvement. Best so far: 85.47%
+
+📅 Epoch 40/40 — GOOD Teacher: student_20_69_good_teacher
+📊 Train Loss: 0.7915 | Train Acc: 99.69%
+📊 Val   Loss: 1.2880 | Val   Acc: 85.31%
+No improvement. Best so far: 85.47%
+🏁 Training finished.
+
+🚀 Training BAD Teacher: student_20_69_bad_teacher
+📚 Training on class ranges: [(0, 19), (70, 99)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 2.3068 | Train Acc: 52.53%
+📊 Val   Loss: 1.5581 | Val   Acc: 73.97%
+✅ Best Val Acc: 73.97% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 2/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.5106 | Train Acc: 75.22%
+📊 Val   Loss: 1.4423 | Val   Acc: 77.15%
+✅ Best Val Acc: 77.15% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 3/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.3714 | Train Acc: 79.71%
+📊 Val   Loss: 1.4446 | Val   Acc: 76.96%
+No improvement. Best so far: 77.15%
+
+📅 Epoch 4/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.2725 | Train Acc: 83.05%
+📊 Val   Loss: 1.3785 | Val   Acc: 80.35%
+✅ Best Val Acc: 80.35% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 5/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.2118 | Train Acc: 84.82%
+📊 Val   Loss: 1.4019 | Val   Acc: 79.81%
+No improvement. Best so far: 80.35%
+
+📅 Epoch 6/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.2223 | Train Acc: 84.77%
+📊 Val   Loss: 1.2772 | Val   Acc: 82.93%
+✅ Best Val Acc: 82.93% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 7/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.1210 | Train Acc: 88.13%
+📊 Val   Loss: 1.2975 | Val   Acc: 83.81%
+✅ Best Val Acc: 83.81% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 8/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.0740 | Train Acc: 89.92%
+📊 Val   Loss: 1.2770 | Val   Acc: 83.76%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 9/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.0625 | Train Acc: 90.33%
+📊 Val   Loss: 1.2681 | Val   Acc: 83.47%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 10/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.0138 | Train Acc: 92.17%
+📊 Val   Loss: 1.3220 | Val   Acc: 82.93%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 11/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 1.0425 | Train Acc: 90.94%
+📊 Val   Loss: 1.2650 | Val   Acc: 83.81%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 12/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.9813 | Train Acc: 93.00%
+📊 Val   Loss: 1.2703 | Val   Acc: 83.79%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 13/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.9739 | Train Acc: 93.40%
+📊 Val   Loss: 1.3045 | Val   Acc: 83.55%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 14/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.9420 | Train Acc: 94.46%
+📊 Val   Loss: 1.2525 | Val   Acc: 84.59%
+✅ Best Val Acc: 84.59% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 15/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.9311 | Train Acc: 94.72%
+📊 Val   Loss: 1.2654 | Val   Acc: 85.01%
+✅ Best Val Acc: 85.01% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 16/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.9190 | Train Acc: 95.18%
+📊 Val   Loss: 1.2795 | Val   Acc: 84.35%
+No improvement. Best so far: 85.01%
+
+📅 Epoch 17/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.9034 | Train Acc: 95.82%
+📊 Val   Loss: 1.2895 | Val   Acc: 84.64%
+No improvement. Best so far: 85.01%
+
+📅 Epoch 18/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8942 | Train Acc: 96.16%
+📊 Val   Loss: 1.2853 | Val   Acc: 84.00%
+No improvement. Best so far: 85.01%
+
+📅 Epoch 19/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8892 | Train Acc: 96.48%
+📊 Val   Loss: 1.3269 | Val   Acc: 83.20%
+No improvement. Best so far: 85.01%
+
+📅 Epoch 20/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.9375 | Train Acc: 94.74%
+📊 Val   Loss: 1.2600 | Val   Acc: 84.83%
+No improvement. Best so far: 85.01%
+
+📅 Epoch 21/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8619 | Train Acc: 97.20%
+📊 Val   Loss: 1.2465 | Val   Acc: 86.08%
+✅ Best Val Acc: 86.08% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 22/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8493 | Train Acc: 97.82%
+📊 Val   Loss: 1.2410 | Val   Acc: 86.03%
+No improvement. Best so far: 86.08%
+
+📅 Epoch 23/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8452 | Train Acc: 97.77%
+📊 Val   Loss: 1.2617 | Val   Acc: 85.89%
+No improvement. Best so far: 86.08%
+
+📅 Epoch 24/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8354 | Train Acc: 98.24%
+📊 Val   Loss: 1.2780 | Val   Acc: 85.55%
+No improvement. Best so far: 86.08%
+
+📅 Epoch 25/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8309 | Train Acc: 98.24%
+📊 Val   Loss: 1.2459 | Val   Acc: 86.24%
+✅ Best Val Acc: 86.24% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 26/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8232 | Train Acc: 98.56%
+📊 Val   Loss: 1.2341 | Val   Acc: 86.40%
+✅ Best Val Acc: 86.40% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 27/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8176 | Train Acc: 98.79%
+📊 Val   Loss: 1.2405 | Val   Acc: 86.80%
+✅ Best Val Acc: 86.80% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 28/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8117 | Train Acc: 99.04%
+📊 Val   Loss: 1.2085 | Val   Acc: 87.76%
+✅ Best Val Acc: 87.76% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 29/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8069 | Train Acc: 99.14%
+📊 Val   Loss: 1.2165 | Val   Acc: 87.28%
+No improvement. Best so far: 87.76%
+
+📅 Epoch 30/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8002 | Train Acc: 99.33%
+📊 Val   Loss: 1.2023 | Val   Acc: 88.19%
+✅ Best Val Acc: 88.19% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 31/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.8015 | Train Acc: 99.43%
+📊 Val   Loss: 1.2068 | Val   Acc: 87.81%
+No improvement. Best so far: 88.19%
+
+📅 Epoch 32/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7966 | Train Acc: 99.51%
+📊 Val   Loss: 1.2164 | Val   Acc: 87.60%
+No improvement. Best so far: 88.19%
+
+📅 Epoch 33/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7938 | Train Acc: 99.54%
+📊 Val   Loss: 1.2102 | Val   Acc: 87.57%
+No improvement. Best so far: 88.19%
+
+📅 Epoch 34/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7922 | Train Acc: 99.62%
+📊 Val   Loss: 1.1983 | Val   Acc: 88.32%
+✅ Best Val Acc: 88.32% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 35/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7930 | Train Acc: 99.61%
+📊 Val   Loss: 1.1905 | Val   Acc: 88.67%
+✅ Best Val Acc: 88.67% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 36/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7916 | Train Acc: 99.64%
+📊 Val   Loss: 1.1810 | Val   Acc: 88.61%
+No improvement. Best so far: 88.67%
+
+📅 Epoch 37/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7912 | Train Acc: 99.66%
+📊 Val   Loss: 1.1802 | Val   Acc: 88.59%
+No improvement. Best so far: 88.67%
+
+📅 Epoch 38/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7868 | Train Acc: 99.81%
+📊 Val   Loss: 1.1773 | Val   Acc: 88.69%
+✅ Best Val Acc: 88.69% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+
+📅 Epoch 39/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7871 | Train Acc: 99.78%
+📊 Val   Loss: 1.1758 | Val   Acc: 88.67%
+No improvement. Best so far: 88.69%
+
+📅 Epoch 40/40 — BAD Teacher: student_20_69_bad_teacher
+📊 Train Loss: 0.7867 | Train Acc: 99.82%
+📊 Val   Loss: 1.1754 | Val   Acc: 88.85%
+✅ Best Val Acc: 88.85% — Model saved to ./baseline/teachers/student_20_69_bad_teacher.pth
+🏁 Training finished.
+
+🚀 Training GOOD Teacher: student_30_79_good_teacher
+📚 Training on class ranges: [(30, 79)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 2.4050 | Train Acc: 48.38%
+📊 Val   Loss: 1.6166 | Val   Acc: 71.84%
+✅ Best Val Acc: 71.84% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 2/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.6341 | Train Acc: 70.94%
+📊 Val   Loss: 1.6498 | Val   Acc: 71.20%
+No improvement. Best so far: 71.84%
+
+📅 Epoch 3/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.4908 | Train Acc: 75.65%
+📊 Val   Loss: 1.4716 | Val   Acc: 75.71%
+✅ Best Val Acc: 75.71% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 4/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.3802 | Train Acc: 79.30%
+📊 Val   Loss: 1.4828 | Val   Acc: 75.57%
+No improvement. Best so far: 75.71%
+
+📅 Epoch 5/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.3175 | Train Acc: 81.39%
+📊 Val   Loss: 1.3518 | Val   Acc: 79.63%
+✅ Best Val Acc: 79.63% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 6/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.2433 | Train Acc: 83.74%
+📊 Val   Loss: 1.3612 | Val   Acc: 79.31%
+No improvement. Best so far: 79.63%
+
+📅 Epoch 7/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.2203 | Train Acc: 84.79%
+📊 Val   Loss: 1.3280 | Val   Acc: 81.23%
+✅ Best Val Acc: 81.23% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 8/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.1598 | Train Acc: 86.70%
+📊 Val   Loss: 1.3362 | Val   Acc: 80.77%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 9/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.1147 | Train Acc: 88.15%
+📊 Val   Loss: 1.4262 | Val   Acc: 78.43%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 10/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.1994 | Train Acc: 85.32%
+📊 Val   Loss: 1.3648 | Val   Acc: 80.53%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 11/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.0574 | Train Acc: 90.59%
+📊 Val   Loss: 1.3482 | Val   Acc: 81.01%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 12/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.0161 | Train Acc: 91.71%
+📊 Val   Loss: 1.3585 | Val   Acc: 80.61%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 13/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.0215 | Train Acc: 91.49%
+📊 Val   Loss: 1.3686 | Val   Acc: 80.45%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 14/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.9916 | Train Acc: 92.70%
+📊 Val   Loss: 1.4000 | Val   Acc: 80.19%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 15/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 1.0625 | Train Acc: 90.25%
+📊 Val   Loss: 1.3371 | Val   Acc: 82.40%
+✅ Best Val Acc: 82.40% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 16/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.9548 | Train Acc: 93.96%
+📊 Val   Loss: 1.3335 | Val   Acc: 81.76%
+No improvement. Best so far: 82.40%
+
+📅 Epoch 17/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.9251 | Train Acc: 94.92%
+📊 Val   Loss: 1.3236 | Val   Acc: 82.45%
+✅ Best Val Acc: 82.45% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 18/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.9250 | Train Acc: 95.03%
+📊 Val   Loss: 1.3525 | Val   Acc: 81.47%
+No improvement. Best so far: 82.45%
+
+📅 Epoch 19/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.9111 | Train Acc: 95.47%
+📊 Val   Loss: 1.2902 | Val   Acc: 83.81%
+✅ Best Val Acc: 83.81% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 20/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8971 | Train Acc: 96.02%
+📊 Val   Loss: 1.3236 | Val   Acc: 83.09%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 21/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8791 | Train Acc: 96.64%
+📊 Val   Loss: 1.3286 | Val   Acc: 83.31%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 22/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8697 | Train Acc: 96.93%
+📊 Val   Loss: 1.2940 | Val   Acc: 83.65%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 23/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8628 | Train Acc: 97.24%
+📊 Val   Loss: 1.3097 | Val   Acc: 83.39%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 24/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8509 | Train Acc: 97.68%
+📊 Val   Loss: 1.3189 | Val   Acc: 83.60%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 25/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8453 | Train Acc: 97.82%
+📊 Val   Loss: 1.3074 | Val   Acc: 84.21%
+✅ Best Val Acc: 84.21% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 26/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8370 | Train Acc: 98.14%
+📊 Val   Loss: 1.2874 | Val   Acc: 85.23%
+✅ Best Val Acc: 85.23% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 27/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8299 | Train Acc: 98.25%
+📊 Val   Loss: 1.2756 | Val   Acc: 84.93%
+No improvement. Best so far: 85.23%
+
+📅 Epoch 28/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8253 | Train Acc: 98.47%
+📊 Val   Loss: 1.2903 | Val   Acc: 84.91%
+No improvement. Best so far: 85.23%
+
+📅 Epoch 29/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8158 | Train Acc: 98.86%
+📊 Val   Loss: 1.2888 | Val   Acc: 84.96%
+No improvement. Best so far: 85.23%
+
+📅 Epoch 30/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8119 | Train Acc: 99.03%
+📊 Val   Loss: 1.2874 | Val   Acc: 85.07%
+No improvement. Best so far: 85.23%
+
+📅 Epoch 31/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8068 | Train Acc: 99.14%
+📊 Val   Loss: 1.2810 | Val   Acc: 85.52%
+✅ Best Val Acc: 85.52% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 32/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8047 | Train Acc: 99.17%
+📊 Val   Loss: 1.2766 | Val   Acc: 85.33%
+No improvement. Best so far: 85.52%
+
+📅 Epoch 33/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8043 | Train Acc: 99.26%
+📊 Val   Loss: 1.2688 | Val   Acc: 85.52%
+No improvement. Best so far: 85.52%
+
+📅 Epoch 34/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.8030 | Train Acc: 99.31%
+📊 Val   Loss: 1.2626 | Val   Acc: 85.89%
+✅ Best Val Acc: 85.89% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 35/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.7974 | Train Acc: 99.49%
+📊 Val   Loss: 1.2621 | Val   Acc: 85.63%
+No improvement. Best so far: 85.89%
+
+📅 Epoch 36/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.7962 | Train Acc: 99.49%
+📊 Val   Loss: 1.2590 | Val   Acc: 86.03%
+✅ Best Val Acc: 86.03% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 37/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.7935 | Train Acc: 99.58%
+📊 Val   Loss: 1.2531 | Val   Acc: 86.21%
+✅ Best Val Acc: 86.21% — Model saved to ./baseline/teachers/student_30_79_good_teacher.pth
+
+📅 Epoch 38/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.7934 | Train Acc: 99.61%
+📊 Val   Loss: 1.2496 | Val   Acc: 86.08%
+No improvement. Best so far: 86.21%
+
+📅 Epoch 39/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.7929 | Train Acc: 99.67%
+📊 Val   Loss: 1.2501 | Val   Acc: 86.13%
+No improvement. Best so far: 86.21%
+
+📅 Epoch 40/40 — GOOD Teacher: student_30_79_good_teacher
+📊 Train Loss: 0.7945 | Train Acc: 99.58%
+📊 Val   Loss: 1.2496 | Val   Acc: 86.11%
+No improvement. Best so far: 86.21%
+🏁 Training finished.
+
+🚀 Training BAD Teacher: student_30_79_bad_teacher
+📚 Training on class ranges: [(0, 29), (80, 99)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 2.3402 | Train Acc: 51.04%
+📊 Val   Loss: 1.5823 | Val   Acc: 72.43%
+✅ Best Val Acc: 72.43% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 2/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.5351 | Train Acc: 73.85%
+📊 Val   Loss: 1.4715 | Val   Acc: 75.89%
+✅ Best Val Acc: 75.89% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 3/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.4052 | Train Acc: 78.32%
+📊 Val   Loss: 1.4114 | Val   Acc: 78.69%
+✅ Best Val Acc: 78.69% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 4/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.3157 | Train Acc: 81.19%
+📊 Val   Loss: 1.3492 | Val   Acc: 79.79%
+✅ Best Val Acc: 79.79% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 5/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.2428 | Train Acc: 83.72%
+📊 Val   Loss: 1.3411 | Val   Acc: 79.95%
+✅ Best Val Acc: 79.95% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 6/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.1724 | Train Acc: 85.96%
+📊 Val   Loss: 1.3327 | Val   Acc: 80.43%
+✅ Best Val Acc: 80.43% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 7/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.1592 | Train Acc: 86.69%
+📊 Val   Loss: 1.4565 | Val   Acc: 77.44%
+No improvement. Best so far: 80.43%
+
+📅 Epoch 8/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.1998 | Train Acc: 85.12%
+📊 Val   Loss: 1.4092 | Val   Acc: 79.73%
+No improvement. Best so far: 80.43%
+
+📅 Epoch 9/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.1319 | Train Acc: 87.67%
+📊 Val   Loss: 1.3204 | Val   Acc: 82.19%
+✅ Best Val Acc: 82.19% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 10/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.0673 | Train Acc: 89.84%
+📊 Val   Loss: 1.3251 | Val   Acc: 82.37%
+✅ Best Val Acc: 82.37% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 11/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.0595 | Train Acc: 90.29%
+📊 Val   Loss: 1.3515 | Val   Acc: 81.63%
+No improvement. Best so far: 82.37%
+
+📅 Epoch 12/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.0053 | Train Acc: 92.34%
+📊 Val   Loss: 1.3709 | Val   Acc: 80.88%
+No improvement. Best so far: 82.37%
+
+📅 Epoch 13/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 1.0329 | Train Acc: 91.12%
+📊 Val   Loss: 1.2849 | Val   Acc: 83.71%
+✅ Best Val Acc: 83.71% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 14/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.9579 | Train Acc: 93.76%
+📊 Val   Loss: 1.3248 | Val   Acc: 82.77%
+No improvement. Best so far: 83.71%
+
+📅 Epoch 15/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.9590 | Train Acc: 93.86%
+📊 Val   Loss: 1.3489 | Val   Acc: 81.97%
+No improvement. Best so far: 83.71%
+
+📅 Epoch 16/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.9328 | Train Acc: 94.70%
+📊 Val   Loss: 1.3133 | Val   Acc: 82.91%
+No improvement. Best so far: 83.71%
+
+📅 Epoch 17/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.9194 | Train Acc: 95.51%
+📊 Val   Loss: 1.3287 | Val   Acc: 82.72%
+No improvement. Best so far: 83.71%
+
+📅 Epoch 18/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.9400 | Train Acc: 94.46%
+📊 Val   Loss: 1.3022 | Val   Acc: 83.84%
+✅ Best Val Acc: 83.84% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 19/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8955 | Train Acc: 96.14%
+📊 Val   Loss: 1.3874 | Val   Acc: 81.89%
+No improvement. Best so far: 83.84%
+
+📅 Epoch 20/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.9342 | Train Acc: 94.90%
+📊 Val   Loss: 1.3141 | Val   Acc: 83.31%
+No improvement. Best so far: 83.84%
+
+📅 Epoch 21/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8744 | Train Acc: 96.91%
+📊 Val   Loss: 1.3009 | Val   Acc: 84.13%
+✅ Best Val Acc: 84.13% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 22/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8511 | Train Acc: 97.79%
+📊 Val   Loss: 1.3171 | Val   Acc: 83.95%
+No improvement. Best so far: 84.13%
+
+📅 Epoch 23/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8459 | Train Acc: 97.92%
+📊 Val   Loss: 1.3052 | Val   Acc: 84.45%
+✅ Best Val Acc: 84.45% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 24/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8440 | Train Acc: 97.98%
+📊 Val   Loss: 1.2920 | Val   Acc: 84.53%
+✅ Best Val Acc: 84.53% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 25/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8295 | Train Acc: 98.45%
+📊 Val   Loss: 1.2829 | Val   Acc: 85.36%
+✅ Best Val Acc: 85.36% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 26/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8253 | Train Acc: 98.52%
+📊 Val   Loss: 1.3028 | Val   Acc: 84.96%
+No improvement. Best so far: 85.36%
+
+📅 Epoch 27/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8166 | Train Acc: 98.88%
+📊 Val   Loss: 1.3007 | Val   Acc: 84.69%
+No improvement. Best so far: 85.36%
+
+📅 Epoch 28/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8227 | Train Acc: 98.65%
+📊 Val   Loss: 1.2923 | Val   Acc: 85.07%
+No improvement. Best so far: 85.36%
+
+📅 Epoch 29/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8061 | Train Acc: 99.19%
+📊 Val   Loss: 1.2728 | Val   Acc: 86.08%
+✅ Best Val Acc: 86.08% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 30/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8108 | Train Acc: 99.23%
+📊 Val   Loss: 1.2751 | Val   Acc: 85.71%
+No improvement. Best so far: 86.08%
+
+📅 Epoch 31/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.8129 | Train Acc: 98.98%
+📊 Val   Loss: 1.2746 | Val   Acc: 86.03%
+No improvement. Best so far: 86.08%
+
+📅 Epoch 32/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7995 | Train Acc: 99.41%
+📊 Val   Loss: 1.2698 | Val   Acc: 86.03%
+No improvement. Best so far: 86.08%
+
+📅 Epoch 33/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7957 | Train Acc: 99.57%
+📊 Val   Loss: 1.2706 | Val   Acc: 86.05%
+No improvement. Best so far: 86.08%
+
+📅 Epoch 34/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7951 | Train Acc: 99.55%
+📊 Val   Loss: 1.2616 | Val   Acc: 86.53%
+✅ Best Val Acc: 86.53% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 35/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7914 | Train Acc: 99.70%
+📊 Val   Loss: 1.2632 | Val   Acc: 86.45%
+No improvement. Best so far: 86.53%
+
+📅 Epoch 36/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7932 | Train Acc: 99.61%
+📊 Val   Loss: 1.2536 | Val   Acc: 86.75%
+✅ Best Val Acc: 86.75% — Model saved to ./baseline/teachers/student_30_79_bad_teacher.pth
+
+📅 Epoch 37/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7904 | Train Acc: 99.70%
+📊 Val   Loss: 1.2577 | Val   Acc: 86.64%
+No improvement. Best so far: 86.75%
+
+📅 Epoch 38/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7898 | Train Acc: 99.75%
+📊 Val   Loss: 1.2564 | Val   Acc: 86.45%
+No improvement. Best so far: 86.75%
+
+📅 Epoch 39/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7903 | Train Acc: 99.71%
+📊 Val   Loss: 1.2549 | Val   Acc: 86.35%
+No improvement. Best so far: 86.75%
+
+📅 Epoch 40/40 — BAD Teacher: student_30_79_bad_teacher
+📊 Train Loss: 0.7879 | Train Acc: 99.84%
+📊 Val   Loss: 1.2547 | Val   Acc: 86.40%
+No improvement. Best so far: 86.75%
+🏁 Training finished.
+
+🚀 Training GOOD Teacher: student_40_89_good_teacher
+📚 Training on class ranges: [(40, 89)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 2.4463 | Train Acc: 46.76%
+📊 Val   Loss: 1.6569 | Val   Acc: 69.12%
+✅ Best Val Acc: 69.12% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 2/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.6161 | Train Acc: 71.21%
+📊 Val   Loss: 1.5110 | Val   Acc: 74.21%
+✅ Best Val Acc: 74.21% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 3/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.4491 | Train Acc: 76.33%
+📊 Val   Loss: 1.4203 | Val   Acc: 78.11%
+✅ Best Val Acc: 78.11% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 4/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.3267 | Train Acc: 80.87%
+📊 Val   Loss: 1.3875 | Val   Acc: 79.65%
+✅ Best Val Acc: 79.65% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 5/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.2623 | Train Acc: 83.01%
+📊 Val   Loss: 1.3436 | Val   Acc: 80.59%
+✅ Best Val Acc: 80.59% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 6/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.1968 | Train Acc: 85.24%
+📊 Val   Loss: 1.3454 | Val   Acc: 80.37%
+No improvement. Best so far: 80.59%
+
+📅 Epoch 7/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.1642 | Train Acc: 86.42%
+📊 Val   Loss: 1.3027 | Val   Acc: 82.00%
+✅ Best Val Acc: 82.00% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 8/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.1193 | Train Acc: 87.76%
+📊 Val   Loss: 1.3762 | Val   Acc: 80.45%
+No improvement. Best so far: 82.00%
+
+📅 Epoch 9/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.0828 | Train Acc: 89.04%
+📊 Val   Loss: 1.3286 | Val   Acc: 82.00%
+No improvement. Best so far: 82.00%
+
+📅 Epoch 10/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.0629 | Train Acc: 90.01%
+📊 Val   Loss: 1.3400 | Val   Acc: 81.49%
+No improvement. Best so far: 82.00%
+
+📅 Epoch 11/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 1.0748 | Train Acc: 89.66%
+📊 Val   Loss: 1.3129 | Val   Acc: 82.32%
+✅ Best Val Acc: 82.32% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 12/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9950 | Train Acc: 92.59%
+📊 Val   Loss: 1.2795 | Val   Acc: 82.69%
+✅ Best Val Acc: 82.69% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 13/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9937 | Train Acc: 92.51%
+📊 Val   Loss: 1.3094 | Val   Acc: 82.64%
+No improvement. Best so far: 82.69%
+
+📅 Epoch 14/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9724 | Train Acc: 93.27%
+📊 Val   Loss: 1.2864 | Val   Acc: 83.33%
+✅ Best Val Acc: 83.33% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 15/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9505 | Train Acc: 94.08%
+📊 Val   Loss: 1.3001 | Val   Acc: 83.55%
+✅ Best Val Acc: 83.55% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 16/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9381 | Train Acc: 94.45%
+📊 Val   Loss: 1.3155 | Val   Acc: 82.40%
+No improvement. Best so far: 83.55%
+
+📅 Epoch 17/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9320 | Train Acc: 94.74%
+📊 Val   Loss: 1.3133 | Val   Acc: 82.21%
+No improvement. Best so far: 83.55%
+
+📅 Epoch 18/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9187 | Train Acc: 95.07%
+📊 Val   Loss: 1.2864 | Val   Acc: 83.57%
+✅ Best Val Acc: 83.57% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 19/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8986 | Train Acc: 95.71%
+📊 Val   Loss: 1.2739 | Val   Acc: 84.19%
+✅ Best Val Acc: 84.19% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 20/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8857 | Train Acc: 96.61%
+📊 Val   Loss: 1.3166 | Val   Acc: 82.75%
+No improvement. Best so far: 84.19%
+
+📅 Epoch 21/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.9133 | Train Acc: 95.46%
+📊 Val   Loss: 1.2920 | Val   Acc: 83.44%
+No improvement. Best so far: 84.19%
+
+📅 Epoch 22/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8667 | Train Acc: 97.13%
+📊 Val   Loss: 1.2690 | Val   Acc: 84.75%
+✅ Best Val Acc: 84.75% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 23/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8529 | Train Acc: 97.46%
+📊 Val   Loss: 1.2857 | Val   Acc: 84.11%
+No improvement. Best so far: 84.75%
+
+📅 Epoch 24/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8455 | Train Acc: 97.90%
+📊 Val   Loss: 1.2713 | Val   Acc: 84.83%
+✅ Best Val Acc: 84.83% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 25/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8404 | Train Acc: 98.03%
+📊 Val   Loss: 1.2644 | Val   Acc: 84.77%
+No improvement. Best so far: 84.83%
+
+📅 Epoch 26/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8272 | Train Acc: 98.47%
+📊 Val   Loss: 1.2817 | Val   Acc: 84.77%
+No improvement. Best so far: 84.83%
+
+📅 Epoch 27/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8237 | Train Acc: 98.57%
+📊 Val   Loss: 1.2625 | Val   Acc: 85.76%
+✅ Best Val Acc: 85.76% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 28/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8218 | Train Acc: 98.61%
+📊 Val   Loss: 1.2723 | Val   Acc: 85.36%
+No improvement. Best so far: 85.76%
+
+📅 Epoch 29/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8124 | Train Acc: 98.99%
+📊 Val   Loss: 1.2488 | Val   Acc: 86.16%
+✅ Best Val Acc: 86.16% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 30/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8084 | Train Acc: 99.09%
+📊 Val   Loss: 1.2711 | Val   Acc: 86.03%
+No improvement. Best so far: 86.16%
+
+📅 Epoch 31/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8034 | Train Acc: 99.24%
+📊 Val   Loss: 1.2613 | Val   Acc: 86.64%
+✅ Best Val Acc: 86.64% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 32/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.8003 | Train Acc: 99.42%
+📊 Val   Loss: 1.2452 | Val   Acc: 86.93%
+✅ Best Val Acc: 86.93% — Model saved to ./baseline/teachers/student_40_89_good_teacher.pth
+
+📅 Epoch 33/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7983 | Train Acc: 99.40%
+📊 Val   Loss: 1.2577 | Val   Acc: 86.27%
+No improvement. Best so far: 86.93%
+
+📅 Epoch 34/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7972 | Train Acc: 99.52%
+📊 Val   Loss: 1.2633 | Val   Acc: 86.32%
+No improvement. Best so far: 86.93%
+
+📅 Epoch 35/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7949 | Train Acc: 99.51%
+📊 Val   Loss: 1.2626 | Val   Acc: 86.67%
+No improvement. Best so far: 86.93%
+
+📅 Epoch 36/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7935 | Train Acc: 99.59%
+📊 Val   Loss: 1.2523 | Val   Acc: 86.64%
+No improvement. Best so far: 86.93%
+
+📅 Epoch 37/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7929 | Train Acc: 99.64%
+📊 Val   Loss: 1.2533 | Val   Acc: 86.43%
+No improvement. Best so far: 86.93%
+
+📅 Epoch 38/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7917 | Train Acc: 99.66%
+📊 Val   Loss: 1.2470 | Val   Acc: 86.61%
+No improvement. Best so far: 86.93%
+
+📅 Epoch 39/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7905 | Train Acc: 99.67%
+📊 Val   Loss: 1.2454 | Val   Acc: 86.72%
+No improvement. Best so far: 86.93%
+
+📅 Epoch 40/40 — GOOD Teacher: student_40_89_good_teacher
+📊 Train Loss: 0.7911 | Train Acc: 99.70%
+📊 Val   Loss: 1.2447 | Val   Acc: 86.77%
+No improvement. Best so far: 86.93%
+🏁 Training finished.
+
+🚀 Training BAD Teacher: student_40_89_bad_teacher
+📚 Training on class ranges: [(0, 39), (90, 99)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 2.4918 | Train Acc: 46.28%
+📊 Val   Loss: 1.7389 | Val   Acc: 66.75%
+✅ Best Val Acc: 66.75% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 2/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.6345 | Train Acc: 70.78%
+📊 Val   Loss: 1.5268 | Val   Acc: 73.87%
+✅ Best Val Acc: 73.87% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 3/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.4682 | Train Acc: 75.90%
+📊 Val   Loss: 1.3873 | Val   Acc: 79.39%
+✅ Best Val Acc: 79.39% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 4/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.3431 | Train Acc: 80.19%
+📊 Val   Loss: 1.4132 | Val   Acc: 78.16%
+No improvement. Best so far: 79.39%
+
+📅 Epoch 5/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.2764 | Train Acc: 82.54%
+📊 Val   Loss: 1.3948 | Val   Acc: 79.07%
+No improvement. Best so far: 79.39%
+
+📅 Epoch 6/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.2307 | Train Acc: 83.95%
+📊 Val   Loss: 1.4064 | Val   Acc: 79.04%
+No improvement. Best so far: 79.39%
+
+📅 Epoch 7/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.1777 | Train Acc: 85.90%
+📊 Val   Loss: 1.4525 | Val   Acc: 77.47%
+No improvement. Best so far: 79.39%
+
+📅 Epoch 8/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.1577 | Train Acc: 86.86%
+📊 Val   Loss: 1.4111 | Val   Acc: 79.39%
+No improvement. Best so far: 79.39%
+
+📅 Epoch 9/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.1274 | Train Acc: 88.03%
+📊 Val   Loss: 1.3867 | Val   Acc: 79.89%
+✅ Best Val Acc: 79.89% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 10/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.1422 | Train Acc: 87.28%
+📊 Val   Loss: 1.3199 | Val   Acc: 82.24%
+✅ Best Val Acc: 82.24% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 11/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.0420 | Train Acc: 90.71%
+📊 Val   Loss: 1.3644 | Val   Acc: 80.37%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 12/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 1.0376 | Train Acc: 90.89%
+📊 Val   Loss: 1.3294 | Val   Acc: 81.89%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 13/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.9914 | Train Acc: 92.60%
+📊 Val   Loss: 1.3327 | Val   Acc: 81.65%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 14/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.9819 | Train Acc: 92.96%
+📊 Val   Loss: 1.3386 | Val   Acc: 81.92%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 15/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.9563 | Train Acc: 94.04%
+📊 Val   Loss: 1.3351 | Val   Acc: 82.24%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 16/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.9443 | Train Acc: 94.49%
+📊 Val   Loss: 1.3574 | Val   Acc: 81.81%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 17/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.9386 | Train Acc: 94.56%
+📊 Val   Loss: 1.3605 | Val   Acc: 81.89%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 18/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.9047 | Train Acc: 95.66%
+📊 Val   Loss: 1.3492 | Val   Acc: 82.21%
+No improvement. Best so far: 82.24%
+
+📅 Epoch 19/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8880 | Train Acc: 96.46%
+📊 Val   Loss: 1.3271 | Val   Acc: 83.01%
+✅ Best Val Acc: 83.01% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 20/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8846 | Train Acc: 96.40%
+📊 Val   Loss: 1.3714 | Val   Acc: 81.73%
+No improvement. Best so far: 83.01%
+
+📅 Epoch 21/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8817 | Train Acc: 96.46%
+📊 Val   Loss: 1.3572 | Val   Acc: 81.97%
+No improvement. Best so far: 83.01%
+
+📅 Epoch 22/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8620 | Train Acc: 97.30%
+📊 Val   Loss: 1.3656 | Val   Acc: 82.80%
+No improvement. Best so far: 83.01%
+
+📅 Epoch 23/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8493 | Train Acc: 97.79%
+📊 Val   Loss: 1.3138 | Val   Acc: 83.81%
+✅ Best Val Acc: 83.81% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 24/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8352 | Train Acc: 98.11%
+📊 Val   Loss: 1.3349 | Val   Acc: 83.39%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 25/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8359 | Train Acc: 98.21%
+📊 Val   Loss: 1.3438 | Val   Acc: 83.31%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 26/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8219 | Train Acc: 98.66%
+📊 Val   Loss: 1.3477 | Val   Acc: 83.25%
+No improvement. Best so far: 83.81%
+
+📅 Epoch 27/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8156 | Train Acc: 98.88%
+📊 Val   Loss: 1.3202 | Val   Acc: 84.27%
+✅ Best Val Acc: 84.27% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 28/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8146 | Train Acc: 98.93%
+📊 Val   Loss: 1.3196 | Val   Acc: 84.19%
+No improvement. Best so far: 84.27%
+
+📅 Epoch 29/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8062 | Train Acc: 99.29%
+📊 Val   Loss: 1.3050 | Val   Acc: 84.77%
+✅ Best Val Acc: 84.77% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 30/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8034 | Train Acc: 99.32%
+📊 Val   Loss: 1.3081 | Val   Acc: 84.75%
+No improvement. Best so far: 84.77%
+
+📅 Epoch 31/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.8003 | Train Acc: 99.42%
+📊 Val   Loss: 1.3024 | Val   Acc: 84.93%
+✅ Best Val Acc: 84.93% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 32/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7980 | Train Acc: 99.45%
+📊 Val   Loss: 1.3055 | Val   Acc: 85.07%
+✅ Best Val Acc: 85.07% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 33/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7955 | Train Acc: 99.56%
+📊 Val   Loss: 1.2944 | Val   Acc: 85.49%
+✅ Best Val Acc: 85.49% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 34/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7945 | Train Acc: 99.60%
+📊 Val   Loss: 1.3253 | Val   Acc: 84.51%
+No improvement. Best so far: 85.49%
+
+📅 Epoch 35/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7924 | Train Acc: 99.65%
+📊 Val   Loss: 1.2952 | Val   Acc: 85.68%
+✅ Best Val Acc: 85.68% — Model saved to ./baseline/teachers/student_40_89_bad_teacher.pth
+
+📅 Epoch 36/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7899 | Train Acc: 99.73%
+📊 Val   Loss: 1.2988 | Val   Acc: 85.41%
+No improvement. Best so far: 85.68%
+
+📅 Epoch 37/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7898 | Train Acc: 99.76%
+📊 Val   Loss: 1.2911 | Val   Acc: 85.63%
+No improvement. Best so far: 85.68%
+
+📅 Epoch 38/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7907 | Train Acc: 99.75%
+📊 Val   Loss: 1.2894 | Val   Acc: 85.44%
+No improvement. Best so far: 85.68%
+
+📅 Epoch 39/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7881 | Train Acc: 99.76%
+📊 Val   Loss: 1.2882 | Val   Acc: 85.60%
+No improvement. Best so far: 85.68%
+
+📅 Epoch 40/40 — BAD Teacher: student_40_89_bad_teacher
+📊 Train Loss: 0.7895 | Train Acc: 99.77%
+📊 Val   Loss: 1.2878 | Val   Acc: 85.57%
+No improvement. Best so far: 85.68%
+🏁 Training finished.
+
+🚀 Training GOOD Teacher: student_50_99_good_teacher
+📚 Training on class ranges: [(50, 99)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 2.4330 | Train Acc: 47.64%
+📊 Val   Loss: 1.7361 | Val   Acc: 67.76%
+✅ Best Val Acc: 67.76% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 2/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.6054 | Train Acc: 72.04%
+📊 Val   Loss: 1.4419 | Val   Acc: 77.87%
+✅ Best Val Acc: 77.87% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 3/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.3984 | Train Acc: 78.69%
+📊 Val   Loss: 1.4142 | Val   Acc: 78.45%
+✅ Best Val Acc: 78.45% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 4/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.3171 | Train Acc: 81.45%
+📊 Val   Loss: 1.3488 | Val   Acc: 80.24%
+✅ Best Val Acc: 80.24% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 5/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.2446 | Train Acc: 83.90%
+📊 Val   Loss: 1.3777 | Val   Acc: 79.79%
+No improvement. Best so far: 80.24%
+
+📅 Epoch 6/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.2219 | Train Acc: 84.70%
+📊 Val   Loss: 1.3141 | Val   Acc: 81.68%
+✅ Best Val Acc: 81.68% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 7/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.1404 | Train Acc: 87.54%
+📊 Val   Loss: 1.3428 | Val   Acc: 81.49%
+No improvement. Best so far: 81.68%
+
+📅 Epoch 8/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.1171 | Train Acc: 88.33%
+📊 Val   Loss: 1.4055 | Val   Acc: 79.57%
+No improvement. Best so far: 81.68%
+
+📅 Epoch 9/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.2201 | Train Acc: 84.70%
+📊 Val   Loss: 1.3222 | Val   Acc: 82.67%
+✅ Best Val Acc: 82.67% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 10/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.0582 | Train Acc: 90.13%
+📊 Val   Loss: 1.3173 | Val   Acc: 82.03%
+No improvement. Best so far: 82.67%
+
+📅 Epoch 11/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 1.0225 | Train Acc: 91.54%
+📊 Val   Loss: 1.2934 | Val   Acc: 83.07%
+✅ Best Val Acc: 83.07% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 12/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.9967 | Train Acc: 92.44%
+📊 Val   Loss: 1.3291 | Val   Acc: 81.95%
+No improvement. Best so far: 83.07%
+
+📅 Epoch 13/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.9795 | Train Acc: 93.10%
+📊 Val   Loss: 1.3109 | Val   Acc: 82.69%
+No improvement. Best so far: 83.07%
+
+📅 Epoch 14/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.9872 | Train Acc: 92.88%
+📊 Val   Loss: 1.2797 | Val   Acc: 83.12%
+✅ Best Val Acc: 83.12% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 15/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.9503 | Train Acc: 93.90%
+📊 Val   Loss: 1.2869 | Val   Acc: 83.95%
+✅ Best Val Acc: 83.95% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 16/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.9382 | Train Acc: 94.70%
+📊 Val   Loss: 1.2999 | Val   Acc: 83.47%
+No improvement. Best so far: 83.95%
+
+📅 Epoch 17/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.9168 | Train Acc: 95.45%
+📊 Val   Loss: 1.3017 | Val   Acc: 83.60%
+No improvement. Best so far: 83.95%
+
+📅 Epoch 18/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.9365 | Train Acc: 94.59%
+📊 Val   Loss: 1.2700 | Val   Acc: 84.21%
+✅ Best Val Acc: 84.21% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 19/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8913 | Train Acc: 96.28%
+📊 Val   Loss: 1.3064 | Val   Acc: 83.33%
+No improvement. Best so far: 84.21%
+
+📅 Epoch 20/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8812 | Train Acc: 96.71%
+📊 Val   Loss: 1.2715 | Val   Acc: 84.69%
+✅ Best Val Acc: 84.69% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 21/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8699 | Train Acc: 96.95%
+📊 Val   Loss: 1.2737 | Val   Acc: 85.01%
+✅ Best Val Acc: 85.01% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 22/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8572 | Train Acc: 97.49%
+📊 Val   Loss: 1.2577 | Val   Acc: 85.09%
+✅ Best Val Acc: 85.09% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 23/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8556 | Train Acc: 97.39%
+📊 Val   Loss: 1.2539 | Val   Acc: 85.12%
+✅ Best Val Acc: 85.12% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 24/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8421 | Train Acc: 97.92%
+📊 Val   Loss: 1.2606 | Val   Acc: 85.36%
+✅ Best Val Acc: 85.36% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 25/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8370 | Train Acc: 98.13%
+📊 Val   Loss: 1.2264 | Val   Acc: 86.45%
+✅ Best Val Acc: 86.45% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 26/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8278 | Train Acc: 98.43%
+📊 Val   Loss: 1.2459 | Val   Acc: 86.00%
+No improvement. Best so far: 86.45%
+
+📅 Epoch 27/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8177 | Train Acc: 98.80%
+📊 Val   Loss: 1.2178 | Val   Acc: 87.07%
+✅ Best Val Acc: 87.07% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 28/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8194 | Train Acc: 98.69%
+📊 Val   Loss: 1.2558 | Val   Acc: 86.00%
+No improvement. Best so far: 87.07%
+
+📅 Epoch 29/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8129 | Train Acc: 98.91%
+📊 Val   Loss: 1.2163 | Val   Acc: 87.04%
+No improvement. Best so far: 87.07%
+
+📅 Epoch 30/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8074 | Train Acc: 99.19%
+📊 Val   Loss: 1.2299 | Val   Acc: 86.61%
+No improvement. Best so far: 87.07%
+
+📅 Epoch 31/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.8027 | Train Acc: 99.31%
+📊 Val   Loss: 1.2341 | Val   Acc: 86.96%
+No improvement. Best so far: 87.07%
+
+📅 Epoch 32/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7994 | Train Acc: 99.43%
+📊 Val   Loss: 1.2246 | Val   Acc: 86.85%
+No improvement. Best so far: 87.07%
+
+📅 Epoch 33/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7973 | Train Acc: 99.48%
+📊 Val   Loss: 1.2012 | Val   Acc: 87.44%
+✅ Best Val Acc: 87.44% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 34/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7938 | Train Acc: 99.60%
+📊 Val   Loss: 1.2023 | Val   Acc: 87.65%
+✅ Best Val Acc: 87.65% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 35/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7951 | Train Acc: 99.53%
+📊 Val   Loss: 1.2166 | Val   Acc: 87.31%
+No improvement. Best so far: 87.65%
+
+📅 Epoch 36/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7920 | Train Acc: 99.68%
+📊 Val   Loss: 1.1990 | Val   Acc: 88.13%
+✅ Best Val Acc: 88.13% — Model saved to ./baseline/teachers/student_50_99_good_teacher.pth
+
+📅 Epoch 37/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7927 | Train Acc: 99.64%
+📊 Val   Loss: 1.2089 | Val   Acc: 87.55%
+No improvement. Best so far: 88.13%
+
+📅 Epoch 38/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7898 | Train Acc: 99.70%
+📊 Val   Loss: 1.2040 | Val   Acc: 87.79%
+No improvement. Best so far: 88.13%
+
+📅 Epoch 39/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7896 | Train Acc: 99.72%
+📊 Val   Loss: 1.2027 | Val   Acc: 87.65%
+No improvement. Best so far: 88.13%
+
+📅 Epoch 40/40 — GOOD Teacher: student_50_99_good_teacher
+📊 Train Loss: 0.7906 | Train Acc: 99.68%
+📊 Val   Loss: 1.2025 | Val   Acc: 87.73%
+No improvement. Best so far: 88.13%
+🏁 Training finished.
+
+🚀 Training BAD Teacher: student_50_99_bad_teacher
+📚 Training on class ranges: [(0, 49)]
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 2.2275 | Train Acc: 54.12%
+📊 Val   Loss: 1.6332 | Val   Acc: 71.12%
+✅ Best Val Acc: 71.12% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 2/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.5881 | Train Acc: 72.19%
+📊 Val   Loss: 1.5478 | Val   Acc: 73.89%
+✅ Best Val Acc: 73.89% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 3/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.4642 | Train Acc: 76.57%
+📊 Val   Loss: 1.3799 | Val   Acc: 78.85%
+✅ Best Val Acc: 78.85% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 4/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.3380 | Train Acc: 80.35%
+📊 Val   Loss: 1.4534 | Val   Acc: 77.47%
+No improvement. Best so far: 78.85%
+
+📅 Epoch 5/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.3080 | Train Acc: 81.40%
+📊 Val   Loss: 1.3939 | Val   Acc: 78.72%
+No improvement. Best so far: 78.85%
+
+📅 Epoch 6/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.2602 | Train Acc: 83.09%
+📊 Val   Loss: 1.3628 | Val   Acc: 79.57%
+✅ Best Val Acc: 79.57% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 7/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.2081 | Train Acc: 84.85%
+📊 Val   Loss: 1.3398 | Val   Acc: 80.75%
+✅ Best Val Acc: 80.75% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 8/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.1330 | Train Acc: 87.56%
+📊 Val   Loss: 1.3300 | Val   Acc: 80.96%
+✅ Best Val Acc: 80.96% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 9/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.0998 | Train Acc: 88.60%
+📊 Val   Loss: 1.3338 | Val   Acc: 81.23%
+✅ Best Val Acc: 81.23% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 10/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.0766 | Train Acc: 89.47%
+📊 Val   Loss: 1.3932 | Val   Acc: 79.57%
+No improvement. Best so far: 81.23%
+
+📅 Epoch 11/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.1008 | Train Acc: 88.74%
+📊 Val   Loss: 1.3467 | Val   Acc: 81.33%
+✅ Best Val Acc: 81.33% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 12/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.0307 | Train Acc: 91.17%
+📊 Val   Loss: 1.4842 | Val   Acc: 77.68%
+No improvement. Best so far: 81.33%
+
+📅 Epoch 13/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.0691 | Train Acc: 90.00%
+📊 Val   Loss: 1.4052 | Val   Acc: 78.99%
+No improvement. Best so far: 81.33%
+
+📅 Epoch 14/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.0313 | Train Acc: 91.13%
+📊 Val   Loss: 1.5322 | Val   Acc: 77.01%
+No improvement. Best so far: 81.33%
+
+📅 Epoch 15/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 1.0317 | Train Acc: 91.26%
+📊 Val   Loss: 1.3163 | Val   Acc: 81.95%
+✅ Best Val Acc: 81.95% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 16/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.9448 | Train Acc: 94.31%
+📊 Val   Loss: 1.3224 | Val   Acc: 82.29%
+✅ Best Val Acc: 82.29% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 17/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.9238 | Train Acc: 94.98%
+📊 Val   Loss: 1.3153 | Val   Acc: 83.63%
+✅ Best Val Acc: 83.63% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 18/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.9159 | Train Acc: 95.27%
+📊 Val   Loss: 1.2987 | Val   Acc: 83.39%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 19/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.9046 | Train Acc: 95.74%
+📊 Val   Loss: 1.3306 | Val   Acc: 82.00%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 20/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.9005 | Train Acc: 95.80%
+📊 Val   Loss: 1.3153 | Val   Acc: 83.28%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 21/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8771 | Train Acc: 96.64%
+📊 Val   Loss: 1.3522 | Val   Acc: 82.91%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 22/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8678 | Train Acc: 96.97%
+📊 Val   Loss: 1.3378 | Val   Acc: 83.01%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 23/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8618 | Train Acc: 97.15%
+📊 Val   Loss: 1.3398 | Val   Acc: 82.99%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 24/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8551 | Train Acc: 97.42%
+📊 Val   Loss: 1.3369 | Val   Acc: 82.51%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 25/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8426 | Train Acc: 97.83%
+📊 Val   Loss: 1.3314 | Val   Acc: 83.55%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 26/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8371 | Train Acc: 98.26%
+📊 Val   Loss: 1.3410 | Val   Acc: 83.01%
+No improvement. Best so far: 83.63%
+
+📅 Epoch 27/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8465 | Train Acc: 97.78%
+📊 Val   Loss: 1.3177 | Val   Acc: 84.00%
+✅ Best Val Acc: 84.00% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 28/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8228 | Train Acc: 98.56%
+📊 Val   Loss: 1.3041 | Val   Acc: 84.37%
+✅ Best Val Acc: 84.37% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 29/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8127 | Train Acc: 98.99%
+📊 Val   Loss: 1.3011 | Val   Acc: 84.53%
+✅ Best Val Acc: 84.53% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 30/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8106 | Train Acc: 99.11%
+📊 Val   Loss: 1.3177 | Val   Acc: 84.45%
+No improvement. Best so far: 84.53%
+
+📅 Epoch 31/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8090 | Train Acc: 99.02%
+📊 Val   Loss: 1.3009 | Val   Acc: 84.40%
+No improvement. Best so far: 84.53%
+
+📅 Epoch 32/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.8019 | Train Acc: 99.34%
+📊 Val   Loss: 1.2828 | Val   Acc: 85.12%
+✅ Best Val Acc: 85.12% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 33/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7985 | Train Acc: 99.41%
+📊 Val   Loss: 1.2913 | Val   Acc: 85.25%
+✅ Best Val Acc: 85.25% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 34/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7950 | Train Acc: 99.56%
+📊 Val   Loss: 1.2869 | Val   Acc: 85.52%
+✅ Best Val Acc: 85.52% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+
+📅 Epoch 35/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7946 | Train Acc: 99.55%
+📊 Val   Loss: 1.2936 | Val   Acc: 85.17%
+No improvement. Best so far: 85.52%
+
+📅 Epoch 36/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7913 | Train Acc: 99.70%
+📊 Val   Loss: 1.2867 | Val   Acc: 85.39%
+No improvement. Best so far: 85.52%
+
+📅 Epoch 37/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7932 | Train Acc: 99.62%
+📊 Val   Loss: 1.2867 | Val   Acc: 85.31%
+No improvement. Best so far: 85.52%
+
+📅 Epoch 38/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7914 | Train Acc: 99.68%
+📊 Val   Loss: 1.2868 | Val   Acc: 85.44%
+No improvement. Best so far: 85.52%
+
+📅 Epoch 39/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7906 | Train Acc: 99.68%
+📊 Val   Loss: 1.2839 | Val   Acc: 85.52%
+No improvement. Best so far: 85.52%
+
+📅 Epoch 40/40 — BAD Teacher: student_50_99_bad_teacher
+📊 Train Loss: 0.7899 | Train Acc: 99.73%
+📊 Val   Loss: 1.2838 | Val   Acc: 85.57%
+✅ Best Val Acc: 85.57% — Model saved to ./baseline/teachers/student_50_99_bad_teacher.pth
+🏁 Training finished.
+
+🎉 All teachers trained successfully!
+📁 Teachers saved in: ./baseline/teachers/
