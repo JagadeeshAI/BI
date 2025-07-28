@@ -5,7 +5,7 @@ from tqdm import tqdm
 from collections import defaultdict
 
 from codes.utils import get_model, load_model_weights  # ⬅️ new helper from updated utils.py
-from data import get_dynamic_loader
+from codes.data import get_dynamic_loader
 
 
 def evaluate(model, dataloader, device, num_classes):
@@ -49,7 +49,7 @@ def main():
     model = get_model(num_classes=num_classes, use_lora=True, lora_rank=2, pretrained=False).to(device)
 
     # ✅ Safely load partial weights (ignoring mismatches like head/lora)
-    load_model_weights(model, "0_59.pth", strict=False)
+    load_model_weights(model, "baseline/CLPU/checkpoints/full_clpu/phase1_task_task_1.pth", strict=False)
 
     # ✅ Use full 0–59 range
     val_loader = get_dynamic_loader(class_range=(0, 59), mode="val", batch_size=64)
@@ -61,7 +61,7 @@ def main():
         "class_wise_accuracy": class_acc
     }
 
-    with open("results.json", "w") as f:
+    with open("JAGG.json", "w") as f:
         json.dump(results, f, indent=2)
 
     print("\n✅ Evaluation completed!")

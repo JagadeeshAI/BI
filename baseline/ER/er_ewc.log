@@ -1,0 +1,71 @@
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+Populating memory buffer with classes 0-49...
+Buffer populated: 1000 samples
+
+Baseline evaluation:
+Accuracy on classes 0-49: 86.56%
+
+=== Step 1: Adding classes 50 to 59 ===
+Epoch 1/5 - Loss: 2.4750 (CE: 2.4750, EWC: 0.0001) - Train Acc: 71.11% - Val Acc: 71.11%
+Epoch 2/5 - Loss: 1.1165 (CE: 1.1162, EWC: 0.0003) - Train Acc: 70.80% - Val Acc: 70.80%
+Epoch 3/5 - Loss: 0.6680 (CE: 0.6676, EWC: 0.0004) - Train Acc: 70.00% - Val Acc: 70.00%
+Epoch 4/5 - Loss: 0.5186 (CE: 0.5181, EWC: 0.0004) - Train Acc: 70.02% - Val Acc: 70.02%
+Epoch 5/5 - Loss: 0.4284 (CE: 0.4278, EWC: 0.0005) - Train Acc: 69.47% - Val Acc: 69.47%
+Saved checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ewc/step1.pth
+
+Evaluation after step 1:
+Accuracy on classes 0-59: 69.47%
+
+=== Step 2: Adding classes 60 to 69 ===
+Epoch 1/5 - Loss: 1.8907 (CE: 1.8887, EWC: 0.0020) - Train Acc: 66.23% - Val Acc: 66.23%
+Epoch 2/5 - Loss: 1.1846 (CE: 1.1779, EWC: 0.0067) - Train Acc: 65.92% - Val Acc: 65.92%
+Epoch 3/5 - Loss: 0.8851 (CE: 0.8755, EWC: 0.0095) - Train Acc: 65.47% - Val Acc: 65.47%
+Epoch 4/5 - Loss: 0.6920 (CE: 0.6808, EWC: 0.0112) - Train Acc: 65.50% - Val Acc: 65.50%
+Epoch 5/5 - Loss: 0.5717 (CE: 0.5588, EWC: 0.0129) - Train Acc: 65.31% - Val Acc: 65.31%
+Saved checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ewc/step2.pth
+
+Evaluation after step 2:
+Accuracy on classes 0-69: 65.31%
+Forgetting check - Old classes 0-49:
+Accuracy on classes 0-49: 82.48%
+
+=== Step 3: Adding classes 70 to 79 ===
+Epoch 1/5 - Loss: 1.8921 (CE: 1.8891, EWC: 0.0030) - Train Acc: 62.18% - Val Acc: 62.18%
+Epoch 2/5 - Loss: 1.2277 (CE: 1.2174, EWC: 0.0103) - Train Acc: 61.82% - Val Acc: 61.82%
+Epoch 3/5 - Loss: 0.9366 (CE: 0.9223, EWC: 0.0143) - Train Acc: 60.25% - Val Acc: 60.25%
+Epoch 4/5 - Loss: 0.7456 (CE: 0.7287, EWC: 0.0168) - Train Acc: 60.12% - Val Acc: 60.12%
+Epoch 5/5 - Loss: 0.6260 (CE: 0.6071, EWC: 0.0190) - Train Acc: 60.32% - Val Acc: 60.32%
+Saved checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ewc/step3.pth
+
+Evaluation after step 3:
+Accuracy on classes 0-79: 60.32%
+Forgetting check - Old classes 0-59:
+Accuracy on classes 0-59: 75.09%
+
+=== Step 4: Adding classes 80 to 89 ===
+Epoch 1/5 - Loss: 1.9446 (CE: 1.9403, EWC: 0.0043) - Train Acc: 59.99% - Val Acc: 59.99%
+Epoch 2/5 - Loss: 1.2683 (CE: 1.2547, EWC: 0.0136) - Train Acc: 59.50% - Val Acc: 59.50%
+Epoch 3/5 - Loss: 0.9769 (CE: 0.9582, EWC: 0.0187) - Train Acc: 59.35% - Val Acc: 59.35%
+Epoch 4/5 - Loss: 0.7736 (CE: 0.7516, EWC: 0.0220) - Train Acc: 59.51% - Val Acc: 59.51%
+Epoch 5/5 - Loss: 0.6482 (CE: 0.6238, EWC: 0.0244) - Train Acc: 59.11% - Val Acc: 59.11%
+Saved checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ewc/step4.pth
+
+Evaluation after step 4:
+Accuracy on classes 0-89: 59.11%
+Forgetting check - Old classes 0-69:
+Accuracy on classes 0-69: 69.07%
+
+=== Step 5: Adding classes 90 to 99 ===
+Epoch 1/5 - Loss: 2.0108 (CE: 2.0052, EWC: 0.0057) - Train Acc: 55.19% - Val Acc: 55.19%
+Epoch 2/5 - Loss: 1.2305 (CE: 1.2128, EWC: 0.0177) - Train Acc: 54.05% - Val Acc: 54.05%
+Epoch 3/5 - Loss: 0.8932 (CE: 0.8697, EWC: 0.0236) - Train Acc: 52.39% - Val Acc: 52.39%
+Epoch 4/5 - Loss: 0.7096 (CE: 0.6832, EWC: 0.0264) - Train Acc: 53.45% - Val Acc: 53.45%
+Epoch 5/5 - Loss: 0.5795 (CE: 0.5519, EWC: 0.0276) - Train Acc: 52.49% - Val Acc: 52.49%
+Saved checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ewc/step5.pth
+
+Evaluation after step 5:
+Accuracy on classes 0-99: 52.49%
+Forgetting check - Old classes 0-79:
+Accuracy on classes 0-79: 65.40%
