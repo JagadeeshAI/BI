@@ -1,0 +1,99 @@
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+
+==================================================
+Unlearning Step 1
+Target classes to forget: 10 classes
+==================================================
+Loading checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ace/step1.pth
+Computing weight importance
+Starting unlearning for step 1
+Epoch 1/20:
+  Forget Acc: 82.67% (target: 0%)
+  Retain Acc: 66.16% (target: high)
+  Loss: 67.9664
+Epoch 6/20:
+  Forget Acc: 75.20% (target: 0%)
+  Retain Acc: 68.19% (target: high)
+  Loss: 20.1614
+Epoch 11/20:
+  Forget Acc: 27.33% (target: 0%)
+  Retain Acc: 69.20% (target: high)
+  Loss: -38.7523
+Epoch 16/20:
+  Forget Acc: 1.20% (target: 0%)
+  Retain Acc: 64.24% (target: high)
+  Loss: -187.4876
+✅ Unlearning successful at epoch 16
+Saved unlearned model to unlearned_models/final_step1.pth
+
+==================================================
+Unlearning Step 2
+Target classes to forget: 20 classes
+==================================================
+Loading checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ace/step2.pth
+Computing weight importance
+Starting unlearning for step 2
+Epoch 1/20:
+  Forget Acc: 69.60% (target: 0%)
+  Retain Acc: 63.04% (target: high)
+  Loss: 120.7476
+Epoch 6/20:
+  Forget Acc: 14.33% (target: 0%)
+  Retain Acc: 55.95% (target: high)
+  Loss: -156.9400
+Epoch 11/20:
+  Forget Acc: 1.13% (target: 0%)
+  Retain Acc: 57.65% (target: high)
+  Loss: -516.9332
+✅ Unlearning successful at epoch 11
+Saved unlearned model to unlearned_models/final_step2.pth
+
+==================================================
+Unlearning Step 3
+Target classes to forget: 30 classes
+==================================================
+Loading checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ace/step3.pth
+Computing weight importance
+Starting unlearning for step 3
+Epoch 1/20:
+  Forget Acc: 64.49% (target: 0%)
+  Retain Acc: 58.88% (target: high)
+  Loss: 202.2238
+Epoch 6/20:
+  Forget Acc: 0.13% (target: 0%)
+  Retain Acc: 52.53% (target: high)
+  Loss: -560.7314
+✅ Unlearning successful at epoch 6
+Saved unlearned model to unlearned_models/final_step3.pth
+
+==================================================
+Unlearning Step 4
+Target classes to forget: 40 classes
+==================================================
+Loading checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ace/step4.pth
+Computing weight importance
+Starting unlearning for step 4
+Epoch 1/20:
+  Forget Acc: 29.07% (target: 0%)
+  Retain Acc: 49.44% (target: high)
+  Loss: 263.5968
+Epoch 6/20:
+  Forget Acc: 0.00% (target: 0%)
+  Retain Acc: 46.93% (target: high)
+  Loss: -1083.3810
+✅ Unlearning successful at epoch 6
+Saved unlearned model to unlearned_models/final_step4.pth
+
+==================================================
+Unlearning Step 5
+Target classes to forget: 50 classes
+==================================================
+Loading checkpoint: /home/jag/codes/Bi/baseline/ER/checkpoints/ace/step5.pth
+Computing weight importance
+Starting unlearning for step 5
+Epoch 1/20:
+  Forget Acc: 0.59% (target: 0%)
+  Retain Acc: 31.44% (target: high)
+  Loss: 118.6369
+✅ Unlearning successful at epoch 1
+Saved unlearned model to unlearned_models/final_step5.pth

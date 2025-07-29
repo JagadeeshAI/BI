@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader, Subset
 ROOT_TRAIN = "/media/jag/volD1/cifer100/cifer/train"
 ROOT_VAL = "/media/jag/volD1/cifer100/cifer/val"
 
-def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_size=224, num_workers=4):
+def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_size=224, num_workers=0):
     data_dir = ROOT_TRAIN if mode == "train" else ROOT_VAL
 
     if mode == "train":
@@ -38,8 +38,9 @@ def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_s
         subset_dataset,
         batch_size=batch_size,
         shuffle=(mode == "train"),  
-        num_workers=num_workers,
-        multiprocessing_context="fork"
+        num_workers=num_workers,  # Changed default to 0
+        pin_memory=False  # Added to reduce memory issues
+        # Removed multiprocessing_context="fork"
     )
 
     return loader

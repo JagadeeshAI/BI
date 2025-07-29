@@ -49,7 +49,7 @@ def main():
     model = get_model(num_classes=num_classes, use_lora=True, lora_rank=2, pretrained=False).to(device)
 
     # ✅ Safely load partial weights (ignoring mismatches like head/lora)
-    load_model_weights(model, "baseline/CLPU/checkpoints/full_clpu/phase1_task_task_1.pth", strict=False)
+    load_model_weights(model, "baseline/ER/checkpoints/ewc/step3.pth", strict=False)
 
     # ✅ Use full 0–59 range
     val_loader = get_dynamic_loader(class_range=(0, 59), mode="val", batch_size=64)

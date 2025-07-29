@@ -11,3 +11,4 @@ tmux new -s step_train
 python baseline/students.py | tee logs/student.log
 python steps.py | tee logs/clpu.log
 python steps.py | tee logs/er_ewc.log
+python unlearn.py | tee l2ul.log
