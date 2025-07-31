@@ -13,3 +13,5 @@ python steps.py | tee logs/clpu.log
 python steps.py | tee logs/er_ewc.log
 python unlearn.py | tee l2ul.log
 python steps.py | tee er_ewc_ga.log
+python steps.py | tee er_ace_neggrad_plus.log
+python steps.py | tee der_scrub.log
