@@ -12,3 +12,4 @@ python baseline/students.py | tee logs/student.log
 python steps.py | tee logs/clpu.log
 python steps.py | tee logs/er_ewc.log
 python unlearn.py | tee l2ul.log
+python steps.py | tee er_ewc_ga.log

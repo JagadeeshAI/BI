@@ -4,8 +4,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Subset
 
 # Hardcoded root directories
-ROOT_TRAIN = "/media/jag/volD1/cifer100/cifer/train"
-ROOT_VAL = "/media/jag/volD1/cifer100/cifer/val"
+ROOT_TRAIN = "/media/jag/volD2/cifer100/cifer/train"
+ROOT_VAL = "/media/jag/volD2/cifer100/cifer/val"
 
 def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_size=224, num_workers=0):
     data_dir = ROOT_TRAIN if mode == "train" else ROOT_VAL
