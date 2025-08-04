@@ -80,7 +80,7 @@ def train_oracle_model(class_start, class_end):
     val_loader = get_dynamic_loader(class_range=class_range, mode="val", batch_size=32)
 
     # Training config
-    num_epochs = 40
+    num_epochs = 100
     lr = 3e-4
     weight_decay = 0.1
     label_smoothing = 0.1
@@ -118,7 +118,8 @@ def train_oracle_model(class_start, class_end):
 def main():
     os.makedirs("./checkpoints", exist_ok=True)
 
-    class_ranges = [(0, 49), (10, 59), (20, 69), (30, 79), (40, 89), (50, 99)]
+    # class_ranges = [(0, 49), (10, 59), (20, 69), (30, 79), (40, 89), (50, 99)]
+    class_ranges = [(0, 49)]
 
     for start, end in class_ranges:
         train_oracle_model(start, end)

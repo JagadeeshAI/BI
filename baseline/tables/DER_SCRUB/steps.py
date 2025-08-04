@@ -1,3 +1,4 @@
+from tqdm import tqdm
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -7,7 +8,6 @@ import os
 import sys
 import copy
 import random
-from tqdm import tqdm
 from codes.data import get_dynamic_loader
 from codes.utils import get_model
 
@@ -49,24 +49,14 @@ class ReservoirBuffer:
             
         return torch.stack(samples), torch.stack(logits), torch.tensor(labels)
 
-class SCRUBDERUnlearner:
-    def __init__(self, model, device='cuda', buffer_size=2000, alpha=0.5, beta=0.5):
+class SCRUBUnlearner:
+    def __init__(self, model, device='cuda'):
+        self.model = model
         self.device = device
-        self.buffer = ReservoirBuffer(max_size=buffer_size)
-        self.alpha = alpha  # Logit distillation weight (SCRUB-style)
-        self.beta = beta    # Buffer classification weight (DER++ style)
-        self.model = model.to(device)
-        
-    def augment_data(self, data):
-        """Apply data augmentation as mentioned in DER++ paper"""
-        # Simple augmentation - you can expand this
-        if random.random() > 0.5:
-            # Random horizontal flip
-            data = torch.flip(data, dims=[-1])
-        return data
+        self.model.to(device)
 
     def validate(self, forget_classes, retain_classes):
-        """Validate on forget and retain sets"""
+        """Validation on forget and retain sets"""
         self.model.eval()
         
         # Forget classes validation
@@ -93,7 +83,7 @@ class SCRUBDERUnlearner:
             
             forget_acc = 100. * forget_correct / forget_total if forget_total > 0 else 0
 
-        # Retain classes validation  
+        # Retain classes validation
         retain_acc = 0
         if retain_classes:
             retain_loader = get_dynamic_loader(
@@ -119,40 +109,6 @@ class SCRUBDERUnlearner:
 
         return forget_acc, retain_acc
 
-    def create_validation_set(self, target_classes, batch_size=16):
-        """Create validation set with same distribution as forget set (for SCRUB+R)"""
-        val_loader = get_dynamic_loader(
-            class_range=(min(target_classes), max(target_classes)), 
-            mode="val", 
-            batch_size=batch_size,
-            num_workers=0
-        )
-        
-        val_data = []
-        val_labels = []
-        max_samples = 100
-        
-        for batch_data, batch_labels in val_loader:
-            for i, label in enumerate(batch_labels):
-                if label.item() in target_classes and len(val_data) < max_samples:
-                    val_data.append(batch_data[i])
-                    val_labels.append(label.item())
-            
-            if len(val_data) >= max_samples:
-                break
-        
-        if val_data:
-            val_data = torch.stack(val_data)
-            val_labels = torch.tensor(val_labels)
-            val_dataset = torch.utils.data.TensorDataset(val_data, val_labels)
-            return torch.utils.data.DataLoader(
-                val_dataset, 
-                batch_size=batch_size, 
-                shuffle=False, 
-                num_workers=0
-            )
-        return None
-
     def create_forget_dataset(self, forget_classes, batch_size=32):
         """Create forget dataset"""
         if not forget_classes:
@@ -165,7 +121,7 @@ class SCRUBDERUnlearner:
         
         forget_data = []
         forget_labels = []
-        max_samples_per_class = 200  # Limit for efficiency
+        max_samples_per_class = 200  # Reduced for stability
         class_counts = {cls: 0 for cls in forget_classes}
         
         for batch_data, batch_labels in forget_loader:
@@ -201,7 +157,7 @@ class SCRUBDERUnlearner:
         
         retain_data = []
         retain_labels = []
-        max_samples = 1000  # More retain samples for stability
+        max_samples = 1500  # More retain samples for stability
         
         for batch_data, batch_labels in retain_loader:
             for i, label in enumerate(batch_labels):
@@ -229,15 +185,28 @@ class SCRUBDERUnlearner:
             reduction='batchmean'
         )
 
-    def scrub_der_max_step(self, forget_loader, teacher_model, optimizer):
+    def augment_data(self, data):
+        """Apply data augmentation as mentioned in DER++ paper"""
+        if random.random() > 0.5:
+            # Random horizontal flip
+            data = torch.flip(data, dims=[-1])
+        return data
+
+    def scrub_max_step(self, forget_loader, teacher_model, optimizer, buffer):
         """SCRUB MAX-STEP: Train only on forget data to maximize divergence"""
+        if not forget_loader:
+            return 0
+            
         self.model.train()
         teacher_model.eval()
         
         max_loss = 0
         batch_count = 0
         
-        for forget_data, forget_target in forget_loader:
+        # Progress bar for forget batches
+        pbar = tqdm(forget_loader, desc="MAX-STEP (Forget)", leave=False)
+        
+        for forget_data, forget_target in pbar:
             forget_data = forget_data.to(self.device)
             forget_target = forget_target.to(self.device)
             
@@ -254,28 +223,37 @@ class SCRUBDERUnlearner:
             
             optimizer.zero_grad()
             max_loss_batch.backward()
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=0.5)
             optimizer.step()
             
             max_loss += max_loss_batch.item()
             batch_count += 1
             
+            # Update progress bar
+            pbar.set_postfix({'Loss': f'{max_loss_batch.item():.3f}'})
+            
             # Store current logits in buffer (DER++ style)
             with torch.no_grad():
                 current_logits = self.model(forget_data).detach()
-                self.buffer.add_samples(forget_data, current_logits, forget_target)
+                buffer.add_samples(forget_data, current_logits, forget_target)
         
         return max_loss / batch_count if batch_count > 0 else 0
 
-    def scrub_der_min_step(self, retain_loader, teacher_model, optimizer):
-        """SCRUB MIN-STEP: Train only on retain data to minimize divergence + DER++ buffer replay"""
+    def scrub_min_step(self, retain_loader, teacher_model, optimizer, buffer, alpha=1.0, beta=1.0):
+        """SCRUB MIN-STEP: Train only on retain data + DER++ buffer replay"""
+        if not retain_loader:
+            return 0
+            
         self.model.train()
         teacher_model.eval()
         
         min_loss = 0
         batch_count = 0
         
-        for retain_data, retain_target in retain_loader:
+        # Progress bar for retain batches
+        pbar = tqdm(retain_loader, desc="MIN-STEP (Retain)", leave=False)
+        
+        for retain_data, retain_target in pbar:
             retain_data = retain_data.to(self.device)
             retain_target = retain_target.to(self.device)
             
@@ -288,13 +266,13 @@ class SCRUBDERUnlearner:
             student_output = self.model(retain_data_aug)
             
             # SCRUB: Minimize divergence from teacher + classification loss
-            retain_kl_loss = self.alpha * self.kl_divergence_loss(student_output, teacher_output)
+            retain_kl_loss = alpha * self.kl_divergence_loss(student_output, teacher_output)
             retain_ce_loss = F.cross_entropy(student_output, retain_target)
             
             total_loss = retain_kl_loss + retain_ce_loss
             
             # DER++ Buffer replay component
-            buffer_data, buffer_logits, buffer_labels = self.buffer.sample_batch(32)
+            buffer_data, buffer_logits, buffer_labels = buffer.sample_batch(16)
             if buffer_data is not None:
                 buffer_data = buffer_data.to(self.device)
                 buffer_logits = buffer_logits.to(self.device)
@@ -307,94 +285,94 @@ class SCRUBDERUnlearner:
                 buffer_output = self.model(buffer_data_aug)
                 
                 # DER++: Logit distillation + classification on buffer
-                buffer_distill_loss = self.alpha * F.mse_loss(buffer_output, buffer_logits)
-                buffer_class_loss = self.beta * F.cross_entropy(buffer_output, buffer_labels)
+                buffer_distill_loss = alpha * F.mse_loss(buffer_output, buffer_logits)
+                buffer_class_loss = beta * F.cross_entropy(buffer_output, buffer_labels)
                 
                 total_loss += buffer_distill_loss + buffer_class_loss
             
             optimizer.zero_grad()
             total_loss.backward()
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=0.5)
             optimizer.step()
+            
+            # Update progress bar
+            pbar.set_postfix({'Loss': f'{total_loss.item():.3f}'})
             
             # Store current batch in buffer
             with torch.no_grad():
                 current_logits = self.model(retain_data).detach()
-                self.buffer.add_samples(retain_data, current_logits, retain_target)
+                buffer.add_samples(retain_data, current_logits, retain_target)
             
             min_loss += total_loss.item()
             batch_count += 1
         
         return min_loss / batch_count if batch_count > 0 else 0
 
-    def populate_buffer_initial(self, retain_classes):
-        """Populate buffer initially with retain class samples"""
-        if not retain_classes:
-            return
+    def scrub_training_step(self, forget_loader, retain_loader, teacher_model, optimizer, 
+                           buffer, epoch, total_epochs, max_steps=1, min_steps=3, alpha=1.0, beta=1.0):
+        """SCRUB+DER++ training step with alternating min-max optimization"""
+        
+        epoch_stats = {'max_loss': 0, 'min_loss': 0, 'max_batches': 0, 'min_batches': 0}
+        
+        print(f"SCRUB+DER++ Unlearning Epoch {epoch}/{total_epochs}")
+        
+        # Perform alternating max-steps and min-steps
+        for step in range(max(max_steps, min_steps)):
+            if step < max_steps and forget_loader:
+                # MAX-STEP: Only on forget data
+                max_loss = self.scrub_max_step(forget_loader, teacher_model, optimizer, buffer)
+                epoch_stats['max_loss'] += max_loss
+                epoch_stats['max_batches'] += 1
             
-        retain_loader = get_dynamic_loader(
-            class_range=(min(retain_classes), max(retain_classes)), 
-            mode="train", batch_size=32
+            if step < min_steps and retain_loader:
+                # MIN-STEP: Only on retain data + buffer
+                min_loss = self.scrub_min_step(retain_loader, teacher_model, optimizer, buffer, alpha, beta)
+                epoch_stats['min_loss'] += min_loss
+                epoch_stats['min_batches'] += 1
+        
+        # Additional min-steps for stability (as per SCRUB paper)
+        for extra_step in range(3):
+            if retain_loader:
+                extra_min_loss = self.scrub_min_step(retain_loader, teacher_model, optimizer, buffer, alpha, beta)
+                epoch_stats['min_loss'] += extra_min_loss
+                epoch_stats['min_batches'] += 1
+        
+        # Average the losses
+        avg_max_loss = epoch_stats['max_loss'] / epoch_stats['max_batches'] if epoch_stats['max_batches'] > 0 else 0
+        avg_min_loss = epoch_stats['min_loss'] / epoch_stats['min_batches'] if epoch_stats['min_batches'] > 0 else 0
+        
+        return {'max_loss': avg_max_loss, 'min_loss': avg_min_loss}
+
+    def validate_range(self, class_range):
+        """Validate on specific class range"""
+        if not class_range:
+            return 0
+            
+        val_loader = get_dynamic_loader(
+            class_range=(min(class_range), max(class_range)), 
+            mode="val", batch_size=128, num_workers=0
         )
         
         self.model.eval()
-        samples_added = 0
+        correct = 0
+        total = 0
         
         with torch.no_grad():
-            for batch_data, batch_labels in retain_loader:
-                batch_data = batch_data.to(self.device)
-                batch_labels = batch_labels.to(self.device)
-                
-                # Get logits for storage
-                logits = self.model(batch_data)
-                
-                # Add to buffer
-                self.buffer.add_samples(batch_data, logits, batch_labels)
-                samples_added += len(batch_data)
-                
-                if samples_added >= 500:  # Limit initial population
-                    break
-        
-        print(f"Buffer populated with {len(self.buffer.buffer)} samples from retain classes")
-
-    def rewind_to_best_checkpoint(self, checkpoints, val_loader, target_error):
-        """SCRUB+R: Rewind to checkpoint with error closest to target"""
-        if not checkpoints or not val_loader:
-            return False
-            
-        best_checkpoint = None
-        best_diff = float('inf')
-        
-        for checkpoint_data in checkpoints:
-            self.model.load_state_dict(checkpoint_data['state_dict'])
-            
-            # Evaluate on validation set
-            self.model.eval()
-            correct = 0
-            total = 0
-            
-            with torch.no_grad():
-                for data, target in val_loader:
-                    data, target = data.to(self.device), target.to(self.device)
-                    output = self.model(data)
+            for data, target in val_loader:
+                data, target = data.to(self.device), target.to(self.device)
+                mask = torch.isin(target, torch.tensor(class_range).to(self.device))
+                if mask.any():
+                    data_filtered = data[mask]
+                    target_filtered = target[mask]
+                    output = self.model(data_filtered)
                     pred = output.argmax(dim=1)
-                    correct += pred.eq(target).sum().item()
-                    total += target.size(0)
-            
-            error = 100. * (1 - correct / total) if total > 0 else 100.0
-            diff = abs(error - target_error)
-            
-            if diff < best_diff:
-                best_diff = diff
-                best_checkpoint = checkpoint_data
+                    correct += pred.eq(target_filtered).sum().item()
+                    total += target_filtered.size(0)
         
-        if best_checkpoint:
-            self.model.load_state_dict(best_checkpoint['state_dict'])
-            return True
-        return False
+        return 100. * correct / total if total > 0 else 0
 
-    def unlearn(self, forget_classes, retain_classes, epochs=20, max_steps=3, min_steps=5, use_rewind=False):
-        """Main SCRUB+DER++ unlearning with alternating min-max steps"""
+    def unlearn(self, forget_classes, retain_classes, epochs=40, alpha=1.0, beta=1.0):
+        """Main SCRUB+DER++ unlearning with alternating optimization"""
         print(f"SCRUB+DER++ Unlearning: Forget {forget_classes}, Retain {retain_classes}")
         
         # Create teacher model (frozen copy of current model)
@@ -407,168 +385,398 @@ class SCRUBDERUnlearner:
         for param in teacher_model.parameters():
             param.requires_grad = False
         
-        # Create datasets
-        forget_loader = self.create_forget_dataset(forget_classes, batch_size=16)
-        retain_loader = self.create_retain_dataset(retain_classes, batch_size=16)
+        forget_loader = self.create_forget_dataset(forget_classes)
+        retain_loader = self.create_retain_dataset(retain_classes)
         
-        if forget_loader is None:
-            print(f"No samples found for forget classes {forget_classes}")
-            return
+        # Initialize DER++ buffer
+        buffer = ReservoirBuffer(max_size=1000)
         
-        # Populate buffer initially
-        self.populate_buffer_initial(retain_classes)
+        # Populate buffer initially with retain samples
+        if retain_loader:
+            self.model.eval()
+            for batch_data, batch_labels in retain_loader:
+                batch_data = batch_data.to(self.device)
+                batch_labels = batch_labels.to(self.device)
+                with torch.no_grad():
+                    logits = self.model(batch_data)
+                    buffer.add_samples(batch_data, logits, batch_labels)
+                break  # Just one batch for initial population
         
-        # Create validation set for rewinding
-        val_loader = None
-        if use_rewind:
-            val_loader = self.create_validation_set(forget_classes)
+        # Conservative optimizer settings for stability
+        optimizer = torch.optim.Adam(
+            self.model.parameters(), 
+            lr=1e-4,  # Much lower learning rate
+            weight_decay=1e-4
+        )
         
-        # Optimizer with low learning rate for stability
-        optimizer = optim.Adam(self.model.parameters(), lr=5e-4, weight_decay=1e-4)
-        
-        # Store checkpoints for rewinding
-        checkpoints = []
         best_score = float('-inf')
         best_model_state = None
         
-        print(f"Starting SCRUB+DER++ training with {epochs} epochs")
-        
-        for epoch in range(epochs):
-            print(f"\nEpoch {epoch+1}/{epochs}")
+        # Training loop with individual epoch progress
+        for epoch in range(1, epochs + 1):
+            # SCRUB alternating training step
+            stats = self.scrub_training_step(
+                forget_loader, retain_loader, teacher_model, optimizer, 
+                buffer, epoch, epochs, max_steps=1, min_steps=3, alpha=alpha, beta=beta
+            )
             
-            # SCRUB alternating min-max optimization
-            for step in range(max(max_steps, min_steps)):
-                if step < max_steps and forget_loader:
-                    # MAX-STEP: Maximize divergence on forget data
-                    max_loss = self.scrub_der_max_step(forget_loader, teacher_model, optimizer)
-                    print(f"  MAX-STEP {step+1}: Loss = {max_loss:.4f}")
-                
-                if step < min_steps and retain_loader:
-                    # MIN-STEP: Minimize divergence on retain data + DER++ buffer replay
-                    min_loss = self.scrub_der_min_step(retain_loader, teacher_model, optimizer)
-                    print(f"  MIN-STEP {step+1}: Loss = {min_loss:.4f}")
+            # Calculate total loss (similar to NegGrad+ format)
+            total_loss = stats['min_loss'] - stats['max_loss']  # MIN - MAX (retain - forget)
             
-            # Additional min-steps for stability (as per SCRUB paper)
-            for extra_step in range(2):
-                if retain_loader:
-                    min_loss = self.scrub_der_min_step(retain_loader, teacher_model, optimizer)
-                    print(f"  EXTRA-MIN-STEP {extra_step+1}: Loss = {min_loss:.4f}")
+            # Print epoch statistics
+            print(f"Loss - Total: {total_loss:.3f} | Forget: {abs(stats['max_loss']):.3f} | Retain: {stats['min_loss']:.3f}")
             
-            # Validation
+            # Validate after each epoch
             forget_acc, retain_acc = self.validate(forget_classes, retain_classes)
+            target_range = retain_classes  # The final target range for this step
+            target_acc = self.validate_range(target_range)
             
-            # Unlearning score: balance forgetting and retention
+            # SCRUB unlearning score: minimize forget accuracy, maximize retain accuracy
             unlearn_score = (100 - forget_acc) + 0.5 * max(0, retain_acc - 40)
             
-            print(f"  Validation - Forget: {forget_acc:.1f}% | Retain: {retain_acc:.1f}% | Score: {unlearn_score:.1f}")
+            print(f"Validation - Forget: {forget_acc:.1f}% | Retain: {retain_acc:.1f}% | {min(target_range) if target_range else 'N/A'}-{max(target_range) if target_range else 'N/A'}: {target_acc:.1f}% | Score: {unlearn_score:.1f}")
             
-            # Store checkpoint
-            checkpoints.append({
-                'epoch': epoch,
-                'state_dict': {k: v.clone() for k, v in self.model.state_dict().items()},
-                'forget_acc': forget_acc,
-                'retain_acc': retain_acc,
-                'score': unlearn_score
-            })
-            
-            # Track best model
+            # Save best model
             if unlearn_score > best_score:
                 best_score = unlearn_score
                 best_model_state = copy.deepcopy(self.model.state_dict())
-                print(f"  ★ New best model! Score: {unlearn_score:.1f}")
+                print(f"★ New best model! Score: {unlearn_score:.1f}")
             
             # Early stopping conditions
-            if forget_acc < 5 and retain_acc > 70:
-                print(f"  ✅ Excellent unlearning achieved at epoch {epoch+1}")
+            if forget_acc < 15 and retain_acc > 70:
+                print(f"✅ Good unlearning achieved at epoch {epoch}")
+                break
+                
+            if retain_acc < 30 and epoch > 10:
+                print(f"⚠️ Retain accuracy too low, stopping at epoch {epoch}")
                 break
             
-            if epoch > 10 and retain_acc < 20:
-                print(f"  ⚠️ Retain accuracy too low, stopping at epoch {epoch+1}")
-                break
+            print()  # Add blank line after each epoch
         
-        # Apply rewinding if requested
-        if use_rewind and val_loader and checkpoints:
-            print("\nPerforming SCRUB+R rewinding...")
+        # Load best model
+        if best_model_state is not None:
+            self.model.load_state_dict(best_model_state)
+            print(f"\n✓ Loaded best unlearned model (Score: {best_score:.1f})")
+
+class ViTDERPlusPlus:
+    def __init__(self, model, device='cuda'):
+        self.device = device
+        self.buffer = ReservoirBuffer(max_size=1000)
+        self.seen_classes = []
+        self.model = model.to(device)
+    
+    def der_plus_plus_loss(self, current_logits, current_labels, buffer_logits=None, 
+                          buffer_stored_logits=None, buffer_labels=None, alpha=0.5, beta=0.5):
+        """DER++ loss with logit distillation and buffer classification"""
+        # Current task loss
+        loss_current = F.cross_entropy(current_logits, current_labels)
+        
+        if buffer_logits is not None and buffer_stored_logits is not None and buffer_labels is not None:
+            # Logit distillation loss - key to avoiding catastrophic forgetting
+            loss_distill = F.mse_loss(buffer_logits, buffer_stored_logits)
             
-            # Get reference error from final state
-            self.model.eval()
-            val_correct = 0
-            val_total = 0
+            # Buffer classification loss  
+            loss_buffer = F.cross_entropy(buffer_logits, buffer_labels)
+            
+            total_loss = loss_current + alpha * loss_distill + beta * loss_buffer
+            return total_loss, loss_current.item(), loss_distill.item(), loss_buffer.item()
+        
+        return loss_current, loss_current.item(), 0.0, 0.0
+    
+    def validate_epoch(self, val_classes):
+        """Validate on specified classes"""
+        if not val_classes:
+            return 0
+            
+        val_loader = get_dynamic_loader(
+            class_range=(min(val_classes), max(val_classes)), 
+            mode="val", batch_size=64
+        )
+        
+        self.model.eval()
+        correct = 0
+        total = 0
+        
+        with torch.no_grad():
+            for data, labels in val_loader:
+                data, labels = data.to(self.device), labels.to(self.device)
+                
+                # Filter to only include samples from val_classes
+                mask = torch.isin(labels, torch.tensor(val_classes).to(self.device))
+                if mask.any():
+                    data_filtered = data[mask]
+                    labels_filtered = labels[mask]
+                    
+                    outputs = self.model(data_filtered)
+                    predicted = outputs.argmax(dim=1)
+                    
+                    correct += (predicted == labels_filtered).sum().item()
+                    total += labels_filtered.size(0)
+        
+        return 100 * correct / total if total > 0 else 0
+    
+    def validate_range(self, class_range):
+        """Validate on specific class range"""
+        if not class_range:
+            return 0
+            
+        val_loader = get_dynamic_loader(
+            class_range=(min(class_range), max(class_range)), 
+            mode="val", batch_size=128, num_workers=0
+        )
+        
+        self.model.eval()
+        correct = 0
+        total = 0
+        
+        with torch.no_grad():
+            for data, target in val_loader:
+                data, target = data.to(self.device), target.to(self.device)
+                mask = torch.isin(target, torch.tensor(class_range).to(self.device))
+                if mask.any():
+                    data_filtered = data[mask]
+                    target_filtered = target[mask]
+                    output = self.model(data_filtered)
+                    pred = output.argmax(dim=1)
+                    correct += pred.eq(target_filtered).sum().item()
+                    total += target_filtered.size(0)
+        
+        return 100. * correct / total if total > 0 else 0
+    
+    def populate_buffer(self, classes):
+        """Populate buffer with samples from classes"""
+        if not classes:
+            return
+            
+        train_loader = get_dynamic_loader(
+            class_range=(min(classes), max(classes)), 
+            mode="train", batch_size=32
+        )
+        
+        self.model.eval()
+        class_counts = {i: 0 for i in classes}
+        samples_per_class = 50  # Increase buffer samples
+        
+        print(f"Populating buffer with {samples_per_class} samples per class for classes {classes}")
+        
+        for batch_data, batch_labels in train_loader:
+            batch_data = batch_data.to(self.device)
+            batch_labels = batch_labels.to(self.device)
             
             with torch.no_grad():
-                for data, target in val_loader:
-                    data, target = data.to(self.device), target.to(self.device)
-                    output = self.model(data)
-                    pred = output.argmax(dim=1)
-                    val_correct += pred.eq(target).sum().item()
-                    val_total += target.size(0)
+                logits = self.model(batch_data)
             
-            target_error = 100. * (1 - val_correct / val_total) if val_total > 0 else 100.0
+            for sample, logit, label in zip(batch_data, logits, batch_labels):
+                label = label.item()
+                if label in classes and class_counts[label] < samples_per_class:
+                    self.buffer.add_samples([sample], [logit], [label])
+                    class_counts[label] += 1
             
-            if self.rewind_to_best_checkpoint(checkpoints, val_loader, target_error):
-                print(f"Rewound to checkpoint with error closest to {target_error:.2f}%")
-        elif best_model_state is not None:
-            # Load best model if not rewinding
+            if all(count >= samples_per_class for count in class_counts.values()):
+                break
+        
+        print(f"Buffer populated with {sum(class_counts.values())} samples")
+    
+    def learn_classes(self, new_classes, epochs=40, alpha=0.5, beta=0.5):
+        """Learn new classes using DER++"""
+        print(f"DER++ Learning: Adding classes {new_classes}")
+        
+        # Update seen classes
+        self.seen_classes.extend(new_classes)
+        
+        # Setup optimizer with more conservative learning rates
+        optimizer = torch.optim.Adam([
+            {'params': self.model.head.parameters(), 'lr': 5e-5},  # Lower LR for head
+            {'params': [p for n, p in self.model.named_parameters() if 'head' not in n], 'lr': 1e-5}
+        ], weight_decay=1e-4)
+        
+        # Load new class data
+        new_class_loader = get_dynamic_loader(
+            class_range=(min(new_classes), max(new_classes)), 
+            mode="train", batch_size=32
+        )
+        
+        self.model.train()
+        
+        best_score = float('-inf')
+        best_model_state = None
+        
+        # Training loop with individual epoch progress
+        for epoch in range(1, epochs + 1):
+            print(f"DER++ Learning Epoch {epoch}/{epochs}")
+            total_loss = 0
+            total_current = 0
+            total_distill = 0
+            total_buffer = 0
+            num_batches = 0
+            
+            # TQDM for training batches
+            pbar = tqdm(new_class_loader, desc=f"Training Epoch {epoch}", leave=False)
+            
+            for batch_data, batch_labels in pbar:
+                batch_data, batch_labels = batch_data.to(self.device), batch_labels.to(self.device)
+                
+                # Forward pass for current data
+                current_logits = self.model(batch_data)
+                
+                # Sample from buffer
+                buffer_data, buffer_stored_logits, buffer_labels = self.buffer.sample_batch(16)
+                
+                if buffer_data is not None:
+                    buffer_data = buffer_data.to(self.device)
+                    buffer_stored_logits = buffer_stored_logits.to(self.device)
+                    buffer_labels = buffer_labels.to(self.device)
+                    
+                    # Forward pass for buffer data
+                    buffer_logits = self.model(buffer_data)
+                    
+                    # DER++ loss
+                    loss, loss_current, loss_distill, loss_buffer = self.der_plus_plus_loss(
+                        current_logits, batch_labels, 
+                        buffer_logits, buffer_stored_logits, buffer_labels, alpha, beta
+                    )
+                else:
+                    loss, loss_current, loss_distill, loss_buffer = self.der_plus_plus_loss(
+                        current_logits, batch_labels
+                    )
+                
+                # Backward pass
+                optimizer.zero_grad()
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)  # Gradient clipping
+                optimizer.step()
+                
+                # Store current batch in buffer (with current logits)
+                with torch.no_grad():
+                    current_logits_detached = self.model(batch_data).detach()
+                    self.buffer.add_samples(batch_data, current_logits_detached, batch_labels)
+                
+                # Track losses
+                total_loss += loss.item()
+                total_current += loss_current
+                total_distill += loss_distill
+                total_buffer += loss_buffer
+                num_batches += 1
+                
+                # Update progress bar
+                pbar.set_postfix({
+                    'Total': f'{loss.item():.3f}',
+                    'Curr': f'{loss_current:.3f}',
+                    'Dist': f'{loss_distill:.3f}',
+                    'Buff': f'{loss_buffer:.3f}'
+                })
+            
+            # Validation after each epoch
+            new_acc = self.validate_epoch(new_classes)
+            old_classes = [c for c in self.seen_classes if c not in new_classes]
+            retain_acc = self.validate_epoch(old_classes) if old_classes else 0
+            target_range = self.seen_classes  # Current target range (retain + new)
+            target_acc = self.validate_range(target_range)
+            
+            # Learning score: prioritize overall target accuracy more
+            learn_score = 0.7 * target_acc + 0.2 * new_acc + 0.1 * retain_acc
+            
+            avg_loss = total_loss / num_batches
+            avg_current = total_current / num_batches
+            avg_distill = total_distill / num_batches  
+            avg_buffer = total_buffer / num_batches
+            
+            print(f"Loss - Total: {avg_loss:.3f} | Current: {avg_current:.3f} | Distill: {avg_distill:.3f}")
+            print(f"Validation - New: {new_acc:.1f}% | Retain: {retain_acc:.1f}% | {min(target_range)}-{max(target_range)}: {target_acc:.1f}% | Score: {learn_score:.1f}")
+            
+            # Save best model
+            if learn_score > best_score:
+                best_score = learn_score
+                best_model_state = copy.deepcopy(self.model.state_dict())
+                print(f"★ New best model! Score: {learn_score:.1f}")
+            
+            # Early stopping if target accuracy is good
+            if target_acc > 75 and epoch > 10:
+                print(f"✅ Good target accuracy achieved at epoch {epoch}")
+                break
+                
+            # Stop if target accuracy is declining significantly
+            if target_acc < 25 and epoch > 15:
+                print(f"⚠️ Target accuracy too low, stopping at epoch {epoch}")
+                break
+            
+            print()  # Add blank line after each epoch
+        
+        # Load best model
+        if best_model_state is not None:
             self.model.load_state_dict(best_model_state)
-            print(f"\n✓ Loaded best model (Score: {best_score:.1f})")
+            print(f"\n✓ Loaded best learned model (Score: {best_score:.1f})")
 
 def main():
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
-    # Create output directory
-    os.makedirs('scrub_der_models', exist_ok=True)
+    # Create steps directory
+    os.makedirs('steps_scrub_der', exist_ok=True)
     
-    # Load base model
+    # Load base model (0-49)
     model = get_model(num_classes=100, pretrained=True)
     base_checkpoint = torch.load('/home/jag/codes/Bi/checkpoints/oracle/0_49.pth', 
                                 map_location=device, weights_only=True)
     model.load_state_dict(base_checkpoint)
     
-    print("Starting SCRUB+DER++ Unlearning with base model (classes 0-49)")
+    print("Starting SCRUB+DER++ pipeline with base model (classes 0-49)")
     
-    # Define unlearning steps
+    # Pipeline for each step
     steps = [
-        (1, list(range(0, 10)), list(range(10, 50))),   # Forget 0-9, retain 10-49
-        (2, list(range(10, 20)), list(range(20, 50))),  # Forget 10-19, retain 20-49  
-        (3, list(range(20, 30)), list(range(30, 50))),  # Forget 20-29, retain 30-49
-        (4, list(range(30, 40)), list(range(40, 50))),  # Forget 30-39, retain 40-49
-        (5, list(range(40, 50)), [])                    # Forget 40-49, retain none
+        (1, list(range(0, 10)), list(range(10, 50)), list(range(50, 60))),  # 0-49 -> 10-59
+        (2, list(range(10, 20)), list(range(20, 60)), list(range(60, 70))), # 10-59 -> 20-69
+        (3, list(range(20, 30)), list(range(30, 70)), list(range(70, 80))), # 20-69 -> 30-79
+        (4, list(range(30, 40)), list(range(40, 80)), list(range(80, 90))), # 30-79 -> 40-89
+        (5, list(range(40, 50)), list(range(50, 90)), list(range(90, 100)))  # 40-89 -> 50-99
     ]
     
-    for step_num, forget_classes, retain_classes in steps:
+    current_classes = list(range(0, 50))  # Start with 0-49
+    
+    for step_num, forget_classes, retain_classes, new_classes in steps:
         print(f"\n{'='*80}")
-        print(f"SCRUB+DER++ Step {step_num}")
-        print(f"Forget classes: {forget_classes}")
-        print(f"Retain classes: {retain_classes}")
+        print(f"Step {step_num}: {min(current_classes)}-{max(current_classes)} -> {min(retain_classes + new_classes)}-{max(retain_classes + new_classes)}")
         print(f"{'='*80}")
         
-        # Initialize unlearner
-        unlearner = SCRUBDERUnlearner(
-            model, 
-            device=device, 
-            buffer_size=1000,
-            alpha=0.5,  # KL divergence weight
-            beta=0.5    # Buffer classification weight
-        )
+        # Phase 1: SCRUB Unlearning
+        scrub_unlearner = SCRUBUnlearner(model, device)
         
-        # Perform unlearning
-        unlearner.unlearn(
-            forget_classes=forget_classes,
-            retain_classes=retain_classes,
-            epochs=15,
-            max_steps=2,     # SCRUB max-steps per epoch
-            min_steps=3,     # SCRUB min-steps per epoch  
-            use_rewind=False # Set to True for SCRUB+R
-        )
+        # Initial validation before unlearning
+        print("\nInitial validation before SCRUB unlearning:")
+        forget_acc, retain_acc = scrub_unlearner.validate(forget_classes, retain_classes)
+        target_range = retain_classes + new_classes  # Final target range for this step
+        target_acc = scrub_unlearner.validate_range(target_range)
+        print(f"Validation - Forget: {forget_acc:.1f}% | Retain: {retain_acc:.1f}% | {min(target_range)}-{max(target_range)}: {target_acc:.1f}%")
+        
+        # SCRUB unlearning with conservative parameters
+        scrub_unlearner.unlearn(forget_classes, retain_classes, epochs=40, alpha=1.0, beta=1.0)
+        
+        # Phase 2: DER++ Learning
+        der_plus_plus = ViTDERPlusPlus(model, device)
+        der_plus_plus.seen_classes = retain_classes.copy()
+        
+        # Populate buffer with retained classes
+        der_plus_plus.populate_buffer(retain_classes)
+        
+        # Initial validation before learning new classes
+        print(f"\nInitial validation before DER++ learning:")
+        retain_acc = der_plus_plus.validate_epoch(retain_classes)
+        target_acc = der_plus_plus.validate_range(target_range)
+        print(f"Validation - Retain: {retain_acc:.1f}% | {min(target_range)}-{max(target_range)}: {target_acc:.1f}%")
+        
+        # Learn new classes with DER++ using more conservative parameters
+        der_plus_plus.learn_classes(new_classes, epochs=50, alpha=0.3, beta=0.3)
+        
+        # Update current classes
+        current_classes = retain_classes + new_classes
         
         # Save checkpoint
-        checkpoint_path = f'scrub_der_models/step{step_num}.pth'
+        checkpoint_path = f'steps_scrub_der/step{step_num}.pth'
         torch.save(model.state_dict(), checkpoint_path)
         print(f"Saved checkpoint: {checkpoint_path}")
         
         # Final validation
-        final_forget_acc, final_retain_acc = unlearner.validate(forget_classes, retain_classes)
-        print(f"Final - Forget: {final_forget_acc:.1f}% | Retain: {final_retain_acc:.1f}%")
+        final_acc = der_plus_plus.validate_epoch(current_classes)
+        print(f"Final accuracy on classes {min(current_classes)}-{max(current_classes)}: {final_acc:.2f}%")
 
 if __name__ == "__main__":
     main()

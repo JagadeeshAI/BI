@@ -1,0 +1,9 @@
+
+🚀 Training Oracle Model on Classes: 0–49
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/100 — Class Range: 0-49
+📊 Train Loss: 2.2516 | Train Acc: 53.40%
+📊 Val   Loss: 1.6607 | Val   Acc: 69.47%

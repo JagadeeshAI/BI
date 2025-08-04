@@ -197,12 +197,14 @@ class SCRUBUnlearner:
         teacher_probs = F.softmax(teacher_logits, dim=1)
         return F.kl_div(student_probs, teacher_probs, reduction='batchmean')
     
-    def scrub_step(self, forget_loader, retain_loader, teacher_model, optimizer, alpha=2.0, gamma=2.0):
-        """Perform one SCRUB training step with balanced forget/retain batches"""
+    def scrub_step(self, forget_loader, retain_loader, teacher_model, optimizer, alpha=1.0, gamma=1.0):
+        """Perform one SCRUB training step with MAXIMUM retain emphasis"""
         self.model.train()
         teacher_model.eval()
         
         total_loss = 0
+        forget_losses = []
+        retain_losses = []
         batch_count = 0
         
         pbar = tqdm(forget_loader, desc="SCRUB Training", leave=False)
@@ -211,11 +213,11 @@ class SCRUBUnlearner:
         for forget_data, forget_target in pbar:
             forget_data, forget_target = forget_data.to(self.device), forget_target.to(self.device)
             
-            # Process multiple retain batches per forget batch for stability
+            # Process MANY MORE retain batches for maximum retention
             retain_loss_total = 0
             retain_batches = 0
             
-            for _ in range(3):  # 3 retain batches per 1 forget batch
+            for _ in range(8):  # Increased from 4 to 8 for MAXIMUM retain emphasis
                 if retain_iter:
                     try:
                         retain_data, retain_target = next(retain_iter)
@@ -232,73 +234,63 @@ class SCRUBUnlearner:
                     retain_kl_loss = self.kl_divergence_loss(student_output_retain, teacher_output_retain)
                     retain_ce_loss = F.cross_entropy(student_output_retain, retain_target)
                     
-                    retain_loss_total += alpha * retain_kl_loss + gamma * retain_ce_loss
+                    retain_loss_batch = alpha * retain_kl_loss + gamma * retain_ce_loss
+                    retain_loss_total += retain_loss_batch
                     retain_batches += 1
+                    
+                    retain_losses.append(retain_loss_batch.item())
                     
                     del retain_data, retain_target, teacher_output_retain, student_output_retain
             
-            # MAX-STEP: Maximize divergence on forget data (reduced weight)
+            # MAX-STEP: Maximize divergence on forget data (with MINIMAL weight)
             with torch.no_grad():
                 teacher_output_forget = teacher_model(forget_data)
             
             student_output_forget = self.model(forget_data)
             forget_kl_loss = -self.kl_divergence_loss(student_output_forget, teacher_output_forget)
             
-            # Combined loss with much stronger retain emphasis
-            loss = 0.2 * forget_kl_loss + (retain_loss_total / retain_batches if retain_batches > 0 else 0)
+            # EXTREME retain prioritization
+            forget_weight = 0.01  # Extremely small - reduced from 0.05
+            retain_weight = 10.0  # Much larger - increased from 3.0
+            
+            loss = (forget_weight * forget_kl_loss + 
+                   retain_weight * (retain_loss_total / retain_batches if retain_batches > 0 else 0))
+            
+            forget_losses.append(forget_kl_loss.item())
             
             # Update model
             optimizer.zero_grad()
             loss.backward()
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=0.5)
+            
+            # Very gentle gradient clipping to preserve stability
+            grad_norm = torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=0.5)
             optimizer.step()
             
             total_loss += loss.item()
             batch_count += 1
             
-            pbar.set_postfix({'Loss': f'{loss.item():.4f}'})
+            # Enhanced progress info
+            pbar.set_postfix({
+                'Loss': f'{loss.item():.4f}',
+                'Forget': f'{forget_kl_loss.item():.4f}',
+                'Retain': f'{(retain_loss_total/retain_batches if retain_batches > 0 else 0):.4f}',
+                'GradNorm': f'{grad_norm:.3f}'
+            })
             
             del forget_data, forget_target, teacher_output_forget, student_output_forget, loss
             torch.cuda.empty_cache()
         
+        # Log average losses for monitoring
+        avg_forget_loss = sum(forget_losses) / len(forget_losses) if forget_losses else 0
+        avg_retain_loss = sum(retain_losses) / len(retain_losses) if retain_losses else 0
+        
+        print(f"    Forget Loss: {avg_forget_loss:.4f} | Retain Loss: {avg_retain_loss:.4f}")
+        
         return total_loss / batch_count if batch_count > 0 else 0
     
-    def rewind_to_best_checkpoint(self, checkpoints, val_loader, target_error):
-        """Rewind to checkpoint with error closest to target"""
-        best_checkpoint = None
-        best_diff = float('inf')
-        
-        for checkpoint_data in checkpoints:
-            self.model.load_state_dict(checkpoint_data['state_dict'])
-            
-            # Evaluate on validation set
-            self.model.eval()
-            correct = 0
-            total = 0
-            
-            with torch.no_grad():
-                for data, target in val_loader:
-                    data, target = data.to(self.device), target.to(self.device)
-                    output = self.model(data)
-                    pred = output.argmax(dim=1)
-                    correct += pred.eq(target).sum().item()
-                    total += target.size(0)
-            
-            error = 100. * (1 - correct / total) if total > 0 else 100.0
-            diff = abs(error - target_error)
-            
-            if diff < best_diff:
-                best_diff = diff
-                best_checkpoint = checkpoint_data
-        
-        if best_checkpoint:
-            self.model.load_state_dict(best_checkpoint['state_dict'])
-        
-        return best_checkpoint is not None
-    
     def unlearn_step(self, step_num, checkpoint_path, save_path, target_classes, 
-                    lr=1e-3, epochs=20, alpha=1.0, gamma=1.0, use_rewind=True):
-        """Perform SCRUB unlearning for a specific step"""
+                    lr=1e-3, epochs=40, alpha=2.0, gamma=2.0, use_rewind=False):
+        """Perform SCRUB unlearning for a specific step - Fixed version with initial validation"""
         
         print(f"Loading checkpoint: {checkpoint_path}")
         checkpoint = torch.load(checkpoint_path, map_location=self.device, weights_only=False)
@@ -346,115 +338,197 @@ class SCRUBUnlearner:
         }
         class_range = step_ranges[step_num]
         
+        # Calculate retain classes correctly
+        retain_class_start = max(target_classes) + 1
+        retain_class_end = class_range[1]
+        retain_classes = list(range(retain_class_start, retain_class_end + 1)) if retain_class_start <= retain_class_end else []
+        
+        print(f"Starting SCRUB unlearning for step {step_num}")
+        print(f"Forget classes: {target_classes[0]}-{target_classes[-1]} (total: {len(target_classes)})")
+        if retain_classes:
+            print(f"Retain classes: {retain_classes[0]}-{retain_classes[-1]} (total: {len(retain_classes)})")
+        else:
+            print("No retain classes for this step")
+        
+        # INITIAL VALIDATION - Check baseline performance before training
+        print(f"\n{'='*60}")
+        print("🔍 INITIAL VALIDATION (Before Training)")
+        print(f"{'='*60}")
+        initial_forget_acc, initial_retain_acc = self.validate(target_classes, retain_classes)
+        print(f'Initial Forget Acc: {initial_forget_acc:.2f}% (current performance on forget classes)')
+        print(f'Initial Retain Acc: {initial_retain_acc:.2f}% (current performance on retain classes)')
+        print(f"📊 We need: Forget Acc ↓ (from {initial_forget_acc:.2f}%) | Retain Acc ↑ (maintain ~{initial_retain_acc:.2f}%)")
+        
         # Create data loaders
         forget_loader = self.create_target_loader(class_range, target_classes, batch_size=8)
         retain_loader = self.create_retain_loader(class_range, target_classes, batch_size=8)
         
         if forget_loader is None:
-            print(f"No samples found for target classes {target_classes}")
+            print(f"❌ No samples found for target classes {target_classes}")
             return
         
-        # Create validation set for rewinding
-        val_loader = None
-        if use_rewind:
-            val_loader = self.create_validation_set(target_classes, batch_size=16)
+        print(f"\n📦 Data loaders created:")
+        print(f"   Forget loader: {len(forget_loader)} batches")
+        print(f"   Retain loader: {len(retain_loader) if retain_loader else 0} batches")
         
-        print(f"Starting SCRUB unlearning for step {step_num}")
+        # Optimizer with conservative learning rate
+        optimizer = optim.Adam(self.model.parameters(), lr=lr/2, weight_decay=1e-4)
         
-        # Optimizer with very low learning rate for stability
-        optimizer = optim.Adam(self.model.parameters(), lr=lr/10, weight_decay=1e-4)
+        # Store best model state
+        best_retain_acc = initial_retain_acc  # Start with initial retain accuracy
+        best_model_state = {k: v.clone() for k, v in self.model.state_dict().items()}  # Save initial state
         
-        # Store checkpoints for rewinding
-        checkpoints = []
-        best_retain_acc = 0
-        best_checkpoint_epoch = 0
+        # Retain-only warm-up phase (EXTENDED to 10 epochs for better stabilization)
+        print(f"\n{'='*60}")
+        print("🔥 EXTENDED RETAIN-ONLY WARM-UP PHASE (Epochs 1-10)")
+        print(f"{'='*60}")
         
-        # Define validation ranges - compute retain classes properly
-        retain_classes = []
-        if step_num == 1:
-            retain_classes = list(range(10, 60))
-        elif step_num == 2:
-            retain_classes = list(range(20, 70))
-        elif step_num == 3:
-            retain_classes = list(range(30, 80))
-        elif step_num == 4:
-            retain_classes = list(range(40, 90))
-        elif step_num == 5:
-            retain_classes = list(range(50, 100))
+        for warmup_epoch in range(10):  # Extended from 5 to 10
+            print(f"\nWarm-up Epoch {warmup_epoch+1}/10")
+            
+            if retain_loader:
+                self.model.train()
+                warmup_loss = 0
+                warmup_batches = 0
+                
+                # Use much smaller learning rate for warmup
+                warmup_optimizer = optim.Adam(self.model.parameters(), lr=lr/10, weight_decay=1e-5)
+                
+                for retain_data, retain_target in retain_loader:
+                    retain_data, retain_target = retain_data.to(self.device), retain_target.to(self.device)
+                    
+                    # Get teacher output for KL regularization
+                    with torch.no_grad():
+                        teacher_output = teacher_model(retain_data)
+                    
+                    warmup_optimizer.zero_grad()
+                    student_output = self.model(retain_data)
+                    
+                    # Combined loss: CE + KL to stay close to teacher
+                    retain_ce_loss = F.cross_entropy(student_output, retain_target)
+                    retain_kl_loss = self.kl_divergence_loss(student_output, teacher_output)
+                    retain_loss = retain_ce_loss + 0.5 * retain_kl_loss  # Add KL regularization
+                    
+                    retain_loss.backward()
+                    torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=0.1)  # Very gentle
+                    warmup_optimizer.step()
+                    
+                    warmup_loss += retain_loss.item()
+                    warmup_batches += 1
+                    
+                    del retain_data, retain_target, teacher_output, student_output
+                    torch.cuda.empty_cache()
+                
+                avg_warmup_loss = warmup_loss / warmup_batches if warmup_batches > 0 else 0
+                
+                # Check progress more frequently
+                if warmup_epoch % 2 == 0 or warmup_epoch >= 7:  # Check every 2 epochs, then every epoch
+                    forget_acc, retain_acc = self.validate(target_classes, retain_classes)
+                    print(f'  Retain-only Loss: {avg_warmup_loss:.4f}')
+                    print(f'  Forget Acc: {forget_acc:.2f}% | Retain Acc: {retain_acc:.2f}%')
+                    
+                    # Update best model if retain improved
+                    if retain_acc > best_retain_acc:
+                        best_retain_acc = retain_acc
+                        best_model_state = {k: v.clone() for k, v in self.model.state_dict().items()}
+                        print(f'  ⭐ New best retain accuracy: {retain_acc:.2f}%')
+                    
+                    # Stop early if retain performance is stable and good
+                    if warmup_epoch >= 5 and retain_acc > initial_retain_acc * 0.95:  # Within 5% of initial
+                        print(f'  ✅ Retain performance stabilized, ending warmup early')
+                        break
         
-        # Main training loop with proper progress tracking
+        # Main SCRUB training loop - NO EARLY STOPPING
+        print(f"\n{'='*60}")
+        print("🚀 MAIN SCRUB TRAINING PHASE")
+        print(f"{'='*60}")
+        
         for epoch in range(epochs):
-            print(f"\nEpoch {epoch+1}/{epochs}")
+            print(f"\n{'='*50}")
+            print(f"Epoch {epoch+1}/{epochs}")
+            print(f"{'='*50}")
+            
+            # Progressive weight adjustment - more conservative
+            if epoch < 15:  # Extended warm-up
+                current_alpha, current_gamma = alpha * 1.0, gamma * 1.0  # Start with full weights
+            elif epoch < 30:
+                current_alpha, current_gamma = alpha * 1.2, gamma * 1.2  # Slightly increase
+            else:
+                current_alpha, current_gamma = alpha * 1.5, gamma * 1.5  # Max increase
             
             # SCRUB training step
             avg_loss = self.scrub_step(forget_loader, retain_loader, teacher_model, 
-                                     optimizer, alpha=3.0, gamma=3.0)  # Higher retain weights
+                                     optimizer, alpha=current_alpha, gamma=current_gamma)
             
             # Validation after every epoch
             forget_acc, retain_acc = self.validate(target_classes, retain_classes)
             
-            print(f'  Forget Acc: {forget_acc:.2f}% (target: low, classes {target_classes[0]}-{target_classes[-1]})')
-            print(f'  Retain Acc: {retain_acc:.2f}% (target: high, classes {retain_classes[0] if retain_classes else "N/A"}-{retain_classes[-1] if retain_classes else "N/A"})')
+            # Calculate progress indicators
+            forget_improvement = initial_forget_acc - forget_acc  # Higher is better (more forgetting)
+            retain_maintenance = retain_acc - initial_retain_acc   # Positive is better (retention)
+            
+            print(f'  Forget Acc: {forget_acc:.2f}% (↓{forget_improvement:+.2f}% from initial)')
+            print(f'  Retain Acc: {retain_acc:.2f}% ({retain_maintenance:+.2f}% from initial)')
             print(f'  Avg Loss: {avg_loss:.4f}')
+            print(f'  Weights: α={current_alpha:.2f}, γ={current_gamma:.2f}')
             
-            # Store checkpoint and track best retain accuracy
-            checkpoints.append({
-                'epoch': epoch,
-                'state_dict': {k: v.clone() for k, v in self.model.state_dict().items()},
-                'retain_acc': retain_acc,
-                'forget_acc': forget_acc
-            })
-            
+            # Track best retain accuracy
             if retain_acc > best_retain_acc:
                 best_retain_acc = retain_acc
-                best_checkpoint_epoch = epoch
+                best_model_state = {k: v.clone() for k, v in self.model.state_dict().items()}
+                print(f'  ⭐ New best retain accuracy: {retain_acc:.2f}%')
             
-            # Early stopping if good balance achieved
-            if forget_acc < 10 and retain_acc > 60:
-                print(f"✅ Good unlearning balance achieved at epoch {epoch+1}")
-                break
+            # Log progress indicators
+            if forget_improvement > 10:
+                print(f'  ✅ Excellent forgetting progress (-{forget_improvement:.1f}%)')
+            elif forget_improvement > 5:
+                print(f'  ✅ Good forgetting progress (-{forget_improvement:.1f}%)')
             
-            # Stop if retain accuracy drops too much
-            if epoch > 5 and retain_acc < 25:
-                print(f"⚠️ Retain accuracy too low, stopping at epoch {epoch+1}")
-                break
+            if retain_acc > 65:
+                print(f'  ✅ Excellent retention ({retain_acc:.1f}%)')
+            elif retain_acc > 55:
+                print(f'  ✅ Good retention ({retain_acc:.1f}%)')
+            elif retain_acc < 45:
+                print(f'  ⚠️  Retention dropping ({retain_acc:.1f}%)')
         
-        # Use checkpoint with best retain accuracy instead of rewinding
-        if checkpoints and not use_rewind:
-            best_checkpoint = checkpoints[best_checkpoint_epoch]
-            self.model.load_state_dict(best_checkpoint['state_dict'])
-            print(f"Loaded checkpoint from epoch {best_checkpoint_epoch + 1} with retain acc: {best_checkpoint['retain_acc']:.2f}%")
-        elif use_rewind and val_loader and checkpoints:
-            print("Performing rewinding to optimize forget error...")
-            
-            # Get reference error from final state on validation set
-            self.model.eval()
-            val_correct = 0
-            val_total = 0
-            
-            with torch.no_grad():
-                for data, target in val_loader:
-                    data, target = data.to(self.device), target.to(self.device)
-                    output = self.model(data)
-                    pred = output.argmax(dim=1)
-                    val_correct += pred.eq(target).sum().item()
-                    val_total += target.size(0)
-            
-            target_error = 100. * (1 - val_correct / val_total) if val_total > 0 else 100.0
-            
-            # Rewind to best checkpoint
-            if self.rewind_to_best_checkpoint(checkpoints, val_loader, target_error):
-                print(f"Rewound to checkpoint with error closest to {target_error:.2f}%")
+        # Load best model state at the end
+        if best_model_state is not None:
+            self.model.load_state_dict(best_model_state)
+            print(f"\n🎯 Loaded best model with retain accuracy: {best_retain_acc:.2f}%")
         
-        # Save unlearned model
+        # Final validation with detailed comparison
+        print(f"\n{'='*60}")
+        print("📋 FINAL VALIDATION & COMPARISON")
+        print(f"{'='*60}")
+        final_forget_acc, final_retain_acc = self.validate(target_classes, retain_classes)
+        
+        forget_total_improvement = initial_forget_acc - final_forget_acc
+        retain_total_change = final_retain_acc - initial_retain_acc
+        
+        print(f'📊 FORGET PERFORMANCE:')
+        print(f'   Initial: {initial_forget_acc:.2f}% → Final: {final_forget_acc:.2f}%')
+        print(f'   Improvement: {forget_total_improvement:+.2f}% {"✅" if forget_total_improvement > 0 else "❌"}')
+        
+        print(f'📊 RETAIN PERFORMANCE:')
+        print(f'   Initial: {initial_retain_acc:.2f}% → Final: {final_retain_acc:.2f}%')
+        print(f'   Change: {retain_total_change:+.2f}% {"✅" if retain_total_change >= -5 else "❌"}')
+        
+        # Save unlearned model with comprehensive metadata
         torch.save({
             'model_state_dict': self.model.state_dict(),
             'step': step_num,
             'target_classes': target_classes,
-            'method': 'SCRUB'
+            'initial_forget_acc': initial_forget_acc,
+            'initial_retain_acc': initial_retain_acc,
+            'final_forget_acc': final_forget_acc,
+            'final_retain_acc': final_retain_acc,
+            'best_retain_acc': best_retain_acc,
+            'forget_improvement': forget_total_improvement,
+            'retain_change': retain_total_change,
+            'method': 'SCRUB_Enhanced'
         }, save_path)
         
-        print(f"Saved SCRUB unlearned model to {save_path}")
+        print(f"✅ Saved enhanced SCRUB model to {save_path}")
 
 
 def main():
@@ -464,8 +538,7 @@ def main():
     parser.add_argument('--output_dir', type=str, default='scrub_unlearned_models',
                         help='Directory to save unlearned models')
     parser.add_argument('--device', type=str, default='cuda', help='Device to use')
-    parser.add_argument('--use_rewind', action='store_true', default=True,
-                        help='Use SCRUB+R (rewinding) variant')
+    parser.add_argument('--epochs', type=int, default=40, help='Number of training epochs')
     
     args = parser.parse_args()
     
@@ -477,7 +550,7 @@ def main():
     
     unlearner = SCRUBUnlearner(model, device=args.device)
     
-    # Define unlearning tasks to match your requirements
+    # Define unlearning tasks
     unlearn_tasks = [
         (1, 'step1.pth', 'final_step1.pth', list(range(0, 10))),    # forget 0-9
         (2, 'step2.pth', 'final_step2.pth', list(range(0, 20))),    # forget 0-19  
@@ -500,11 +573,11 @@ def main():
             checkpoint_path=checkpoint_path,
             save_path=save_path,
             target_classes=target_classes,
-            lr=1e-3,  # Lower learning rate for SCRUB
-            epochs=25,
-            alpha=3.0,  # Higher weight for retain KL loss
-            gamma=3.0,  # Higher weight for retain CE loss
-            use_rewind=False  # Disable rewinding by default
+            lr=5e-4,  # Even more conservative learning rate
+            epochs=args.epochs,  # Use configurable epochs (default 40)
+            alpha=3.0,  # Even stronger retain emphasis
+            gamma=3.0,  # Even stronger retain emphasis
+            use_rewind=False  # Disabled for full training
         )
 
 if __name__ == "__main__":
