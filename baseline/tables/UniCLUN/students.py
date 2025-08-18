@@ -367,7 +367,7 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     # Initialize student model
-    student = get_model(num_classes=100, use_lora=False, pretrained=True).to(device)
+    student = get_model(num_classes=100, use_lora=False, pretrained=False).to(device)
     
     # Create framework functions
     framework_funcs = create_uniclun_framework(device=device)

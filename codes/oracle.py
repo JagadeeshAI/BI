@@ -80,7 +80,7 @@ def train_oracle_model(class_start, class_end):
     val_loader = get_dynamic_loader(class_range=class_range, mode="val", batch_size=32)
 
     # Training config
-    num_epochs = 100
+    num_epochs = 30
     lr = 3e-4
     weight_decay = 0.1
     label_smoothing = 0.1
@@ -102,7 +102,7 @@ def train_oracle_model(class_start, class_end):
 
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            save_path = f"./checkpoints/oracle/{class_start}_{class_end}.pth"
+            save_path = f"checkpoints/oracle/{class_start}_{class_end}.pth"
             torch.save(model.state_dict(), save_path)
             print(f"✅ Best Val Acc: {val_acc * 100:.2f}% — Model saved to {save_path}")
         else:
@@ -119,7 +119,7 @@ def main():
     os.makedirs("./checkpoints", exist_ok=True)
 
     # class_ranges = [(0, 49), (10, 59), (20, 69), (30, 79), (40, 89), (50, 99)]
-    class_ranges = [(0, 49)]
+    class_ranges = [ (10, 59), (20, 69), (30, 79), (40, 89), (50, 99)]
 
     for start, end in class_ranges:
         train_oracle_model(start, end)

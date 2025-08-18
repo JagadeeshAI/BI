@@ -1,0 +1,32 @@
+
+🚀 Training Oracle Model on Classes: 10–59
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+Loaded pretrained weights from timm: deit_tiny_patch16_224
+✅ Loaded pretrained weights from timm
+
+📅 Epoch 1/30 — Class Range: 10-59
+📊 Train Loss: 2.3030 | Train Acc: 51.67%
+📊 Val   Loss: 1.6586 | Val   Acc: 69.20%
+✅ Best Val Acc: 69.20% — Model saved to checkpoints/oracle/10_59.pth
+
+📅 Epoch 2/30 — Class Range: 10-59
+📊 Train Loss: 1.5780 | Train Acc: 72.20%
+📊 Val   Loss: 1.4491 | Val   Acc: 76.99%
+✅ Best Val Acc: 76.99% — Model saved to checkpoints/oracle/10_59.pth
+
+📅 Epoch 3/30 — Class Range: 10-59
+📊 Train Loss: 1.3899 | Train Acc: 78.57%
+📊 Val   Loss: 1.4999 | Val   Acc: 74.99%
+No improvement. Best so far: 76.99%
+
+📅 Epoch 4/30 — Class Range: 10-59
+📊 Train Loss: 1.3389 | Train Acc: 80.50%
+📊 Val   Loss: 1.3747 | Val   Acc: 79.09%
+✅ Best Val Acc: 79.09% — Model saved to checkpoints/oracle/10_59.pth
+
+📅 Epoch 5/30 — Class Range: 10-59
+📊 Train Loss: 1.2399 | Train Acc: 83.83%
+📊 Val   Loss: 1.4055 | Val   Acc: 78.88%
+No improvement. Best so far: 79.09%
+
+📅 Epoch 6/30 — Class Range: 10-59

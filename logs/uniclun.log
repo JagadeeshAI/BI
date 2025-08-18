@@ -1,0 +1,1001 @@
+🔥 GPU Available: NVIDIA RTX A4000
+🔥 GPU Memory: 16.7 GB
+
+🔥 Enhanced GPU Training Setup:
+   🔥 Device: cuda:0
+   🔥 GPU Name: NVIDIA RTX A4000
+   🔥 GPU Memory: 16.7 GB
+   🔥 Batch Size: 128
+   🔥 Learning Rate: 0.0005
+
+🔄 Sliding window step:
+   📚 Learn classes: (50, 59)
+   🗑️  Unlearn classes: (0, 9)
+   💾 Retain classes: (10, 49)
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🔄 Loading model weights from checkpoints/oracle/0_49.pth...
+⚠️ Skipping keys: []
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🔥 Enhanced UniCLUN model initialized on device: cuda:0
+🚀 Initializing dataset on device: cuda:0
+📊 Dataset loaded: 6000 samples
+   📚 Learn: 2000 samples
+   🗑️ Unlearn: 2000 samples
+   💾 Retain: 2000 samples
+   🔥 All data pre-loaded to GPU: cuda:0
+🚀 Starting enhanced training with 46 batches per epoch
+
+📊 Epoch 1/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000500
+   🗑️ Forget: 45.5%
+   💾 Retain: 80.0%
+   📚 New: 18.5%
+   🎯 Overall: 67.7% (Best: 67.7%)
+
+📊 Epoch 2/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000498
+   🗑️ Forget: 24.1%
+   💾 Retain: 76.0%
+   📚 New: 39.2%
+   🎯 Overall: 68.6% (Best: 68.6%)
+
+📊 Epoch 3/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000496
+   🗑️ Forget: 20.3%
+   💾 Retain: 76.3%
+   📚 New: 47.6%
+   🎯 Overall: 70.6% (Best: 70.6%)
+
+📊 Epoch 4/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000493
+   🗑️ Forget: 24.7%
+   💾 Retain: 78.3%
+   📚 New: 61.3%
+   🎯 Overall: 74.9% (Best: 74.9%)
+
+📊 Epoch 5/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000489
+   🗑️ Forget: 26.9%
+   💾 Retain: 74.2%
+   📚 New: 68.9%
+   🎯 Overall: 73.1% (Best: 74.9%)
+
+📊 Epoch 6/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000484
+   🗑️ Forget: 18.4%
+   💾 Retain: 72.7%
+   📚 New: 58.8%
+   🎯 Overall: 69.9% (Best: 74.9%)
+
+📊 Epoch 7/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000479
+   🗑️ Forget: 16.7%
+   💾 Retain: 68.7%
+   📚 New: 65.5%
+   🎯 Overall: 68.1% (Best: 74.9%)
+
+📊 Epoch 8/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000472
+   🗑️ Forget: 9.7%
+   💾 Retain: 66.2%
+   📚 New: 69.2%
+   🎯 Overall: 66.8% (Best: 74.9%)
+
+📊 Epoch 9/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000465
+   🗑️ Forget: 9.7%
+   💾 Retain: 65.5%
+   📚 New: 69.5%
+   🎯 Overall: 66.3% (Best: 74.9%)
+
+📊 Epoch 10/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000457
+   🗑️ Forget: 7.1%
+   💾 Retain: 65.6%
+   📚 New: 70.0%
+   🎯 Overall: 66.5% (Best: 74.9%)
+
+📊 Epoch 11/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000448
+   🗑️ Forget: 6.3%
+   💾 Retain: 63.0%
+   📚 New: 74.0%
+   🎯 Overall: 65.2% (Best: 74.9%)
+
+📊 Epoch 12/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000439
+   🗑️ Forget: 6.8%
+   💾 Retain: 63.8%
+   📚 New: 80.7%
+   🎯 Overall: 67.2% (Best: 74.9%)
+
+📊 Epoch 13/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000429
+   🗑️ Forget: 5.9%
+   💾 Retain: 65.2%
+   📚 New: 75.1%
+   🎯 Overall: 67.2% (Best: 74.9%)
+
+📊 Epoch 14/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000418
+   🗑️ Forget: 5.7%
+   💾 Retain: 64.4%
+   📚 New: 78.9%
+   🎯 Overall: 67.3% (Best: 74.9%)
+
+📊 Epoch 15/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000407
+   🗑️ Forget: 7.3%
+   💾 Retain: 64.4%
+   📚 New: 79.2%
+   🎯 Overall: 67.4% (Best: 74.9%)
+
+📊 Epoch 16/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000396
+   🗑️ Forget: 7.7%
+   💾 Retain: 64.0%
+   📚 New: 78.7%
+   🎯 Overall: 66.9% (Best: 74.9%)
+
+📊 Epoch 17/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000383
+   🗑️ Forget: 5.2%
+   💾 Retain: 64.4%
+   📚 New: 81.9%
+   🎯 Overall: 67.9% (Best: 74.9%)
+
+📊 Epoch 18/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000371
+   🗑️ Forget: 2.4%
+   💾 Retain: 63.0%
+   📚 New: 82.7%
+   🎯 Overall: 66.9% (Best: 74.9%)
+
+📊 Epoch 19/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000358
+   🗑️ Forget: 1.5%
+   💾 Retain: 64.2%
+   📚 New: 83.5%
+   🎯 Overall: 68.0% (Best: 74.9%)
+
+📊 Epoch 20/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000345
+   🗑️ Forget: 4.9%
+   💾 Retain: 64.8%
+   📚 New: 84.5%
+   🎯 Overall: 68.7% (Best: 74.9%)
+
+📊 Epoch 21/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000331
+   🗑️ Forget: 6.0%
+   💾 Retain: 66.9%
+   📚 New: 85.1%
+   🎯 Overall: 70.5% (Best: 74.9%)
+
+📊 Epoch 22/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000317
+   🗑️ Forget: 7.9%
+   💾 Retain: 68.3%
+   📚 New: 85.3%
+   🎯 Overall: 71.7% (Best: 74.9%)
+
+📊 Epoch 23/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000303
+   🗑️ Forget: 9.2%
+   💾 Retain: 68.2%
+   📚 New: 86.1%
+   🎯 Overall: 71.8% (Best: 74.9%)
+
+📊 Epoch 24/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000289
+   🗑️ Forget: 9.6%
+   💾 Retain: 69.1%
+   📚 New: 85.6%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 25/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000275
+   🗑️ Forget: 11.1%
+   💾 Retain: 68.1%
+   📚 New: 86.3%
+   🎯 Overall: 71.8% (Best: 74.9%)
+
+📊 Epoch 26/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000261
+   🗑️ Forget: 12.3%
+   💾 Retain: 68.4%
+   📚 New: 86.3%
+   🎯 Overall: 72.0% (Best: 74.9%)
+
+📊 Epoch 27/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000247
+   🗑️ Forget: 13.5%
+   💾 Retain: 68.8%
+   📚 New: 86.8%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 28/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000233
+   🗑️ Forget: 13.9%
+   💾 Retain: 68.8%
+   📚 New: 86.5%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 29/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000219
+   🗑️ Forget: 14.4%
+   💾 Retain: 69.1%
+   📚 New: 86.8%
+   🎯 Overall: 72.6% (Best: 74.9%)
+
+📊 Epoch 30/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000205
+   🗑️ Forget: 14.9%
+   💾 Retain: 68.8%
+   📚 New: 86.5%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 31/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000192
+   🗑️ Forget: 14.9%
+   💾 Retain: 68.8%
+   📚 New: 86.8%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 32/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000179
+   🗑️ Forget: 15.6%
+   💾 Retain: 69.1%
+   📚 New: 86.8%
+   🎯 Overall: 72.6% (Best: 74.9%)
+
+📊 Epoch 33/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000167
+   🗑️ Forget: 16.5%
+   💾 Retain: 68.8%
+   📚 New: 86.8%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 34/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000154
+   🗑️ Forget: 16.9%
+   💾 Retain: 68.9%
+   📚 New: 86.9%
+   🎯 Overall: 72.5% (Best: 74.9%)
+
+📊 Epoch 35/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000143
+   🗑️ Forget: 17.5%
+   💾 Retain: 68.6%
+   📚 New: 86.9%
+   🎯 Overall: 72.3% (Best: 74.9%)
+
+📊 Epoch 36/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000132
+   🗑️ Forget: 17.6%
+   💾 Retain: 68.8%
+   📚 New: 86.8%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 37/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000121
+   🗑️ Forget: 17.9%
+   💾 Retain: 68.8%
+   📚 New: 87.3%
+   🎯 Overall: 72.5% (Best: 74.9%)
+
+📊 Epoch 38/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000111
+   🗑️ Forget: 18.3%
+   💾 Retain: 68.9%
+   📚 New: 87.2%
+   🎯 Overall: 72.5% (Best: 74.9%)
+
+📊 Epoch 39/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000102
+   🗑️ Forget: 18.3%
+   💾 Retain: 68.7%
+   📚 New: 87.3%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 40/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000093
+   🗑️ Forget: 18.5%
+   💾 Retain: 68.9%
+   📚 New: 87.2%
+   🎯 Overall: 72.6% (Best: 74.9%)
+
+📊 Epoch 41/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000085
+   🗑️ Forget: 18.7%
+   💾 Retain: 68.7%
+   📚 New: 87.2%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 42/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000078
+   🗑️ Forget: 18.9%
+   💾 Retain: 68.9%
+   📚 New: 87.2%
+   🎯 Overall: 72.6% (Best: 74.9%)
+
+📊 Epoch 43/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000071
+   🗑️ Forget: 19.2%
+   💾 Retain: 68.7%
+   📚 New: 87.2%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 44/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000066
+   🗑️ Forget: 19.2%
+   💾 Retain: 68.9%
+   📚 New: 87.2%
+   🎯 Overall: 72.6% (Best: 74.9%)
+
+📊 Epoch 45/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000061
+   🗑️ Forget: 19.5%
+   💾 Retain: 68.8%
+   📚 New: 87.3%
+   🎯 Overall: 72.5% (Best: 74.9%)
+
+📊 Epoch 46/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000057
+   🗑️ Forget: 19.5%
+   💾 Retain: 68.8%
+   📚 New: 87.2%
+   🎯 Overall: 72.5% (Best: 74.9%)
+
+📊 Epoch 47/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000054
+   🗑️ Forget: 19.3%
+   💾 Retain: 68.7%
+   📚 New: 87.3%
+   🎯 Overall: 72.5% (Best: 74.9%)
+
+📊 Epoch 48/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000052
+   🗑️ Forget: 19.5%
+   💾 Retain: 68.8%
+   📚 New: 87.1%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 49/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000050
+   🗑️ Forget: 19.5%
+   💾 Retain: 68.7%
+   📚 New: 87.1%
+   🎯 Overall: 72.4% (Best: 74.9%)
+
+📊 Epoch 50/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000050
+   🗑️ Forget: 19.5%
+   💾 Retain: 68.6%
+   📚 New: 87.1%
+   🎯 Overall: 72.3% (Best: 74.9%)
+✅ Model saved to 10-59.pth
+✅ Best model saved to 10-59_best.pth
+
+🔥 Enhanced GPU Training Setup:
+   🔥 Device: cuda:0
+   🔥 GPU Name: NVIDIA RTX A4000
+   🔥 GPU Memory: 16.7 GB
+   🔥 Batch Size: 128
+   🔥 Learning Rate: 0.0005
+
+🔄 Sliding window step:
+   📚 Learn classes: (60, 69)
+   🗑️  Unlearn classes: (10, 19)
+   💾 Retain classes: (20, 59)
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🔄 Loading model weights from 10-59.pth...
+⚠️ Skipping keys: []
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🔥 Enhanced UniCLUN model initialized on device: cuda:0
+🚀 Initializing dataset on device: cuda:0
+📊 Dataset loaded: 6000 samples
+   📚 Learn: 2000 samples
+   🗑️ Unlearn: 2000 samples
+   💾 Retain: 2000 samples
+   🔥 All data pre-loaded to GPU: cuda:0
+🚀 Starting enhanced training with 46 batches per epoch
+
+📊 Epoch 1/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000500
+   🗑️ Forget: 33.5%
+   💾 Retain: 70.1%
+   📚 New: 1.3%
+   🎯 Overall: 56.3% (Best: 56.3%)
+
+📊 Epoch 2/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000498
+   🗑️ Forget: 34.9%
+   💾 Retain: 69.3%
+   📚 New: 16.5%
+   🎯 Overall: 58.7% (Best: 58.7%)
+
+📊 Epoch 3/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000496
+   🗑️ Forget: 26.3%
+   💾 Retain: 69.9%
+   📚 New: 39.6%
+   🎯 Overall: 63.8% (Best: 63.8%)
+
+📊 Epoch 4/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000493
+   🗑️ Forget: 25.2%
+   💾 Retain: 69.0%
+   📚 New: 47.9%
+   🎯 Overall: 64.8% (Best: 64.8%)
+
+📊 Epoch 5/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000489
+   🗑️ Forget: 11.1%
+   💾 Retain: 63.7%
+   📚 New: 36.9%
+   🎯 Overall: 58.4% (Best: 64.8%)
+
+📊 Epoch 6/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000484
+   🗑️ Forget: 12.0%
+   💾 Retain: 62.1%
+   📚 New: 54.0%
+   🎯 Overall: 60.5% (Best: 64.8%)
+
+📊 Epoch 7/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000479
+   🗑️ Forget: 10.1%
+   💾 Retain: 61.7%
+   📚 New: 55.9%
+   🎯 Overall: 60.6% (Best: 64.8%)
+
+📊 Epoch 8/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000472
+   🗑️ Forget: 8.1%
+   💾 Retain: 63.1%
+   📚 New: 55.2%
+   🎯 Overall: 61.5% (Best: 64.8%)
+
+📊 Epoch 9/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000465
+   🗑️ Forget: 13.1%
+   💾 Retain: 62.5%
+   📚 New: 69.2%
+   🎯 Overall: 63.9% (Best: 64.8%)
+
+📊 Epoch 10/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000457
+   🗑️ Forget: 16.7%
+   💾 Retain: 65.1%
+   📚 New: 67.1%
+   🎯 Overall: 65.5% (Best: 65.5%)
+
+📊 Epoch 11/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000448
+   🗑️ Forget: 12.0%
+   💾 Retain: 63.7%
+   📚 New: 68.5%
+   🎯 Overall: 64.6% (Best: 65.5%)
+
+📊 Epoch 12/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000439
+   🗑️ Forget: 16.3%
+   💾 Retain: 63.7%
+   📚 New: 68.7%
+   🎯 Overall: 64.7% (Best: 65.5%)
+
+📊 Epoch 13/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000429
+   🗑️ Forget: 13.2%
+   💾 Retain: 62.2%
+   📚 New: 72.3%
+   🎯 Overall: 64.2% (Best: 65.5%)
+
+📊 Epoch 14/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000418
+   🗑️ Forget: 13.1%
+   💾 Retain: 61.6%
+   📚 New: 71.6%
+   🎯 Overall: 63.6% (Best: 65.5%)
+
+📊 Epoch 15/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000407
+   🗑️ Forget: 14.9%
+   💾 Retain: 61.1%
+   📚 New: 70.9%
+   🎯 Overall: 63.0% (Best: 65.5%)
+
+📊 Epoch 16/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000396
+   🗑️ Forget: 15.1%
+   💾 Retain: 65.4%
+   📚 New: 72.3%
+   🎯 Overall: 66.8% (Best: 66.8%)
+
+📊 Epoch 17/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000383
+   🗑️ Forget: 15.9%
+   💾 Retain: 63.4%
+   📚 New: 74.5%
+   🎯 Overall: 65.7% (Best: 66.8%)
+
+📊 Epoch 18/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000371
+   🗑️ Forget: 19.5%
+   💾 Retain: 63.6%
+   📚 New: 76.5%
+   🎯 Overall: 66.2% (Best: 66.8%)
+
+📊 Epoch 19/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000358
+   🗑️ Forget: 20.8%
+   💾 Retain: 65.0%
+   📚 New: 76.7%
+   🎯 Overall: 67.3% (Best: 67.3%)
+
+📊 Epoch 20/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000345
+   🗑️ Forget: 22.1%
+   💾 Retain: 64.3%
+   📚 New: 78.7%
+   🎯 Overall: 67.2% (Best: 67.3%)
+
+📊 Epoch 21/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000331
+   🗑️ Forget: 22.7%
+   💾 Retain: 64.3%
+   📚 New: 77.7%
+   🎯 Overall: 67.0% (Best: 67.3%)
+
+📊 Epoch 22/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000317
+   🗑️ Forget: 24.8%
+   💾 Retain: 64.2%
+   📚 New: 78.1%
+   🎯 Overall: 67.0% (Best: 67.3%)
+
+📊 Epoch 23/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000303
+   🗑️ Forget: 25.5%
+   💾 Retain: 64.1%
+   📚 New: 78.1%
+   🎯 Overall: 66.9% (Best: 67.3%)
+
+📊 Epoch 24/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000289
+   🗑️ Forget: 25.3%
+   💾 Retain: 63.8%
+   📚 New: 78.9%
+   🎯 Overall: 66.8% (Best: 67.3%)
+
+📊 Epoch 25/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000275
+   🗑️ Forget: 26.5%
+   💾 Retain: 64.2%
+   📚 New: 78.9%
+   🎯 Overall: 67.1% (Best: 67.3%)
+
+📊 Epoch 26/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000261
+   🗑️ Forget: 28.0%
+   💾 Retain: 64.7%
+   📚 New: 80.0%
+   🎯 Overall: 67.8% (Best: 67.8%)
+
+📊 Epoch 27/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000247
+   🗑️ Forget: 27.5%
+   💾 Retain: 63.9%
+   📚 New: 78.7%
+   🎯 Overall: 66.9% (Best: 67.8%)
+
+📊 Epoch 28/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000233
+   🗑️ Forget: 28.9%
+   💾 Retain: 64.1%
+   📚 New: 79.5%
+   🎯 Overall: 67.2% (Best: 67.8%)
+
+📊 Epoch 29/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000219
+   🗑️ Forget: 29.2%
+   💾 Retain: 64.2%
+   📚 New: 79.6%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 30/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000205
+   🗑️ Forget: 30.1%
+   💾 Retain: 64.2%
+   📚 New: 79.2%
+   🎯 Overall: 67.2% (Best: 67.8%)
+
+📊 Epoch 31/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000192
+   🗑️ Forget: 30.0%
+   💾 Retain: 63.7%
+   📚 New: 79.7%
+   🎯 Overall: 66.9% (Best: 67.8%)
+
+📊 Epoch 32/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000179
+   🗑️ Forget: 30.9%
+   💾 Retain: 63.8%
+   📚 New: 79.6%
+   🎯 Overall: 67.0% (Best: 67.8%)
+
+📊 Epoch 33/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000167
+   🗑️ Forget: 31.3%
+   💾 Retain: 64.1%
+   📚 New: 79.3%
+   🎯 Overall: 67.1% (Best: 67.8%)
+
+📊 Epoch 34/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000154
+   🗑️ Forget: 31.7%
+   💾 Retain: 63.9%
+   📚 New: 79.6%
+   🎯 Overall: 67.1% (Best: 67.8%)
+
+📊 Epoch 35/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000143
+   🗑️ Forget: 31.2%
+   💾 Retain: 64.2%
+   📚 New: 79.9%
+   🎯 Overall: 67.4% (Best: 67.8%)
+
+📊 Epoch 36/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000132
+   🗑️ Forget: 32.4%
+   💾 Retain: 64.0%
+   📚 New: 80.0%
+   🎯 Overall: 67.2% (Best: 67.8%)
+
+📊 Epoch 37/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000121
+   🗑️ Forget: 32.7%
+   💾 Retain: 64.2%
+   📚 New: 79.6%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 38/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000111
+   🗑️ Forget: 33.6%
+   💾 Retain: 64.1%
+   📚 New: 80.0%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 39/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000102
+   🗑️ Forget: 33.9%
+   💾 Retain: 64.2%
+   📚 New: 79.1%
+   🎯 Overall: 67.2% (Best: 67.8%)
+
+📊 Epoch 40/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000093
+   🗑️ Forget: 33.7%
+   💾 Retain: 64.2%
+   📚 New: 79.7%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 41/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000085
+   🗑️ Forget: 34.1%
+   💾 Retain: 64.3%
+   📚 New: 79.5%
+   🎯 Overall: 67.4% (Best: 67.8%)
+
+📊 Epoch 42/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000078
+   🗑️ Forget: 33.7%
+   💾 Retain: 64.2%
+   📚 New: 79.3%
+   🎯 Overall: 67.2% (Best: 67.8%)
+
+📊 Epoch 43/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000071
+   🗑️ Forget: 34.4%
+   💾 Retain: 64.3%
+   📚 New: 79.5%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 44/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000066
+   🗑️ Forget: 34.8%
+   💾 Retain: 64.1%
+   📚 New: 79.5%
+   🎯 Overall: 67.2% (Best: 67.8%)
+
+📊 Epoch 45/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000061
+   🗑️ Forget: 35.1%
+   💾 Retain: 64.2%
+   📚 New: 79.6%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 46/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000057
+   🗑️ Forget: 35.7%
+   💾 Retain: 64.2%
+   📚 New: 79.7%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 47/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000054
+   🗑️ Forget: 35.7%
+   💾 Retain: 64.2%
+   📚 New: 79.6%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 48/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000052
+   🗑️ Forget: 35.7%
+   💾 Retain: 64.3%
+   📚 New: 79.9%
+   🎯 Overall: 67.4% (Best: 67.8%)
+
+📊 Epoch 49/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000050
+   🗑️ Forget: 35.9%
+   💾 Retain: 64.3%
+   📚 New: 79.6%
+   🎯 Overall: 67.3% (Best: 67.8%)
+
+📊 Epoch 50/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000050
+   🗑️ Forget: 35.7%
+   💾 Retain: 64.3%
+   📚 New: 79.9%
+   🎯 Overall: 67.4% (Best: 67.8%)
+✅ Model saved to 20-69.pth
+✅ Best model saved to 20-69_best.pth
+
+🔥 Enhanced GPU Training Setup:
+   🔥 Device: cuda:0
+   🔥 GPU Name: NVIDIA RTX A4000
+   🔥 GPU Memory: 16.7 GB
+   🔥 Batch Size: 128
+   🔥 Learning Rate: 0.0005
+
+🔄 Sliding window step:
+   📚 Learn classes: (70, 79)
+   🗑️  Unlearn classes: (20, 29)
+   💾 Retain classes: (30, 69)
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🔄 Loading model weights from 20-69.pth...
+⚠️ Skipping keys: []
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🛠️ Explicitly received params: {'num_classes': 100, 'lora_rank': 0}
+🔥 Enhanced UniCLUN model initialized on device: cuda:0
+🚀 Initializing dataset on device: cuda:0
+📊 Dataset loaded: 6000 samples
+   📚 Learn: 2000 samples
+   🗑️ Unlearn: 2000 samples
+   💾 Retain: 2000 samples
+   🔥 All data pre-loaded to GPU: cuda:0
+🚀 Starting enhanced training with 46 batches per epoch
+
+📊 Epoch 1/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000500
+   🗑️ Forget: 33.5%
+   💾 Retain: 66.7%
+   📚 New: 0.5%
+   🎯 Overall: 53.4% (Best: 53.4%)
+
+📊 Epoch 2/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000498
+   🗑️ Forget: 36.4%
+   💾 Retain: 69.9%
+   📚 New: 18.3%
+   🎯 Overall: 59.6% (Best: 59.6%)
+
+📊 Epoch 3/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000496
+   🗑️ Forget: 25.7%
+   💾 Retain: 66.1%
+   📚 New: 31.9%
+   🎯 Overall: 59.2% (Best: 59.6%)
+
+📊 Epoch 4/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000493
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 5/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000489
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 6/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000484
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 7/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000479
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 8/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000472
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 9/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000465
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 10/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000457
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 11/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000448
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 12/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000439
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 13/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000429
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 14/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000418
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)
+
+📊 Epoch 15/50 Results:
+   📉 Loss: nan
+   🔧 LR: 0.000407
+   🗑️ Forget: 0.0%
+   💾 Retain: 0.0%
+   📚 New: 0.0%
+   🎯 Overall: 0.0% (Best: 59.6%)

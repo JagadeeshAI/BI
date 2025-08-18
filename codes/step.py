@@ -272,7 +272,7 @@ def run_multi_step_clu(logger=None):
             'output_ckpt': 'checkpoints/steps/10_59.pth',
             'retain_classes': list(range(10, 50)),   # 10-49
             'forget_classes': list(range(0, 10)),    # 0-9
-            'new_classes': list(range(50, 60)),      # 50-59
+            'new_classes': list(range(50, 60)),     
         },
         {
             'step': 2,
@@ -318,7 +318,7 @@ def run_multi_step_clu(logger=None):
         print(f"\n🔄 STEP {step_num}/5")
         
         # Load model
-        model = get_model(num_classes=num_classes, use_lora=True, pretrained=False, lora_rank=8).to(device)
+        model = get_model(num_classes=num_classes, use_lora=True, pretrained=False, lora_rank=2).to(device)
         
         if step_num == 1:
             print_parameter_stats(model)

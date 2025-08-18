@@ -2,6 +2,7 @@ import os
 import torch
 from torchvision import datasets, transforms  
 from torch.utils.data import DataLoader, Subset
+import random
 
 # Hardcoded root directories
 ROOT_TRAIN = "/media/jag/volD2/cifer100/cifer/train"
@@ -19,7 +20,8 @@ class SafeColorJitter:
     def __call__(self, img):
         return self.color_jitter(img)
 
-def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_size=224, num_workers=0):
+
+def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_size=224, num_workers=0, data_percentage=1.0):
     data_dir = ROOT_TRAIN if mode == "train" else ROOT_VAL
 
     if mode == "train":
@@ -44,6 +46,12 @@ def get_dynamic_loader(class_range=(0, 99), mode="train", batch_size=32, image_s
     allowed_classes = list(range(start_class, end_class + 1))
 
     indices = [i for i, (_, label) in enumerate(dataset.samples) if label in allowed_classes]
+    
+    # Apply data percentage sampling
+    if data_percentage < 1.0:
+        num_samples = int(len(indices) * data_percentage)
+        indices = random.sample(indices, num_samples)
+    
     subset_dataset = Subset(dataset, indices)
 
     loader = DataLoader(
